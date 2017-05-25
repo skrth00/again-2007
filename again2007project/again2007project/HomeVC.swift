@@ -348,6 +348,9 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         // Make sure ViewController is notified when the user picks an image.
         imagePickerController.delegate = self
         
+        imagePickerController.navigationBar.tintColor = UIColor.clear
+        imagePickerController.navigationBar.isUserInteractionEnabled = false
+        
         present(imagePickerController, animated: true, completion: nil)
         
     }
