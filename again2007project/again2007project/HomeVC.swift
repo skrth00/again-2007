@@ -320,7 +320,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
                         item.frame.origin.y = 200
                         item.frame.size.width = self.view.frame.width - 80
                         item.frame.size.height = self.view.frame.height - 400
-                        
+                        item.backgroundColor = UIColor.lightGray
                     }, completion: { (finished) -> Void in
                         
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
