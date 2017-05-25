@@ -12,13 +12,20 @@ class ScreenCell: UICollectionViewCell {
     
     @IBOutlet weak var appIcon: UIButton!
     @IBOutlet weak var appName: UILabel!
+    @IBOutlet weak var appDelete: UIButton!
+    
  
     var isEditting : Bool = false {
         willSet(newValue){
             if newValue{
                 startWiggle(for: appIcon)
+                startWiggle(for: appDelete)
+                appDelete.isHidden = false
+                //삭제 아이콘 나타나기
             } else{
                 stopWiggle(for: appIcon)
+                stopWiggle(for: appDelete)
+                appDelete.isHidden = true
             }
         }
     }

@@ -53,9 +53,17 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wll-0H-BqS">
+                                                    <rect key="frame" x="-246" y="-254" width="512" height="512"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
                                             </subviews>
                                         </view>
                                         <connections>
+                                            <outlet property="appDelete" destination="Wll-0H-BqS" id="xxh-hi-L0N"/>
                                             <outlet property="appIcon" destination="Emu-mG-P7r" id="nIt-D6-qFV"/>
                                             <outlet property="appName" destination="gov-aE-A9s" id="Fjs-MQ-ah0"/>
                                         </connections>
