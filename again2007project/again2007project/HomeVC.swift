@@ -51,6 +51,8 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         layoutInit()
         viewInit()
         
+        let longpress = UILongPressGestureRecognizer(target: self, action: #selector(longPressGestureRecognized))
+        mainCollectionView.addGestureRecognizer(longpress)
     }
     
     func viewInit(){
@@ -76,6 +78,116 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
 
     }
     
+    func longPressGestureRecognized(gestureRecognizer: UIGestureRecognizer) {
+        let longPress = gestureRecognizer as! UILongPressGestureRecognizer
+        let state = longPress.state
+        let locationInView = longPress.location(in: mainCollectionView)
+        
+        let indexPath = mainCollectionView.indexPathForItem(at: locationInView)
+        struct My {
+            static var cellSnapshot : UIView? = nil
+            static var cellIsAnimating : Bool = false
+            static var cellNeedToShow : Bool = false
+        }
+        struct Path {
+            static var initialIndexPath : IndexPath? = nil
+        }
+        
+        switch state {
+        case UIGestureRecognizerState.began:
+            if indexPath != nil {
+                Path.initialIndexPath = indexPath as IndexPath? as IndexPath?
+                let cell = mainCollectionView.cellForItem(at: indexPath!) as UICollectionViewCell!
+                My.cellSnapshot = snapshotOfCell(inputView: cell!)
+                
+                var center = cell?.center
+                My.cellSnapshot!.center = center!
+                My.cellSnapshot!.alpha = 0.0
+                mainCollectionView.addSubview(My.cellSnapshot!)
+                
+                UIView.animate(withDuration: 0.25, animations: { () -> Void in
+                    center?.x = locationInView.x
+                    center?.y = locationInView.y
+                    My.cellIsAnimating = true
+                    My.cellSnapshot!.center = center!
+                    My.cellSnapshot!.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
+                    My.cellSnapshot!.alpha = 0.98
+                    cell?.alpha = 0.0
+                }, completion: { (finished) -> Void in
+                    if finished {
+                        My.cellIsAnimating = false
+                        if My.cellNeedToShow {
+                            My.cellNeedToShow = false
+                            UIView.animate(withDuration: 0.25, animations: { () -> Void in
+                                cell?.alpha = 1
+                            })
+                        } else {
+                            cell?.isHidden = true
+                        }
+                    }
+                })
+            }
+            
+        case UIGestureRecognizerState.changed:
+            if My.cellSnapshot != nil {
+                var center = My.cellSnapshot!.center
+                center.x = locationInView.x
+                center.y = locationInView.y
+                
+                print("centerX : \(center.x)")
+                print("centerY : \(center.y)")
+                My.cellSnapshot!.center = center
+                
+                if ((indexPath != nil) && (indexPath != Path.initialIndexPath)) {
+                    //itemsArray.insert(itemsArray.remove(at: Path.initialIndexPath!.row), at: indexPath!.row)
+                    mainCollectionView.moveItem(at: Path.initialIndexPath! as IndexPath, to: indexPath!)
+                    Path.initialIndexPath = indexPath as IndexPath?
+                }
+            }
+        default:
+            if Path.initialIndexPath != nil {
+                let cell = mainCollectionView.cellForItem(at: Path.initialIndexPath! as IndexPath) as UICollectionViewCell!
+                if My.cellIsAnimating {
+                    My.cellNeedToShow = true
+                } else {
+                    cell?.isHidden = false
+                    cell?.alpha = 0.0
+                }
+                
+                UIView.animate(withDuration: 0.25, animations: { () -> Void in
+                    My.cellSnapshot!.center = (cell?.center)!
+                    My.cellSnapshot!.transform = .identity
+                    My.cellSnapshot!.alpha = 0.0
+                    cell?.alpha = 1.0
+                    
+                }, completion: { (finished) -> Void in
+                    if finished {
+                        Path.initialIndexPath = nil
+                        My.cellSnapshot!.removeFromSuperview()
+                        My.cellSnapshot = nil
+                        //self.collectionView.reloadData()
+                    }
+                })
+            }
+        }
+    }
+    
+    func snapshotOfCell(inputView: UIView) -> UIView {
+        UIGraphicsBeginImageContextWithOptions(inputView.bounds.size, false, 0.0)
+        inputView.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let image = UIGraphicsGetImageFromCurrentImageContext()! as UIImage
+        UIGraphicsEndImageContext()
+        
+        let cellSnapshot : UIView = UIImageView(image: image)
+        cellSnapshot.layer.masksToBounds = false
+        cellSnapshot.layer.cornerRadius = 0.0
+        cellSnapshot.layer.shadowOffset =  CGSize(width: -5.0, height: 0.0)//CGSizeMake(-5.0, 0.0)
+        cellSnapshot.layer.shadowRadius = 5.0
+        cellSnapshot.layer.shadowOpacity = 0.4
+        return cellSnapshot
+    }
+    
+
     func layoutInit(){
         let layout = mainCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
         layout.sectionInset = UIEdgeInsetsMake(0,27.multiplyWidthRatio(),0,27.multiplyWidthRatio())
@@ -141,5 +253,11 @@ extension HomeVC{
 
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        //
+        collectionView.deselectItem(at: indexPath, animated: false)
+    }
+
 }
 
