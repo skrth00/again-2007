@@ -41,8 +41,8 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
                                                    (icon: #imageLiteral(resourceName: "AppStore"), name: "AppStore"),
                                                    (icon: #imageLiteral(resourceName: "face_time"), name: "Face time"),
                                                    (icon: #imageLiteral(resourceName: "game_center"), name: "Game Center"),
-                                                   (icon: #imageLiteral(resourceName: "itunes"), name: "itunes"),
-                                                   (icon: #imageLiteral(resourceName: "safari"), name: "safari"),
+                                                   (icon: #imageLiteral(resourceName: "itunes"), name: "iTunes"),
+                                                   (icon: #imageLiteral(resourceName: "safari"), name: "Safari"),
                                                    ]
     var appsCount: [Int] = [10, 8, 7]
 
@@ -63,6 +63,8 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         mainCollectionView.addGestureRecognizer(longpress)
         
         addParallaxToView(vw: view)
+        dockerViewInit()
+        
     }
     
     func viewInit(){
@@ -85,6 +87,59 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         mainCollectionView.backgroundColor = UIColor(white: 0, alpha: 0)
 
     }
+    func dockerViewInit(){
+        
+        let bottomView = UIView()
+        bottomView.rframe(x: 0, y: 570, width: 375, height: 97)
+        bottomView.backgroundColor = UIColor.init(red: 245/255, green: 245/255, blue: 245/255, alpha: 0.6)
+        
+        let appIcon1 = UIButton()
+        appIcon1.rframe(x: 27, y: 15, width: 60, height: 60)
+        appIcon1.setImage(apps[17]?.icon, for: .normal)
+        
+        let appName1 = UILabel()
+        appName1.rframe(x: 27, y: 75, width: 60, height: 20)
+        appName1.setLabel(text: "\(apps[17]!.name)", align: .center, fontSize: 12, color:UIColor.white)
+        
+        let appIcon2 = UIButton()
+        appIcon2.rframe(x: 114, y: 15, width: 60, height: 60)
+        appIcon2.setImage(apps[9]?.icon, for: .normal)
+        
+        let appName2 = UILabel()
+        appName2.rframe(x: 114, y: 75, width: 60, height: 20)
+        appName2.setLabel(text: "\(apps[9]!.name)", align: .center, fontSize: 12, color:UIColor.white)
+        
+        let appIcon3 = UIButton()
+        appIcon3.rframe(x: 201, y: 15, width: 60, height: 60)
+        appIcon3.setImage(apps[24]?.icon, for: .normal)
+        
+        let appName3 = UILabel()
+        appName3.rframe(x: 201, y: 75, width: 60, height: 20)
+        appName3.setLabel(text: "\(apps[24]!.name)", align: .center, fontSize: 12, color:UIColor.white)
+        
+        let appIcon4 = UIButton()
+        appIcon4.rframe(x: 288, y: 15, width: 60, height: 60)
+        appIcon4.setImage(apps[23]?.icon, for: .normal)
+        
+        let appName4 = UILabel()
+        appName4.rframe(x: 288, y: 75, width: 60, height: 20)
+        appName4.setLabel(text: "\(apps[23]!.name)", align: .center, fontSize: 12, color:UIColor.white)
+        
+        
+        
+        view.addSubview(bottomView)
+        bottomView.addSubview(appIcon1)
+        bottomView.addSubview(appName1)
+        bottomView.addSubview(appIcon2)
+        bottomView.addSubview(appName2)
+        bottomView.addSubview(appIcon3)
+        bottomView.addSubview(appName3)
+        bottomView.addSubview(appIcon4)
+        bottomView.addSubview(appName4)
+    
+        
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         UIApplication.shared.keyWindow?.addSubview(homeBtn!) // home버튼 최상위뷰에 등록
     }
