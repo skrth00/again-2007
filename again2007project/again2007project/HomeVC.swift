@@ -85,9 +85,11 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     }
     
     func setHomeBtn(){
-        let homeBtnSize:CGFloat = 40
+        let homeBtnSize:CGFloat = 50
         homeBtn = UIImageView(frame:CGRect(x: 0, y: self.view.frame.size.height - homeBtnSize, width: homeBtnSize, height:homeBtnSize))
-        homeBtn?.backgroundColor = UIColor.lightGray
+        homeBtn?.image = #imageLiteral(resourceName: "home")
+        homeBtn?.layer.cornerRadius = 25
+        homeBtn?.layer.masksToBounds = true
         
         let doubleTap = UITapGestureRecognizer(target: self, action: #selector(HomeVC.doubleTapDetected))
         doubleTap.numberOfTapsRequired = 2 // you can change this value
@@ -155,7 +157,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     
     //single tap Action
     func singleTapDetected() {
-        dismiss(animated: true, completion: nil)
+        presentedViewController?.dismiss(animated: false, completion: nil)
         print("Imageview Clicked")
     }
     //double tap Action
