@@ -10,17 +10,7 @@ import UIKit
 
 class ScreenCell: UICollectionViewCell {
     
-    var appIcon = UIButton()
-    var appName = UILabel()
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        self.contentView.addSubview(appIcon)
-        self.contentView.addSubview(appName)
-    }
-    
+    @IBOutlet weak var appIcon: UIButton!
+    @IBOutlet weak var appName: UILabel!
+ 
 }
