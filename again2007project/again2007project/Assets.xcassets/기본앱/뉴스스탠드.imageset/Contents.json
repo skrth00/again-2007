@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Apple-clock-icon.jpg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "뉴스스탠드@2x.png",
       "scale" : "2x"
     },
     {
