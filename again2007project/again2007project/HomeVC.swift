@@ -16,6 +16,17 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     // main collection view
     @IBOutlet weak var mainCollectionView: UICollectionView!
     
+    // editing mode
+    override var isEditing: Bool {
+        didSet {
+            let visibleCells = mainCollectionView.visibleCells
+            for i in 0..<visibleCells.count{
+                let cell = mainCollectionView.visibleCells[i] as! ScreenCell
+                cell.isEditting = true
+            }
+        }
+    }
+    
 //<<<<<<< Updated upstream
     var apps : [(icon: UIImage, name: String)?] = [(icon: #imageLiteral(resourceName: "캘린더"), name: "캘린더"),
                                                    (icon: #imageLiteral(resourceName: "시계"), name: "시계"),
@@ -29,6 +40,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
                                                    (icon: #imageLiteral(resourceName: "사진"), name: "사진"),
                                                    (icon: #imageLiteral(resourceName: "주식"), name: "주식"),
                                                    (icon: #imageLiteral(resourceName: "지도"), name: "지도"),
+                                                   (icon: #imageLiteral(resourceName: "papago"), name: "마마고"),
                                                    (icon: #imageLiteral(resourceName: "Passbook"), name: "Passbook"),
                                                    (icon: #imageLiteral(resourceName: "계산기"), name: "계산기"),
                                                    (icon: #imageLiteral(resourceName: "나침반"), name: "나침반"),
@@ -41,9 +53,9 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
                                                    (icon: #imageLiteral(resourceName: "face_time"), name: "Face time"),
                                                    (icon: #imageLiteral(resourceName: "game_center"), name: "Game Center"),
                                                    (icon: #imageLiteral(resourceName: "itunes"), name: "itunes"),
-                                                   (icon: #imageLiteral(resourceName: "safari"), name: "safari"),
+                                                   (icon: #imageLiteral(resourceName: "safari"), name: "safari")
                                                    ]
-    var appsCount: [Int] = [10, 8, 7]
+    var appsCount: [Int] = [10, 8, 8]
 
     
     var appButtons : [UIButton] = []
@@ -167,6 +179,8 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
 
     
     func longPressGestureRecognized(gestureRecognizer: UIGestureRecognizer) {
+        self.isEditing = true
+        
         let longPress = gestureRecognizer as! UILongPressGestureRecognizer
         let state = longPress.state
         let locationInView = longPress.location(in: mainCollectionView)
@@ -294,15 +308,15 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         case "시계":
             performSegue(withIdentifier: "clockSegue", sender: self)
             break
+        case "마마고":
+            performSegue(withIdentifier: "papagoSegue", sender: self)
         default:
             break
         }
     }
     
     func appButtonLongClick(){
-        for i in 0..<appButtons.count{
-            startWiggle(for: appButtons[i])
-        }
+        
     }
     
     
@@ -336,10 +350,6 @@ extension HomeVC{
                 cell.appIcon.setImage(apps[(indexPath.item)]?.icon, for: .normal)
                 cell.appIcon.tag = indexPath.item
                 cell.appIcon.addTarget(self, action: #selector(appClick), for: .touchUpInside)
-                cell.appIcon.addLongAction(target: self, action: #selector(appButtonLongClick))
-                
-                appButtons.append(cell.appIcon)
-                
                 cell.appName.rframe(x: 0, y: 60, width: 60, height: 20)
                 cell.appName.setLabel(text: "\(apps[indexPath.item]!.name)\(indexPath.item)", align: .center, fontSize: 12, color:UIColor.white)
             } else{

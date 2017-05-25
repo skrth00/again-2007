@@ -13,4 +13,13 @@ class ScreenCell: UICollectionViewCell {
     @IBOutlet weak var appIcon: UIButton!
     @IBOutlet weak var appName: UILabel!
  
+    var isEditting : Bool = false {
+        willSet(newValue){
+            if newValue{
+                startWiggle(for: appIcon)
+            } else{
+                stopWiggle(for: appIcon)
+            }
+        }
+    }
 }
