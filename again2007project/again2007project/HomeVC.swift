@@ -10,6 +10,8 @@ import UIKit
 import DORM
 
 class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+    var homeBtn: UIImageView?
+    var viewControllerList = [UIViewController]()
     
     // main collection view
     @IBOutlet weak var mainCollectionView: UICollectionView!
@@ -50,7 +52,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         
         layoutInit()
         viewInit()
-        
+        setHomeBtn()
         let longpress = UILongPressGestureRecognizer(target: self, action: #selector(longPressGestureRecognized))
         mainCollectionView.addGestureRecognizer(longpress)
     }
@@ -73,10 +75,91 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         
         // 배경
         mainCollectionView.backgroundColor = UIColor(white: 0, alpha: 0)
-        
-        
 
     }
+    override func viewDidAppear(_ animated: Bool) {
+        UIApplication.shared.keyWindow?.addSubview(homeBtn!) // home버튼 최상위뷰에 등록
+    }
+    
+    func setHomeBtn(){
+        let homeBtnSize:CGFloat = 40
+        homeBtn = UIImageView(frame:CGRect(x: 0, y: self.view.frame.size.height - homeBtnSize, width: homeBtnSize, height:homeBtnSize))
+        homeBtn?.backgroundColor = UIColor.lightGray
+        
+        let doubleTap = UITapGestureRecognizer(target: self, action: #selector(HomeVC.doubleTapDetected))
+        doubleTap.numberOfTapsRequired = 2 // you can change this value
+        homeBtn?.addGestureRecognizer(doubleTap)
+        
+        let singleTap = UITapGestureRecognizer(target: self, action: #selector(HomeVC.singleTapDetected))
+        singleTap.numberOfTapsRequired = 1 // you can change this value
+        homeBtn?.addGestureRecognizer(singleTap)
+        
+        homeBtn?.isUserInteractionEnabled = true
+        
+        singleTap.require(toFail: doubleTap)
+        singleTap.delaysTouchesBegan = true
+        doubleTap.delaysTouchesBegan = true
+        
+        let dragGesture = UIPanGestureRecognizer(target: self, action: #selector(HomeVC.handlePan))
+        homeBtn?.addGestureRecognizer(dragGesture)
+    }
+    
+    // home button drag action
+    func handlePan(target: UIPanGestureRecognizer!) {
+        
+        if target.state == UIGestureRecognizerState.began {
+            return
+        }
+        if target.state == UIGestureRecognizerState.changed{
+            UIView.animate(withDuration: 0.1) {
+                let locationInView = target.location(in: self.view)
+                self.homeBtn?.center.x = locationInView.x
+                self.homeBtn?.center.y = locationInView.y
+            }
+        }
+        
+        if target.state == UIGestureRecognizerState.ended {
+            let centerX = self.view.frame.size.width / 2 // x의 중앙 좌표
+            let superViewY = self.view.frame.size.height //height 전체길이
+            let xPriorityLength:CGFloat = 50
+            let btnHarfLength:CGFloat = 20
+            var position = CGPoint(x: 0, y: 0)
+            let locationInView = target.location(in: self.view)
+            if(locationInView.x < centerX) {
+                position.x = btnHarfLength
+            } else {
+                position.x = self.view.frame.size.width - btnHarfLength
+            }
+            if(locationInView.y < xPriorityLength) {
+                position.y = btnHarfLength
+                position.x = locationInView.x
+            } else if(locationInView.y > superViewY - xPriorityLength) {
+                position.y = superViewY - btnHarfLength
+                position.x = locationInView.x
+            } else {
+                position.y = locationInView.y
+            }
+            
+            
+            UIView.animate(withDuration: 0.25) {
+                self.homeBtn?.center.x = position.x
+                self.homeBtn?.center.y = position.y
+            }
+            return
+        }
+        
+    }
+    
+    //single tap Action
+    func singleTapDetected() {
+        dismiss(animated: true, completion: nil)
+        print("Imageview Clicked")
+    }
+    //double tap Action
+    func doubleTapDetected() {
+        print("Imageview double Clicked")
+    }
+
     
     func longPressGestureRecognized(gestureRecognizer: UIGestureRecognizer) {
         let longPress = gestureRecognizer as! UILongPressGestureRecognizer
