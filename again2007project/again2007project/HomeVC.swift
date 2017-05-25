@@ -14,6 +14,15 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     var homeBtn: UIImageView?
     var viewControllerList = [UIViewController]()
     
+    
+    // directory
+    var isTapped = false
+    var lastDirCellIdx : IndexPath?
+    var isEnlarged = false
+    var isEnlargeEnd = false
+    let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.regular))
+    
+    
     // main collection view
     @IBOutlet weak var mainCollectionView: UICollectionView!
     
@@ -226,17 +235,55 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
                 var center = My.cellSnapshot!.center
                 center.x = locationInView.x
                 center.y = locationInView.y
-                
-                print("centerX : \(center.x)")
-                print("centerY : \(center.y)")
                 My.cellSnapshot!.center = center
                 
-                if ((indexPath != nil) && (indexPath != Path.initialIndexPath)) {
-                    //itemsArray.insert(itemsArray.remove(at: Path.initialIndexPath!.row), at: indexPath!.row)
-                    mainCollectionView.moveItem(at: Path.initialIndexPath! as IndexPath, to: indexPath!)
-                    Path.initialIndexPath = indexPath as IndexPath?
+                if ((indexPath != nil) && (indexPath != Path.initialIndexPath) && !isEnlarged) {
+                    
+                    //                    let mergedItem = self.collectionView.cellForItem(at: Path.initialIndexPath!) as! UICollectionViewCell
+                    //                    mergedItem.layer.removeAllAnimations()
+                    print("호출, \(gestureRecognizer.view)")
+                    print("[suejinv] isEnlarged true")
+                    isEnlarged = true
+                    //                    isEnlargeEnd = false
+                    
+                    let item = mainCollectionView.cellForItem(at: indexPath!)!
+                    item.layer.removeAllAnimations()
+                    
+                    self.lastDirCellIdx = indexPath
+                    
+                    UIView.animate(withDuration: 1, animations: {
+                        
+                        self.mainCollectionView.addSubview(self.blurEffectView)
+                        self.mainCollectionView.bringSubview(toFront: self.blurEffectView)
+                        //self.lastDirCellIdx = indexPath
+                        self.blurEffectView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.makeSmallCellSize)))
+                        
+                        self.mainCollectionView.bringSubview(toFront: item)
+                        self.mainCollectionView.bringSubview(toFront: My.cellSnapshot!)
+                        item.frame.origin = self.view.frame.origin
+                        item.frame.origin.x = 40
+                        item.frame.origin.y = 200
+                        item.frame.size.width = self.view.frame.width - 80
+                        item.frame.size.height = self.view.frame.height - 400
+                        
+                    }, completion: { (finished) -> Void in
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            
+                            if item.frame.contains(longPress.location(in: self.mainCollectionView)) == false {
+                                self.makeSmallCellSize()
+                                self.mainCollectionView.moveItem(at: Path.initialIndexPath! as IndexPath, to: indexPath!)
+                                print(Path.initialIndexPath)
+                                
+                            }
+                        }
+                        
+                        
+                    })
+                    
                 }
             }
+
         default:
             if Path.initialIndexPath != nil {
                 let cell = mainCollectionView.cellForItem(at: Path.initialIndexPath! as IndexPath) as UICollectionViewCell!
@@ -255,7 +302,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
                     
                 }, completion: { (finished) -> Void in
                     if finished {
-                        Path.initialIndexPath = nil
+                        //Path.initialIndexPath = nil
                         My.cellSnapshot!.removeFromSuperview()
                         My.cellSnapshot = nil
                         //self.collectionView.reloadData()
@@ -446,7 +493,7 @@ extension HomeVC{
                 cell.appIcon.setImage(apps[(indexPath.item)]?.icon, for: .normal)
                 cell.appIcon.tag = indexPath.item
                 cell.appIcon.addTarget(self, action: #selector(appClick), for: .touchUpInside)
-                cell.appIcon.addLongAction(target: self, action: #selector(appButtonLongClick))
+                //cell.appIcon.addLongAction(target: self, action: #selector(appButtonLongClick))
                 
                 appButtons.append(cell.appIcon)
                 
@@ -489,4 +536,36 @@ extension HomeVC{
         collectionView.deselectItem(at: indexPath, animated: false)
     }
 
+}
+
+//directory
+extension HomeVC {
+    func makeSmallCellSize() {
+        
+        if let idx = lastDirCellIdx {
+            let item = mainCollectionView.cellForItem(at: idx as IndexPath) as UICollectionViewCell!
+            
+            UIView.animate(withDuration: 1.0, animations: {
+                
+                item?.frame.origin = self.view.frame.origin   /// this view origin will be at the top of the scroll content, you'll have to figure this out
+                item?.frame.origin.x = CGFloat(idx.row % 3) * (DeviceUtil.knowScreenWidth() / 3)
+                item?.frame.origin.y = CGFloat(idx.row / 3) * (DeviceUtil.knowScreenWidth() / 3)
+                item?.frame.size.width = DeviceUtil.knowScreenWidth() / 3
+                item?.frame.size.height = DeviceUtil.knowScreenWidth() / 3
+                
+            }, completion: { (finished) -> Void in
+                self.mainCollectionView.sendSubview(toBack: self.blurEffectView)
+                
+                NSLog("[suejinv] isEnlarged false")
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    NSLog("[suejinv] aaae")
+                    self.isEnlarged = false
+                }
+            })
+            
+            
+            //self.view.addSubview(blurEffectView)
+            //collectionView.bringSubview(toFront: blurEffectView)
+        }
+    }
 }
