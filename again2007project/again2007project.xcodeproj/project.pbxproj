@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		23BA1F0F75E84C91ACCF4B48 /* Pods_again2007project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E3BFC3F5D05E7FBE09AC95 /* Pods_again2007project.framework */; };
+		30F941A21ED76F8200857C23 /* DeviceUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F941A11ED76F8200857C23 /* DeviceUtil.swift */; };
 		6778A64C1ED6D1F00031B43C /* ScreenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6778A64B1ED6D1F00031B43C /* ScreenCell.swift */; };
 		6778A6501ED746350031B43C /* AppleMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6778A64F1ED746350031B43C /* AppleMapVC.swift */; };
 		6778A6541ED750370031B43C /* Animation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6778A6531ED750370031B43C /* Animation+Extension.swift */; };
@@ -33,6 +34,7 @@
 /* Begin PBXFileReference section */
 		122C30F930C74A7CE7FF6DFE /* Pods-again2007project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-again2007project.debug.xcconfig"; path = "Pods/Target Support Files/Pods-again2007project/Pods-again2007project.debug.xcconfig"; sourceTree = "<group>"; };
 		1BFA36850FA563F1FCDA3527 /* Pods-again2007project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-again2007project.release.xcconfig"; path = "Pods/Target Support Files/Pods-again2007project/Pods-again2007project.release.xcconfig"; sourceTree = "<group>"; };
+		30F941A11ED76F8200857C23 /* DeviceUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceUtil.swift; sourceTree = "<group>"; };
 		3131BA03898700E789AF27A0 /* Pods_again2007projectTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_again2007projectTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6778A64B1ED6D1F00031B43C /* ScreenCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenCell.swift; sourceTree = "<group>"; };
 		6778A64F1ED746350031B43C /* AppleMapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleMapVC.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				67F34BE41ED6CD500094FB6D /* HomeVC.swift */,
 				6778A64F1ED746350031B43C /* AppleMapVC.swift */,
 				6778A6531ED750370031B43C /* Animation+Extension.swift */,
+				30F941A11ED76F8200857C23 /* DeviceUtil.swift */,
 				67F34BE61ED6CD500094FB6D /* Main.storyboard */,
 				67F34BE91ED6CD500094FB6D /* Assets.xcassets */,
 				67F34BEB1ED6CD500094FB6D /* LaunchScreen.storyboard */,
@@ -296,6 +299,7 @@
 				6778A64C1ED6D1F00031B43C /* ScreenCell.swift in Sources */,
 				67F34BE51ED6CD500094FB6D /* HomeVC.swift in Sources */,
 				67F34BE31ED6CD500094FB6D /* AppDelegate.swift in Sources */,
+				30F941A21ED76F8200857C23 /* DeviceUtil.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

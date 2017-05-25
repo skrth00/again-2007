@@ -8,10 +8,20 @@
 
 import UIKit
 import DORM
+import MobileCoreServices
 
-class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     var homeBtn: UIImageView?
     var viewControllerList = [UIViewController]()
+    
+    
+    // directory
+    var isTapped = false
+    var lastDirCellIdx : IndexPath?
+    var isEnlarged = false
+    var isEnlargeEnd = false
+    let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.regular))
+    
     
     // main collection view
     @IBOutlet weak var mainCollectionView: UICollectionView!
@@ -29,20 +39,21 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     
 //<<<<<<< Updated upstream
     var apps : [(icon: UIImage, name: String)?] = [(icon: #imageLiteral(resourceName: "캘린더"), name: "캘린더"),
+                                                   (icon: #imageLiteral(resourceName: "지도"), name: "지도"),
                                                    (icon: #imageLiteral(resourceName: "시계"), name: "시계"),
                                                    (icon: #imageLiteral(resourceName: "카메라"), name: "카메라"),
+                                                   (icon: #imageLiteral(resourceName: "사진"), name: "사진"),
+                                                   (icon: #imageLiteral(resourceName: "계산기"), name: "계산기"),
                                                    (icon: #imageLiteral(resourceName: "메일"), name: "메일"),
                                                    (icon: #imageLiteral(resourceName: "날씨"), name: "날씨"),
                                                    (icon: #imageLiteral(resourceName: "메모"), name: "메모"),
                                                    (icon: #imageLiteral(resourceName: "메시지"), name: "메시지"),
                                                    (icon: #imageLiteral(resourceName: "미리알림"), name: "미리알림"),
                                                    (icon: #imageLiteral(resourceName: "비디오"), name: "비디오"),
-                                                   (icon: #imageLiteral(resourceName: "사진"), name: "사진"),
                                                    (icon: #imageLiteral(resourceName: "주식"), name: "주식"),
                                                    (icon: #imageLiteral(resourceName: "지도"), name: "지도"),
                                                    (icon: #imageLiteral(resourceName: "papago"), name: "마마고"),
                                                    (icon: #imageLiteral(resourceName: "Passbook"), name: "Passbook"),
-                                                   (icon: #imageLiteral(resourceName: "계산기"), name: "계산기"),
                                                    (icon: #imageLiteral(resourceName: "나침반"), name: "나침반"),
                                                    (icon: #imageLiteral(resourceName: "뉴스스탠드"), name: "뉴스스탠드"),
                                                    (icon: #imageLiteral(resourceName: "설정"), name: "설정"),
@@ -53,12 +64,16 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
                                                    (icon: #imageLiteral(resourceName: "face_time"), name: "Face time"),
                                                    (icon: #imageLiteral(resourceName: "game_center"), name: "Game Center"),
                                                    (icon: #imageLiteral(resourceName: "itunes"), name: "itunes"),
-                                                   (icon: #imageLiteral(resourceName: "safari"), name: "safari")
+                                                   (icon: #imageLiteral(resourceName: "safari"), name: "safari"),
+                                                   (icon: #imageLiteral(resourceName: "itunes"), name: "iTunes"),
+                                                   (icon: #imageLiteral(resourceName: "safari"), name: "Safari"),
                                                    ]
     var appsCount: [Int] = [10, 8, 8]
 
     
     var appButtons : [UIButton] = []
+    
+    var newMedia: Bool?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,6 +85,10 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         setHomeBtn()
         let longpress = UILongPressGestureRecognizer(target: self, action: #selector(longPressGestureRecognized))
         mainCollectionView.addGestureRecognizer(longpress)
+        
+        addParallaxToView(vw: view)
+        dockerViewInit()
+        
     }
     
     func viewInit(){
@@ -92,6 +111,59 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         mainCollectionView.backgroundColor = UIColor(white: 0, alpha: 0)
 
     }
+    func dockerViewInit(){
+        
+        let bottomView = UIView()
+        bottomView.rframe(x: 0, y: 570, width: 375, height: 97)
+        bottomView.backgroundColor = UIColor.init(red: 245/255, green: 245/255, blue: 245/255, alpha: 0.6)
+        
+        let appIcon1 = UIButton()
+        appIcon1.rframe(x: 27, y: 15, width: 60, height: 60)
+        appIcon1.setImage(apps[17]?.icon, for: .normal)
+        
+        let appName1 = UILabel()
+        appName1.rframe(x: 27, y: 75, width: 60, height: 20)
+        appName1.setLabel(text: "\(apps[17]!.name)", align: .center, fontSize: 12, color:UIColor.white)
+        
+        let appIcon2 = UIButton()
+        appIcon2.rframe(x: 114, y: 15, width: 60, height: 60)
+        appIcon2.setImage(apps[9]?.icon, for: .normal)
+        
+        let appName2 = UILabel()
+        appName2.rframe(x: 114, y: 75, width: 60, height: 20)
+        appName2.setLabel(text: "\(apps[9]!.name)", align: .center, fontSize: 12, color:UIColor.white)
+        
+        let appIcon3 = UIButton()
+        appIcon3.rframe(x: 201, y: 15, width: 60, height: 60)
+        appIcon3.setImage(apps[24]?.icon, for: .normal)
+        
+        let appName3 = UILabel()
+        appName3.rframe(x: 201, y: 75, width: 60, height: 20)
+        appName3.setLabel(text: "\(apps[24]!.name)", align: .center, fontSize: 12, color:UIColor.white)
+        
+        let appIcon4 = UIButton()
+        appIcon4.rframe(x: 288, y: 15, width: 60, height: 60)
+        appIcon4.setImage(apps[23]?.icon, for: .normal)
+        
+        let appName4 = UILabel()
+        appName4.rframe(x: 288, y: 75, width: 60, height: 20)
+        appName4.setLabel(text: "\(apps[23]!.name)", align: .center, fontSize: 12, color:UIColor.white)
+        
+        
+        
+        view.addSubview(bottomView)
+        bottomView.addSubview(appIcon1)
+        bottomView.addSubview(appName1)
+        bottomView.addSubview(appIcon2)
+        bottomView.addSubview(appName2)
+        bottomView.addSubview(appIcon3)
+        bottomView.addSubview(appName3)
+        bottomView.addSubview(appIcon4)
+        bottomView.addSubview(appName4)
+    
+        
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         UIApplication.shared.keyWindow?.addSubview(homeBtn!) // home버튼 최상위뷰에 등록
     }
@@ -235,17 +307,55 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
                 var center = My.cellSnapshot!.center
                 center.x = locationInView.x
                 center.y = locationInView.y
-                
-                print("centerX : \(center.x)")
-                print("centerY : \(center.y)")
                 My.cellSnapshot!.center = center
                 
-                if ((indexPath != nil) && (indexPath != Path.initialIndexPath)) {
-                    //itemsArray.insert(itemsArray.remove(at: Path.initialIndexPath!.row), at: indexPath!.row)
-                    mainCollectionView.moveItem(at: Path.initialIndexPath! as IndexPath, to: indexPath!)
-                    Path.initialIndexPath = indexPath as IndexPath?
+                if ((indexPath != nil) && (indexPath != Path.initialIndexPath) && !isEnlarged) {
+                    
+                    //                    let mergedItem = self.collectionView.cellForItem(at: Path.initialIndexPath!) as! UICollectionViewCell
+                    //                    mergedItem.layer.removeAllAnimations()
+                    print("호출, \(gestureRecognizer.view)")
+                    print("[suejinv] isEnlarged true")
+                    isEnlarged = true
+                    //                    isEnlargeEnd = false
+                    
+                    let item = mainCollectionView.cellForItem(at: indexPath!)!
+                    item.layer.removeAllAnimations()
+                    
+                    self.lastDirCellIdx = indexPath
+                    
+                    UIView.animate(withDuration: 1, animations: {
+                        
+                        self.mainCollectionView.addSubview(self.blurEffectView)
+                        self.mainCollectionView.bringSubview(toFront: self.blurEffectView)
+                        //self.lastDirCellIdx = indexPath
+                        self.blurEffectView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.makeSmallCellSize)))
+                        
+                        self.mainCollectionView.bringSubview(toFront: item)
+                        self.mainCollectionView.bringSubview(toFront: My.cellSnapshot!)
+                        item.frame.origin = self.view.frame.origin
+                        item.frame.origin.x = 40
+                        item.frame.origin.y = 200
+                        item.frame.size.width = self.view.frame.width - 80
+                        item.frame.size.height = self.view.frame.height - 400
+                        item.backgroundColor = UIColor.lightGray
+                    }, completion: { (finished) -> Void in
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            
+                            if item.frame.contains(longPress.location(in: self.mainCollectionView)) == false {
+                                self.makeSmallCellSize()
+                                self.mainCollectionView.moveItem(at: Path.initialIndexPath! as IndexPath, to: indexPath!)
+                                print(Path.initialIndexPath)
+                                
+                            }
+                        }
+                        
+                        
+                    })
+                    
                 }
             }
+
         default:
             if Path.initialIndexPath != nil {
                 let cell = mainCollectionView.cellForItem(at: Path.initialIndexPath! as IndexPath) as UICollectionViewCell!
@@ -264,7 +374,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
                     
                 }, completion: { (finished) -> Void in
                     if finished {
-                        Path.initialIndexPath = nil
+                        //Path.initialIndexPath = nil
                         My.cellSnapshot!.removeFromSuperview()
                         My.cellSnapshot = nil
                         //self.collectionView.reloadData()
@@ -310,6 +420,12 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
             break
         case "마마고":
             performSegue(withIdentifier: "papagoSegue", sender: self)
+        case "사진":
+            photoLibraryAppExecuted()
+            break
+        case "카메라":
+            cameraAppExecuted()
+            break
         default:
             break
         }
@@ -318,6 +434,105 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     func appButtonLongClick(){
         
     }
+    
+    func cameraAppExecuted(){
+        
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
+            // UIImagePickerController 인스턴스를 생성하고 cameraViewController를 객체의 델리게이트로 설정
+            let imagePicker = UIImagePickerController()
+            
+            imagePicker.delegate = self
+            imagePicker.sourceType = UIImagePickerControllerSourceType.camera           // 미디어 소스는 카메라로 정의
+            imagePicker.mediaTypes = [kUTTypeImage as NSString as String]               // 동영상은 지원하지 않으므로 사진으로만 설정
+            imagePicker.allowsEditing = false
+            //imagePicker.showsCameraControls = true
+            //imagePicker.
+            
+            self.present(imagePicker, animated: true, completion: nil)
+            newMedia = true     // 이 사진이 새로 만들어진 것이며 카메라 롤에 있던 사진이 아님을 공지
+        }
+    }
+    
+    func photoLibraryAppExecuted(){
+        
+        // Hide the keyboard.
+        //textView.resignFirstResponder()
+        
+        // UIImagePickerController is a view controller that lets a user pick media from their photo library.
+        let imagePickerController = UIImagePickerController()
+        
+        // Only allow photos to be picked, not taken.
+        imagePickerController.sourceType = .photoLibrary
+        
+        // Make sure ViewController is notified when the user picks an image.
+        imagePickerController.delegate = self
+        
+        imagePickerController.navigationBar.tintColor = UIColor.clear
+        imagePickerController.navigationBar.isUserInteractionEnabled = false
+        
+        present(imagePickerController, animated: true, completion: nil)
+        
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        // The info dictionary contains multiple representations of the image, and this uses the original.
+        let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        
+        
+        // Dismiss the picker.
+        dismiss(animated: true, completion: nil)
+        
+        
+        
+        //
+        
+        let mediaType = info[UIImagePickerControllerMediaType] as! NSString
+        
+        //self.dismissViewControllerAnimated(true, completion: nil)
+        
+        if mediaType.isEqual(to: kUTTypeImage as NSString as String){
+            let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+            //Image.image = image
+            
+            // 새로 찍은 이미지일 경우 앨범에 저장 처리
+            if (newMedia == true) {
+                UIImageWriteToSavedPhotosAlbum(image, self, nil, nil)
+            }else if mediaType.isEqual(to: kUTTypeMovie as NSString as String){
+                // 비디오 지원을 위한 코드
+            }
+        }
+        
+        
+        
+    }
+    
+    
+    func image(_ image:UIImage, didFinishSavingWithError error:NSErrorPointer?, contextInfo:UnsafeRawPointer){
+        if error != nil {
+            let alert = UIAlertController(title: "Save Failed", message: "Failed to save image", preferredStyle: UIAlertControllerStyle.alert)
+            let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            
+            alert.addAction(cancelAction)
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func addParallaxToView(vw: UIView) {
+        let amount = 100
+        
+        let horizontal = UIInterpolatingMotionEffect(keyPath: "center.x", type: .tiltAlongHorizontalAxis)
+        horizontal.minimumRelativeValue = -amount
+        horizontal.maximumRelativeValue = amount
+        
+        let vertical = UIInterpolatingMotionEffect(keyPath: "center.y", type: .tiltAlongVerticalAxis)
+        vertical.minimumRelativeValue = -amount
+        vertical.maximumRelativeValue = amount
+        
+        let group = UIMotionEffectGroup()
+        group.motionEffects = [horizontal, vertical]
+        vw.addMotionEffect(group)
+    }
+
     
     
     
@@ -389,4 +604,36 @@ extension HomeVC{
         collectionView.deselectItem(at: indexPath, animated: false)
     }
 
+}
+
+//directory
+extension HomeVC {
+    func makeSmallCellSize() {
+        
+        if let idx = lastDirCellIdx {
+            let item = mainCollectionView.cellForItem(at: idx as IndexPath) as UICollectionViewCell!
+            
+            UIView.animate(withDuration: 1.0, animations: {
+                
+                item?.frame.origin = self.view.frame.origin   /// this view origin will be at the top of the scroll content, you'll have to figure this out
+                item?.frame.origin.x = CGFloat(idx.row % 3) * (DeviceUtil.knowScreenWidth() / 3)
+                item?.frame.origin.y = CGFloat(idx.row / 3) * (DeviceUtil.knowScreenWidth() / 3)
+                item?.frame.size.width = DeviceUtil.knowScreenWidth() / 3
+                item?.frame.size.height = DeviceUtil.knowScreenWidth() / 3
+                
+            }, completion: { (finished) -> Void in
+                self.mainCollectionView.sendSubview(toBack: self.blurEffectView)
+                
+                NSLog("[suejinv] isEnlarged false")
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    NSLog("[suejinv] aaae")
+                    self.isEnlarged = false
+                }
+            })
+            
+            
+            //self.view.addSubview(blurEffectView)
+            //collectionView.bringSubview(toFront: blurEffectView)
+        }
+    }
 }
