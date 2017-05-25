@@ -16,6 +16,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     // main collection view
     @IBOutlet weak var mainCollectionView: UICollectionView!
     
+//<<<<<<< Updated upstream
     var apps : [(icon: UIImage, name: String)?] = [(icon: #imageLiteral(resourceName: "캘린더"), name: "캘린더"),
                                                    (icon: #imageLiteral(resourceName: "시계"), name: "시계"),
                                                    (icon: #imageLiteral(resourceName: "카메라"), name: "카메라"),
@@ -43,7 +44,9 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
                                                    (icon: #imageLiteral(resourceName: "safari"), name: "safari"),
                                                    ]
     var appsCount: [Int] = [10, 8, 7]
+
     
+    var appButtons : [UIButton] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -279,6 +282,27 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         layout.scrollDirection = .horizontal
     }
     
+    func appClick(_ sender: UIButton){
+        
+        let appname = apps[sender.tag]!.name
+        switch appname {
+        case "지도":
+            performSegue(withIdentifier: "mapSegue", sender: self)
+            break
+        case "시계":
+            performSegue(withIdentifier: "clockSegue", sender: self)
+            break
+        default:
+            break
+        }
+    }
+    
+    func appButtonLongClick(){
+        for i in 0..<appButtons.count{
+            startWiggle(for: appButtons[i])
+        }
+    }
+    
     
     
 }
@@ -299,7 +323,6 @@ extension HomeVC{
         cell.borderWidth = 1
         
         let section = indexPath.section
-        //app[collectionAppCount + indexPath.row - 1
         let appCountInPage = appsCount[section]
         
         switch section {
@@ -310,6 +333,10 @@ extension HomeVC{
                 cell.appIcon.rframe(x: 0, y: 0, width: 60, height: 60)
                 cell.appIcon.setImage(apps[(indexPath.item)]?.icon, for: .normal)
                 cell.appIcon.tag = indexPath.item
+                cell.appIcon.addTarget(self, action: #selector(appClick), for: .touchUpInside)
+                cell.appIcon.addLongAction(target: self, action: #selector(appButtonLongClick))
+                
+                appButtons.append(cell.appIcon)
                 
                 cell.appName.rframe(x: 0, y: 60, width: 60, height: 20)
                 cell.appName.setLabel(text: "\(apps[indexPath.item]!.name)\(indexPath.item)", align: .center, fontSize: 12, color:UIColor.white)
@@ -319,21 +346,29 @@ extension HomeVC{
             }
         default:
             if indexPath.item < appCountInPage {
+                
+                var count = 0
+                for i in 0..<section{
+                    count += appsCount[i]
+                }
+                
                 cell.appIcon.layer.masksToBounds = true
                 cell.appIcon.layer.cornerRadius = 11.multiplyWidthRatio()
                 cell.appIcon.rframe(x: 0, y: 0, width: 60, height: 60)
-                cell.appIcon.setImage(apps[(appsCount[section - 1] + indexPath.item)]?.icon, for: .normal)
-                cell.appIcon.tag = indexPath.item
+                cell.appIcon.setImage(apps[count + indexPath.item]?.icon, for: .normal)
+                cell.appIcon.tag = count + indexPath.item
+                cell.appIcon.addTarget(self, action: #selector(appClick), for: .touchUpInside)
+                cell.appIcon.addLongAction(target: self, action: #selector(appButtonLongClick))
+
+                appButtons.append(cell.appIcon)
                 
                 cell.appName.rframe(x: 0, y: 60, width: 60, height: 20)
-                cell.appName.setLabel(text: "\(apps[(appsCount[section - 1] + indexPath.item)]!.name)\(indexPath.item)", align: .center, fontSize: 12, color:UIColor.white)
+                cell.appName.setLabel(text: "\(apps[count + indexPath.item]!.name)\(indexPath.item)", align: .center, fontSize: 12, color:UIColor.white)
             } else{
                 cell.appIcon.setImage(nil, for: .normal)
                 cell.appName.text = "\(indexPath.item)"
             }
-
         }
-
         return cell
     }
     
@@ -343,4 +378,3 @@ extension HomeVC{
     }
 
 }
-

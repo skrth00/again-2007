@@ -43,14 +43,11 @@ class AppleMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate
         self.view.addSubview(mapView)
         
         let gesture = UIPanGestureRecognizer(target: self, action: #selector(dragAction))
-        let doubleGesture = UITapGestureRecognizer(target: self, action: #selector(doubleTapAction))
-        doubleGesture.numberOfTapsRequired = 2
         
         homeButton = UIButton()
         homeButton.rframe(x: 0, y: 617, width: 50, height: 50)
         homeButton.setButton(imageName: "home", targetController: self, action: #selector(homeButtonAction), self.view)
         homeButton.addGestureRecognizer(gesture)
-        homeButton.addGestureRecognizer(doubleGesture)
         homeButton.isUserInteractionEnabled = true
         
         homeButton.layer.masksToBounds = true

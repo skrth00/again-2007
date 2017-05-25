@@ -67,11 +67,30 @@
                     </view>
                     <connections>
                         <outlet property="mainCollectionView" destination="p3R-ga-jSK" id="W9E-ob-2KY"/>
+                        <segue destination="J8z-ra-jK0" kind="show" identifier="mapSegue" animates="NO" action="showDetailViewController:sender:" id="Kx7-P2-iXb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="53.600000000000001" y="84.107946026986511"/>
+        </scene>
+        <!--Apple MapVC-->
+        <scene sceneID="ccX-XO-3hB">
+            <objects>
+                <viewController id="J8z-ra-jK0" customClass="AppleMapVC" customModule="again2007project" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Qvd-D6-KmA"/>
+                        <viewControllerLayoutGuide type="bottom" id="mID-RX-fRX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="TYW-6b-wCh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iQL-oW-35h" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="782" y="76"/>
         </scene>
     </scenes>
     <resources>
