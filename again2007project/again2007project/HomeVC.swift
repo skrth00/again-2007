@@ -14,8 +14,33 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     // main collection view
     @IBOutlet weak var mainCollectionView: UICollectionView!
     
-    var apps : [(icon: UIImage, name: String)?] = [(icon: UIImage(named: "pic")!, name: "사진"),(icon: UIImage(named: "camera")!, name: "카메라"),(icon: UIImage(named:"clock")!, name: "시계")]
-    var appsCount: [Int] = [2,1]
+    var apps : [(icon: UIImage, name: String)?] = [(icon: #imageLiteral(resourceName: "캘린더"), name: "캘린더"),
+                                                   (icon: #imageLiteral(resourceName: "시계"), name: "시계"),
+                                                   (icon: #imageLiteral(resourceName: "카메라"), name: "카메라"),
+                                                   (icon: #imageLiteral(resourceName: "메일"), name: "메일"),
+                                                   (icon: #imageLiteral(resourceName: "날씨"), name: "날씨"),
+                                                   (icon: #imageLiteral(resourceName: "메모"), name: "메모"),
+                                                   (icon: #imageLiteral(resourceName: "메시지"), name: "메시지"),
+                                                   (icon: #imageLiteral(resourceName: "미리알림"), name: "미리알림"),
+                                                   (icon: #imageLiteral(resourceName: "비디오"), name: "비디오"),
+                                                   (icon: #imageLiteral(resourceName: "사진"), name: "사진"),
+                                                   (icon: #imageLiteral(resourceName: "주식"), name: "주식"),
+                                                   (icon: #imageLiteral(resourceName: "지도"), name: "지도"),
+                                                   (icon: #imageLiteral(resourceName: "Passbook"), name: "Passbook"),
+                                                   (icon: #imageLiteral(resourceName: "계산기"), name: "계산기"),
+                                                   (icon: #imageLiteral(resourceName: "나침반"), name: "나침반"),
+                                                   (icon: #imageLiteral(resourceName: "뉴스스탠드"), name: "뉴스스탠드"),
+                                                   (icon: #imageLiteral(resourceName: "설정"), name: "설정"),
+                                                   (icon: #imageLiteral(resourceName: "연락처"), name: "연락처"),
+                                                   (icon: #imageLiteral(resourceName: "음악"), name: "음악"),
+                                                   (icon: #imageLiteral(resourceName: "전화"), name: "전화"),
+                                                   (icon: #imageLiteral(resourceName: "AppStore"), name: "AppStore"),
+                                                   (icon: #imageLiteral(resourceName: "face_time"), name: "Face time"),
+                                                   (icon: #imageLiteral(resourceName: "game_center"), name: "Game Center"),
+                                                   (icon: #imageLiteral(resourceName: "itunes"), name: "itunes"),
+                                                   (icon: #imageLiteral(resourceName: "safari"), name: "safari"),
+                                                   ]
+    var appsCount: [Int] = [10, 8, 7]
     
     
     override func viewDidLoad() {
