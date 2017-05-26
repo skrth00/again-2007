@@ -10,12 +10,12 @@ import UIKit
 
 class SwitcherViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    var viewArray:NSMutableArray = NSMutableArray()
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    
     var customCellArray:NSMutableArray = NSMutableArray()
     
     @IBOutlet weak var screenCollectionView: UICollectionView!
+    
+    var didClickApp: (_ name: String) -> () = { _ in}
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,7 +92,6 @@ class SwitcherViewController: UIViewController, UICollectionViewDelegate, UIColl
             if i! == self.appDelegate.screensArray.count - 1 {
                 cell.frame = origin
             }
-            print("Basket doors opened!")
             self.initViewArray()
             self.screenCollectionView.deleteItems(at: [IndexPath(item: i!, section: 0)])
             self.screenCollectionView.reloadData()
@@ -100,9 +99,26 @@ class SwitcherViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        if indexPath.row == self.customCellArray.count - 1 {
+            removeAnimate()
+        } else {
+            let temp = appDelegate.screensArray.object(at: indexPath.row) as! NSArray
+            let app = temp.object(at: 0) as! (icon: UIImage, name: String)
+            self.didClickApp(app.name)
+        }
     }
     
+    func removeAnimate() {
+        UIView.animate(withDuration: 0.35, animations: {
+            self.view.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+            self.view.alpha = 0.0
+        }, completion: { (finished : Bool) in
+            if (finished) {
+                self.dismiss(animated: false, completion: nil)
+            }
+            
+        })
+    }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         /*

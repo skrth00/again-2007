@@ -260,17 +260,72 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         if presentedViewController?.className != nil && presentedViewController?.className != "SwitcherViewController" {
             let image = UIImage.init(view: (presentedViewController?.view)!)
             let arr = NSArray(objects: executedApp!, image)
-            appDelegate.screensArray.insert(arr, at: appDelegate.screensArray.count - 1)
+            
+            if appDelegate.screensArray.count == 1 {
+                appDelegate.screensArray.insert(arr, at: appDelegate.screensArray.count - 1)
+            } else {
+                for i in 0..<appDelegate.screensArray.count - 1 {
+                    let temp = appDelegate.screensArray.object(at: i) as! NSArray
+                    let previous = temp.object(at: 0) as! (icon: UIImage, name: String)
+                    if executedApp?.name == previous.name {
+                        appDelegate.screensArray.removeObject(at: i)
+                        appDelegate.screensArray.insert(arr, at: appDelegate.screensArray.count - 1)
+                        presentedViewController?.dismiss(animated: false, completion: nil)
+                        return
+                    }
+                }
+                appDelegate.screensArray.insert(arr, at: appDelegate.screensArray.count - 1)
+                
+            }
         }
         presentedViewController?.dismiss(animated: false, completion: nil)
+        print("Imageview Clicked")
         self.isEditing = false
     }
     
     //double tap Action
     func doubleTapDetected() {
-        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-        let switcher = storyboard.instantiateViewController(withIdentifier: "switcher")
-        self.present(switcher, animated: true, completion: nil)
+        if presentedViewController?.className == "SwitcherViewController" {
+            presentedViewController?.dismiss(animated: true, completion: nil)
+        } else {
+            let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+            let switcher = storyboard.instantiateViewController(withIdentifier: "switcher") as! SwitcherViewController
+            switcher.didClickApp = { appname in
+                self.dismiss(animated: false, completion: {
+                    
+                    for i in 0..<self.apps.count {
+                        if self.apps[i]?.name == appname {
+                            self.executedApp = self.apps[i]
+                        }
+                    }
+                    
+                    switch appname {
+                    case "지도":
+                        self.performSegue(withIdentifier: "mapSegue", sender: self)
+                        break
+                    case "시계":
+                        self.performSegue(withIdentifier: "clockSegue", sender: self)
+                        break
+                    case "사진":
+                        self.photoLibraryAppExecuted()
+                        break
+                    case "카메라":
+                        self.cameraAppExecuted()
+                        break
+                    case "계산기":
+                        self.performSegue(withIdentifier: "calculatorSegue", sender: self)
+                        break
+                    default:
+                        break
+                        
+                    }
+                    
+                })
+                
+            }
+            self.present(switcher, animated: true, completion: nil)
+        }
+        print("Imageview double Clicked")
     }
 
     

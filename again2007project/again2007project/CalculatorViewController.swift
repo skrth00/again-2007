@@ -22,6 +22,10 @@ class CalculatorViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
+    
     @IBAction func touchDigit(_ sender: UIButton) {
         let digit = sender.titleLabel?.text
         if userIsInTheMiddleOfTypingANumber {
