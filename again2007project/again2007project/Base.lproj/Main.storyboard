@@ -54,9 +54,17 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wll-0H-BqS">
+                                                    <rect key="frame" x="-246" y="-254" width="512" height="512"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
                                             </subviews>
                                         </view>
                                         <connections>
+                                            <outlet property="appDelete" destination="Wll-0H-BqS" id="xxh-hi-L0N"/>
                                             <outlet property="appIcon" destination="Emu-mG-P7r" id="nIt-D6-qFV"/>
                                             <outlet property="appName" destination="gov-aE-A9s" id="Fjs-MQ-ah0"/>
                                         </connections>
@@ -70,7 +78,16 @@
                         <outlet property="mainCollectionView" destination="p3R-ga-jSK" id="W9E-ob-2KY"/>
                         <segue destination="J8z-ra-jK0" kind="show" identifier="mapSegue" animates="NO" action="showDetailViewController:sender:" id="Kx7-P2-iXb"/>
                         <segue destination="Lj9-c9-1oX" kind="show" identifier="papagoSegue" animates="NO" id="R9f-pH-E5p"/>
+<<<<<<< HEAD
                         <segue destination="MNu-j2-PPf" kind="show" identifier="clockSegue" id="Z78-1B-Aso"/>
+=======
+                        <segue destination="wq2-di-AYF" kind="show" identifier="appstoreSegue" animates="NO" id="A2a-wB-WI3"/>
+                        <segue destination="HIk-mL-ysa" kind="show" identifier="calendarSegue" animates="NO" id="5Wz-EH-4Lg"/>
+                        <segue destination="S4u-ch-QDh" kind="show" identifier="prenoticeSegue" animates="NO" id="R1Z-km-nMp"/>
+                        <segue destination="0b5-Ww-Eof" kind="show" identifier="weatherSegue" animates="NO" id="djd-fu-xvy"/>
+                        <segue destination="cin-cI-hSF" kind="show" identifier="settingSegue" animates="NO" id="6yR-bU-ccV"/>
+                        <segue destination="84A-xn-2EG" kind="show" identifier="videoSegue" animates="NO" id="MCx-3A-rJl"/>
+>>>>>>> 9791850b3e42ceb98a6182afc2aa770837e942b8
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -95,6 +112,7 @@
             </objects>
             <point key="canvasLocation" x="782" y="76"/>
         </scene>
+<<<<<<< HEAD
         <!--Tab Bar Controller-->
         <scene sceneID="lCf-8T-FF5">
             <objects>
@@ -113,6 +131,151 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IOd-l4-cC0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="54" y="869"/>
+=======
+        <!--View Controller-->
+        <scene sceneID="aR7-IN-Ci2">
+            <objects>
+                <viewController id="S4u-ch-QDh" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="s4S-jt-EtE"/>
+                        <viewControllerLayoutGuide type="bottom" id="rWW-v9-vCm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3aa-w3-DaI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="prenotice" translatesAutoresizingMaskIntoConstraints="NO" id="87D-xf-Zkm">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ys1-Si-fLZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1186.4000000000001" y="179.46026986506749"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="mVk-Vt-scf">
+            <objects>
+                <viewController id="HIk-mL-ysa" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Mzc-Lo-WeJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="2dM-lF-1Sk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="p5D-0r-vRr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="calender" translatesAutoresizingMaskIntoConstraints="NO" id="dKP-Jr-Ph0">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gjb-Y0-eIS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-743.20000000000005" y="943.17841079460277"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Y43-29-jBL">
+            <objects>
+                <viewController id="wq2-di-AYF" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8ay-JY-5Ke"/>
+                        <viewControllerLayoutGuide type="bottom" id="3nC-I6-zhH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="et9-tc-e68">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="appstore" translatesAutoresizingMaskIntoConstraints="NO" id="7Zm-7V-aso">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jrx-pz-T4C" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="12" y="944.97751124437787"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="3ms-iH-mTQ">
+            <objects>
+                <viewController id="84A-xn-2EG" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="udA-qa-IiJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="Wox-IS-iBg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lj1-xZ-EaX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="video" translatesAutoresizingMaskIntoConstraints="NO" id="8NL-QZ-9dK">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rr5-e9-pb4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1124" y="1725.7871064467768"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="X7s-5X-d7G">
+            <objects>
+                <viewController id="cin-cI-hSF" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dEX-yV-4sh"/>
+                        <viewControllerLayoutGuide type="bottom" id="5Vl-iG-Q0w"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ee8-lS-hqM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="setting" translatesAutoresizingMaskIntoConstraints="NO" id="wta-L1-2ac">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ect-sc-l8e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-12" y="1737.481259370315"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="DSa-Xg-UZm">
+            <objects>
+                <viewController id="0b5-Ww-Eof" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zVM-ZM-jk9"/>
+                        <viewControllerLayoutGuide type="bottom" id="oqB-Wa-sNW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="COC-W9-0Kw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="weather" translatesAutoresizingMaskIntoConstraints="NO" id="gIz-EX-d71">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AfW-mn-Oju" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="764" y="1528.785607196402"/>
+>>>>>>> 9791850b3e42ceb98a6182afc2aa770837e942b8
         </scene>
         <!--Pa Pago AppVC-->
         <scene sceneID="E9s-n2-5VU">
@@ -316,6 +479,12 @@
         </scene>
     </scenes>
     <resources>
+        <image name="appstore" width="750" height="1334"/>
+        <image name="calender" width="750" height="1334"/>
         <image name="pic" width="214" height="214"/>
+        <image name="prenotice" width="750" height="1334"/>
+        <image name="setting" width="750" height="1334"/>
+        <image name="video" width="750" height="1334"/>
+        <image name="weather" width="750" height="1334"/>
     </resources>
 </document>

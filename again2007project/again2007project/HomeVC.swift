@@ -14,6 +14,8 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     var homeBtn: UIImageView?
     var viewControllerList = [UIViewController]()
     
+    var pageControl: UIPageControl!
+    var initialContentOffset = CGPoint()
     
     // directory
     var isTapped = false
@@ -28,11 +30,12 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     
     // editing mode
     override var isEditing: Bool {
-        didSet {
+        
+        willSet(newValue) {
             let visibleCells = mainCollectionView.visibleCells
             for i in 0..<visibleCells.count{
                 let cell = mainCollectionView.visibleCells[i] as! ScreenCell
-                cell.isEditting = true
+                cell.isEditting = newValue
             }
         }
     }
@@ -88,6 +91,13 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         
         addParallaxToView(vw: view)
         dockerViewInit()
+        
+        pageControl = UIPageControl()
+        pageControl.rcenter(y: 552, width: 375, height: 10, targetWidth: 375)
+        pageControl.tintColor = UIColor.lightGray
+        pageControl.currentPage = 0
+        pageControl.numberOfPages = appsCount.count
+        self.view.addSubview(pageControl)
         
     }
     
@@ -243,7 +253,9 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     func singleTapDetected() {
         presentedViewController?.dismiss(animated: false, completion: nil)
         print("Imageview Clicked")
+        self.isEditing = false
     }
+    
     //double tap Action
     func doubleTapDetected() {
         print("Imageview double Clicked")
@@ -426,14 +438,30 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         case "카메라":
             cameraAppExecuted()
             break
+        case "AppStore":
+            performSegue(withIdentifier: "appstoreSegue", sender: self)
+            break
+        case "미리알림":
+            performSegue(withIdentifier: "prenoticeSegue", sender: self)
+            break
+        case "비디오":
+            performSegue(withIdentifier: "videoSegue", sender: self)
+            break
+        case "캘린더":
+            performSegue(withIdentifier: "calenderSegue", sender: self)
+            break
+        case "날씨":
+            performSegue(withIdentifier: "weatherSegue", sender: self)
+            break
+        case "설정":
+            performSegue(withIdentifier: "settingSegue", sender: self)
+            break
+        
         default:
             break
         }
     }
     
-    func appButtonLongClick(){
-        
-    }
     
     func cameraAppExecuted(){
         
@@ -533,7 +561,9 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         vw.addMotionEffect(group)
     }
 
-    
+    func deleteAction(_ sender: UIButton){
+        appDeleteAlert(appName: (apps[sender.tag]?.name)!, item: sender.tag)
+    }
     
     
 }
@@ -565,11 +595,21 @@ extension HomeVC{
                 cell.appIcon.setImage(apps[(indexPath.item)]?.icon, for: .normal)
                 cell.appIcon.tag = indexPath.item
                 cell.appIcon.addTarget(self, action: #selector(appClick), for: .touchUpInside)
+                
+                cell.appDelete.layer.masksToBounds = true
+                cell.appDelete.layer.cornerRadius = 9.multiplyWidthRatio()
+                cell.appDelete.rframe(x: 0, y: 0, width: 18, height: 18)
+                cell.appDelete.setImage(#imageLiteral(resourceName: "del"), for: .normal)
+                cell.appDelete.addTarget(self, action: #selector(deleteAction), for: .touchUpInside)
+                cell.appDelete.tag = indexPath.item
+                cell.appDelete.isHidden = true
+                
                 cell.appName.rframe(x: 0, y: 60, width: 60, height: 20)
                 cell.appName.setLabel(text: "\(apps[indexPath.item]!.name)\(indexPath.item)", align: .center, fontSize: 12, color:UIColor.white)
             } else{
                 cell.appIcon.setImage(nil, for: .normal)
                 cell.appName.text = "\(indexPath.item)"
+                cell.appDelete.setImage(nil, for: .normal)
             }
         default:
             if indexPath.item < appCountInPage {
@@ -585,15 +625,21 @@ extension HomeVC{
                 cell.appIcon.setImage(apps[count + indexPath.item]?.icon, for: .normal)
                 cell.appIcon.tag = count + indexPath.item
                 cell.appIcon.addTarget(self, action: #selector(appClick), for: .touchUpInside)
-                cell.appIcon.addLongAction(target: self, action: #selector(appButtonLongClick))
-
-                appButtons.append(cell.appIcon)
+                
+                cell.appDelete.layer.masksToBounds = true
+                cell.appDelete.layer.cornerRadius = 9.multiplyWidthRatio()
+                cell.appDelete.rframe(x: 0, y: 0, width: 18, height: 18)
+                cell.appDelete.setImage(#imageLiteral(resourceName: "del"), for: .normal)
+                cell.appDelete.isHidden = true
+                cell.appDelete.tag = count + indexPath.item
+                cell.appDelete.addTarget(self, action: #selector(deleteAction), for: .touchUpInside)
                 
                 cell.appName.rframe(x: 0, y: 60, width: 60, height: 20)
-                cell.appName.setLabel(text: "\(apps[count + indexPath.item]!.name)\(indexPath.item)", align: .center, fontSize: 12, color:UIColor.white)
+                cell.appName.setLabel(text: "\(apps[count + indexPath.item]!.name)", align: .center, fontSize: 12, color:UIColor.white)
             } else{
                 cell.appIcon.setImage(nil, for: .normal)
-                cell.appName.text = "\(indexPath.item)"
+                cell.appName.text = ""
+                cell.appDelete.setImage(nil, for: .normal)
             }
         }
         return cell
@@ -636,4 +682,52 @@ extension HomeVC {
             //collectionView.bringSubview(toFront: blurEffectView)
         }
     }
+}
+
+extension HomeVC{
+    func appDeleteAlert(appName: String, item: Int){
+        let alertView = UIAlertController(title: "`\(appName)`을(를) 삭제하겠습니까?", message: "이 앱을 삭제하면 해당 데이터도 삭제됩니다.", preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "삭제", style: UIAlertActionStyle.destructive, handler: { (UIAlertAction) in
+            self.apps.remove(at: item)
+            self.appsCount[self.pageControl.currentPage] -= 1
+            self.mainCollectionView.reloadData()
+            alertView.dismiss(animated: true, completion: nil)
+        })
+        
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel) { (_) in }
+        
+        alertView.addAction(action)
+        alertView.addAction(cancelAction)
+        
+        alertWindow(alertView: alertView)
+    }
+    
+    func alertWindow(alertView: UIAlertController){
+        let alertWindow = UIWindow(frame: UIScreen.main.bounds)
+        alertWindow.rootViewController = UIViewController()
+        alertWindow.windowLevel = UIWindowLevelAlert + 1
+        alertWindow.makeKeyAndVisible()
+        alertWindow.rootViewController?.present(alertView, animated: true, completion: nil)
+    }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        self.initialContentOffset = scrollView.contentOffset
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if mainCollectionView.contentOffset.x > self.initialContentOffset.x {
+            // 오른쪽
+            pageControl.currentPage += 1
+        } else if mainCollectionView.contentOffset.x < self.initialContentOffset.x{
+            pageControl.currentPage -= 1
+        }
+        
+    }
+    
+  
 }

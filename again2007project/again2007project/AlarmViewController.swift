@@ -56,7 +56,7 @@ class AlarmViewController: UIViewController {
             if let error = error {
                 print("Request Authorization Failed (\(error), \(error.localizedDescription))")
             }
-            
+            //
             completionHandler(success)
         }
     }
