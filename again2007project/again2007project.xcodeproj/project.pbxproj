@@ -12,14 +12,11 @@
 		01A459C01ED7907C00850C33 /* StopWatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A459BF1ED7907C00850C33 /* StopWatchViewController.swift */; };
 		01A459C21ED7909000850C33 /* StopWatchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A459C11ED7909000850C33 /* StopWatchTableViewCell.swift */; };
 		01A459C41ED7909C00850C33 /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A459C31ED7909C00850C33 /* AlarmViewController.swift */; };
-<<<<<<< HEAD
 		01A45A401ED7E85600850C33 /* AlarmDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A45A3F1ED7E85600850C33 /* AlarmDetailViewController.swift */; };
 		01A45A421ED7E86100850C33 /* AlarmTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A45A411ED7E86100850C33 /* AlarmTableCell.swift */; };
-=======
 		1ED98DEE1ED7B1E7005CAA94 /* CalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED98DED1ED7B1E7005CAA94 /* CalculatorViewController.swift */; };
 		1ED98DF11ED7B675005CAA94 /* SwitcherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED98DF01ED7B675005CAA94 /* SwitcherViewController.swift */; };
 		1ED98DF31ED7B68F005CAA94 /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED98DF21ED7B68F005CAA94 /* CustomCollectionViewCell.swift */; };
->>>>>>> 32ce7a17be96007f3f3baa15aeb34ac404fa34f2
 		23BA1F0F75E84C91ACCF4B48 /* Pods_again2007project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E3BFC3F5D05E7FBE09AC95 /* Pods_again2007project.framework */; };
 		30F941A21ED76F8200857C23 /* DeviceUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F941A11ED76F8200857C23 /* DeviceUtil.swift */; };
 		4A2AF43A1ED7CF0500282A9D /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A2AF4381ED7CF0500282A9D /* Map.storyboard */; };
