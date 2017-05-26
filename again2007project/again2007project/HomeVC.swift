@@ -27,6 +27,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     
     // main collection view
     @IBOutlet weak var mainCollectionView: UICollectionView!
+    @IBOutlet weak var launchScreen: UIView!
     
     // editing mode
     override var isEditing: Bool {
@@ -180,8 +181,17 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        view.bringSubview(toFront: launchScreen)
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         UIApplication.shared.keyWindow?.addSubview(homeBtn!) // home버튼 최상위뷰에 등록
+    }
+    
+    @IBAction func exit(_ sender: UIStoryboardSegue) {
+        // noop.
     }
     
     func setHomeBtn(){
@@ -190,6 +200,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         homeBtn?.image = #imageLiteral(resourceName: "home")
         homeBtn?.layer.cornerRadius = 25
         homeBtn?.layer.masksToBounds = true
+        homeBtn?.isHidden = true
         
         let doubleTap = UITapGestureRecognizer(target: self, action: #selector(HomeVC.doubleTapDetected))
         doubleTap.numberOfTapsRequired = 2 // you can change this value

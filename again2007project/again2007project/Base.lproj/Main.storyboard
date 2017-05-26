@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="FDU-5N-gDb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,27 +10,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--LaunchVC-->
-        <scene sceneID="Byn-IR-O8a">
-            <objects>
-                <viewController id="FDU-5N-gDb" customClass="LaunchVC" customModule="again2007project" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ZIb-R7-U4O"/>
-                        <viewControllerLayoutGuide type="bottom" id="6x9-EE-MEp"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Ceh-Sp-HAf">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="homeSegue" animates="NO" id="Plm-v9-7WV"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hFs-Ik-ypy" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-816" y="-859"/>
-        </scene>
         <!--HomeVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -92,10 +71,23 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R8T-Wl-pUR">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <connections>
+                                    <segue destination="pJu-LH-v1e" kind="embed" id="Asd-RK-JTM"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="R8T-Wl-pUR" secondAttribute="bottom" id="Bar-ds-yBH"/>
+                            <constraint firstItem="R8T-Wl-pUR" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-20" id="CIQ-tg-t0f"/>
+                            <constraint firstAttribute="trailing" secondItem="R8T-Wl-pUR" secondAttribute="trailing" id="Lsc-eB-xfe"/>
+                            <constraint firstItem="R8T-Wl-pUR" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="nB7-Xg-7Q2"/>
+                        </constraints>
                     </view>
                     <connections>
+                        <outlet property="launchScreen" destination="R8T-Wl-pUR" id="IsO-1B-HzA"/>
                         <outlet property="mainCollectionView" destination="p3R-ga-jSK" id="W9E-ob-2KY"/>
                         <segue destination="J8z-ra-jK0" kind="show" identifier="mapSegue" animates="NO" action="showDetailViewController:sender:" id="Kx7-P2-iXb"/>
                         <segue destination="Lj9-c9-1oX" kind="show" identifier="papagoSegue" animates="NO" id="R9f-pH-E5p"/>
@@ -764,6 +756,20 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eYT-ZF-6E4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1569" y="240"/>
+        </scene>
+        <!--LaunchVC-->
+        <scene sceneID="pb4-iT-2hl">
+            <objects>
+                <viewController id="pJu-LH-v1e" customClass="LaunchVC" customModule="again2007project" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tIS-YK-UCJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rLQ-xe-ddD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="782" y="-655"/>
         </scene>
     </scenes>
     <resources>

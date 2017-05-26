@@ -37,7 +37,11 @@ class LaunchVC: UIViewController {
     func loading(){
         if loadingBar.width >= 187.multiplyWidthRatio(){
             loadingTimer.invalidate()
-            performSegue(withIdentifier: "homeSegue", sender: self)
+            
+            if let vc = parent as? HomeVC {
+                vc.launchScreen.isHidden = true
+                vc.homeBtn?.isHidden = false
+            }
         } else{
             loadingBar.width = loadingBar.width.remultiplyWidthRatio() + 0.9375
         }
