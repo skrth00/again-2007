@@ -41,6 +41,7 @@ class LaunchVC: UIViewController {
             if let vc = parent as? HomeVC {
                 vc.launchScreen.isHidden = true
                 vc.homeBtn?.isHidden = false
+                vc.loadingViewHidden()
             }
         } else{
             loadingBar.width = loadingBar.width.remultiplyWidthRatio() + 0.9375

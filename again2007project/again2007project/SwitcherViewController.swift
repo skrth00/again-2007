@@ -34,6 +34,10 @@ class SwitcherViewController: UIViewController, UICollectionViewDelegate, UIColl
         let screenSectionInset = screenSize.width / 4
         screenCollectionViewFlowLayout.sectionInset = UIEdgeInsetsMake(0, screenSectionInset, 0, screenSectionInset)
         
+        if customCellArray.count > 2 {
+            screenCollectionView.selectItem(at: IndexPath(item: customCellArray.count - 2, section: 0), animated: false, scrollPosition: .centeredHorizontally)
+        }
+        
     }
     
     func initViewArray() {
@@ -91,10 +95,13 @@ class SwitcherViewController: UIViewController, UICollectionViewDelegate, UIColl
         }, completion: { finished in
             if i! == self.appDelegate.screensArray.count - 1 {
                 cell.frame = origin
+                self.initViewArray()
+                self.screenCollectionView.reloadData()
+            } else {
+                self.initViewArray()
+                self.screenCollectionView.deleteItems(at: [IndexPath(item: i!, section: 0)])
+                self.screenCollectionView.reloadData()
             }
-            self.initViewArray()
-            self.screenCollectionView.deleteItems(at: [IndexPath(item: i!, section: 0)])
-            self.screenCollectionView.reloadData()
         })
     }
     

@@ -105,7 +105,10 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         pageControl.numberOfPages = appsCount.count
         self.view.addSubview(pageControl)
         
-        addToAppdelegateArray()
+    }
+    
+    func loadingViewHidden() {
+         addToAppdelegateArray()
     }
     
     func viewInit(){
@@ -166,8 +169,6 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         appName4.rframe(x: 288, y: 75, width: 60, height: 20)
         appName4.setLabel(text: "\(apps[23]!.name)", align: .center, fontSize: 12, color:UIColor.white)
         
-        
-        
         view.addSubview(bottomView)
         bottomView.addSubview(appIcon1)
         bottomView.addSubview(appName1)
@@ -177,9 +178,9 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         bottomView.addSubview(appName3)
         bottomView.addSubview(appIcon4)
         bottomView.addSubview(appName4)
-    
         
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -317,19 +318,40 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
                     case "시계":
                         self.performSegue(withIdentifier: "clockSegue", sender: self)
                         break
+                    case "마마고":
+                        self.performSegue(withIdentifier: "papagoSegue", sender: self)
                     case "사진":
                         self.photoLibraryAppExecuted()
                         break
                     case "카메라":
                         self.cameraAppExecuted()
                         break
+                    case "AppStore":
+                        self.performSegue(withIdentifier: "appstoreSegue", sender: self)
+                        break
+                    case "미리알림":
+                        self.performSegue(withIdentifier: "prenoticeSegue", sender: self)
+                        break
+                    case "비디오":
+                        self.performSegue(withIdentifier: "videoSegue", sender: self)
+                        break
+                    case "캘린더":
+                        self.performSegue(withIdentifier: "calenderSegue", sender: self)
+                        break
+                    case "날씨":
+                        self.performSegue(withIdentifier: "weatherSegue", sender: self)
+                        break
                     case "계산기":
                         self.performSegue(withIdentifier: "calculatorSegue", sender: self)
                         break
-                    default:
+                    case "설정":
+                        self.performSegue(withIdentifier: "settingSegue", sender: self)
                         break
                         
+                    default:
+                        break
                     }
+
                     
                 })
                 
