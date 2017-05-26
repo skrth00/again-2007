@@ -12,6 +12,7 @@
 		01A459C01ED7907C00850C33 /* StopWatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A459BF1ED7907C00850C33 /* StopWatchViewController.swift */; };
 		01A459C21ED7909000850C33 /* StopWatchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A459C11ED7909000850C33 /* StopWatchTableViewCell.swift */; };
 		01A459C41ED7909C00850C33 /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A459C31ED7909C00850C33 /* AlarmViewController.swift */; };
+		1ED98DEE1ED7B1E7005CAA94 /* CalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED98DED1ED7B1E7005CAA94 /* CalculatorViewController.swift */; };
 		23BA1F0F75E84C91ACCF4B48 /* Pods_again2007project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E3BFC3F5D05E7FBE09AC95 /* Pods_again2007project.framework */; };
 		30F941A21ED76F8200857C23 /* DeviceUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F941A11ED76F8200857C23 /* DeviceUtil.swift */; };
 		6778A64C1ED6D1F00031B43C /* ScreenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6778A64B1ED6D1F00031B43C /* ScreenCell.swift */; };
@@ -44,6 +45,7 @@
 		01A459C31ED7909C00850C33 /* AlarmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmViewController.swift; sourceTree = "<group>"; };
 		122C30F930C74A7CE7FF6DFE /* Pods-again2007project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-again2007project.debug.xcconfig"; path = "Pods/Target Support Files/Pods-again2007project/Pods-again2007project.debug.xcconfig"; sourceTree = "<group>"; };
 		1BFA36850FA563F1FCDA3527 /* Pods-again2007project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-again2007project.release.xcconfig"; path = "Pods/Target Support Files/Pods-again2007project/Pods-again2007project.release.xcconfig"; sourceTree = "<group>"; };
+		1ED98DED1ED7B1E7005CAA94 /* CalculatorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorViewController.swift; sourceTree = "<group>"; };
 		30F941A11ED76F8200857C23 /* DeviceUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceUtil.swift; sourceTree = "<group>"; };
 		3131BA03898700E789AF27A0 /* Pods_again2007projectTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_again2007projectTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6778A64B1ED6D1F00031B43C /* ScreenCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenCell.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				67F34BEE1ED6CD500094FB6D /* Info.plist */,
 				6778A64B1ED6D1F00031B43C /* ScreenCell.swift */,
 				6778A6551ED75D500031B43C /* PaPagoAppVC.swift */,
+				1ED98DED1ED7B1E7005CAA94 /* CalculatorViewController.swift */,
 			);
 			path = again2007project;
 			sourceTree = "<group>";
@@ -326,6 +329,7 @@
 				6778A64C1ED6D1F00031B43C /* ScreenCell.swift in Sources */,
 				01A459C41ED7909C00850C33 /* AlarmViewController.swift in Sources */,
 				67F34BE51ED6CD500094FB6D /* HomeVC.swift in Sources */,
+				1ED98DEE1ED7B1E7005CAA94 /* CalculatorViewController.swift in Sources */,
 				67F34BE31ED6CD500094FB6D /* AppDelegate.swift in Sources */,
 				30F941A21ED76F8200857C23 /* DeviceUtil.swift in Sources */,
 			);

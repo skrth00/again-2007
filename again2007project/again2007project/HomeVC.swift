@@ -453,10 +453,13 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         case "날씨":
             performSegue(withIdentifier: "weatherSegue", sender: self)
             break
+        case "계산기":
+            performSegue(withIdentifier: "calculatorSegue", sender: self)
+            break
         case "설정":
             performSegue(withIdentifier: "settingSegue", sender: self)
             break
-        
+            
         default:
             break
         }
