@@ -428,51 +428,71 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
                 center.y = locationInView.y
                 My.cellSnapshot!.center = center
                 
-                if ((indexPath != nil) && (indexPath != Path.initialIndexPath) && !isEnlarged) {
-                    
-                    //                    let mergedItem = self.collectionView.cellForItem(at: Path.initialIndexPath!) as! UICollectionViewCell
-                    //                    mergedItem.layer.removeAllAnimations()
-                    print("호출, \(gestureRecognizer.view)")
-                    print("[suejinv] isEnlarged true")
-                    isEnlarged = true
-                    //                    isEnlargeEnd = false
-                    
-                    let item = mainCollectionView.cellForItem(at: indexPath!)!
-                    item.layer.removeAllAnimations()
-                    
-                    self.lastDirCellIdx = indexPath
-                    
-                    UIView.animate(withDuration: 1, animations: {
+                if let indexPath = indexPath{
+                    let cell = mainCollectionView.cellForItem(at: indexPath) as UICollectionViewCell!
+                
+                    if (cell?.center.x)! - 5 <= center.x ,center.x <= (cell?.center.x)!+5,
+                        (cell?.center.y)! - 5 <= center.y ,center.y <= (cell?.center.y)!+5,
+                        !isEnlarged{
+                       
+                        cell?.layer.borderWidth = 100
+                        cell?.layer.cornerRadius = 15
+                        cell?.layer.borderColor = UIColor.lightGray.cgColor.copy(alpha: 0.8)
                         
-                        self.mainCollectionView.addSubview(self.blurEffectView)
-                        self.mainCollectionView.bringSubview(toFront: self.blurEffectView)
-                        //self.lastDirCellIdx = indexPath
-                        self.blurEffectView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.makeSmallCellSize)))
+                        isEnlarged = true
                         
-                        self.mainCollectionView.bringSubview(toFront: item)
-                        self.mainCollectionView.bringSubview(toFront: My.cellSnapshot!)
-                        item.frame.origin = self.view.frame.origin
-                        item.frame.origin.x = 40
-                        item.frame.origin.y = 200
-                        item.frame.size.width = self.view.frame.width - 80
-                        item.frame.size.height = self.view.frame.height - 400
-                        item.backgroundColor = UIColor.lightGray
-                    }, completion: { (finished) -> Void in
+                        
+                        let item = mainCollectionView.cellForItem(at: indexPath)!
+                        item.layer.removeAllAnimations()
+                        
+                        self.lastDirCellIdx = indexPath
+                        
                         
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        UIView.animate(withDuration: 1, animations: {
                             
-                            if item.frame.contains(longPress.location(in: self.mainCollectionView)) == false {
-                                self.makeSmallCellSize()
-                                self.mainCollectionView.moveItem(at: Path.initialIndexPath! as IndexPath, to: indexPath!)
-                                print(Path.initialIndexPath)
+                            self.mainCollectionView.addSubview(self.blurEffectView)
+                            self.mainCollectionView.bringSubview(toFront: self.blurEffectView)
+                            //self.lastDirCellIdx = indexPath
+                            self.blurEffectView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.makeSmallCellSize)))
+                            
+                            self.mainCollectionView.bringSubview(toFront: item)
+                            self.mainCollectionView.bringSubview(toFront: My.cellSnapshot!)
+                            item.frame.origin = self.view.frame.origin
+                            item.frame.origin.x = 40
+                            item.frame.origin.y = 200
+                            item.frame.size.width = self.view.frame.width - 80
+                            item.frame.size.height = self.view.frame.height - 400
+                            item.backgroundColor = UIColor.lightGray
+                            
+                        }, completion: { (finished) -> Void in
+                            //cell?.contentView.layer.borderWidth = 0
+                            cell?.layer.borderWidth = 0
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                                 
+                                if item.frame.contains(longPress.location(in: self.mainCollectionView)) == false {
+                                    self.makeSmallCellSize()
+                                    self.mainCollectionView.moveItem(at: Path.initialIndexPath! as IndexPath, to: indexPath)
+                                    print(Path.initialIndexPath)
+                                    
+                                }
                             }
+                            
+                            
+                        })
+                        
                         }
+        
                         
                         
-                    })
-                    
+                    }else{
+                        
+
+                    }
                 }
+                
+                
+
             }
 
         default:

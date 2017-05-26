@@ -239,7 +239,7 @@
 				TargetAttributes = {
 					67F34BDE1ED6CD4F0094FB6D = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 7NMZQ5ZZP5;
+						DevelopmentTeam = 3DPPXS9XMF;
 						ProvisioningStyle = Automatic;
 					};
 					67F34BF21ED6CD500094FB6D = {
@@ -506,7 +506,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 7NMZQ5ZZP5;
+				DEVELOPMENT_TEAM = 3DPPXS9XMF;
 				INFOPLIST_FILE = again2007project/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.naver.hd.again2007project;
@@ -521,7 +521,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 7NMZQ5ZZP5;
+				DEVELOPMENT_TEAM = 3DPPXS9XMF;
 				INFOPLIST_FILE = again2007project/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.naver.hd.again2007project;
