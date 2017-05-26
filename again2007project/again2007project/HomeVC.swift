@@ -27,6 +27,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     
     // main collection view
     @IBOutlet weak var mainCollectionView: UICollectionView!
+    @IBOutlet weak var launchScreen: UIView!
     
     // editing mode
     override var isEditing: Bool {
@@ -104,7 +105,10 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         pageControl.numberOfPages = appsCount.count
         self.view.addSubview(pageControl)
         
-        addToAppdelegateArray()
+    }
+    
+    func loadingViewHidden() {
+         addToAppdelegateArray()
     }
     
     func viewInit(){
@@ -165,8 +169,6 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         appName4.rframe(x: 288, y: 75, width: 60, height: 20)
         appName4.setLabel(text: "\(apps[23]!.name)", align: .center, fontSize: 12, color:UIColor.white)
         
-        
-        
         view.addSubview(bottomView)
         bottomView.addSubview(appIcon1)
         bottomView.addSubview(appName1)
@@ -176,12 +178,21 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         bottomView.addSubview(appName3)
         bottomView.addSubview(appIcon4)
         bottomView.addSubview(appName4)
-    
         
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        view.bringSubview(toFront: launchScreen)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         UIApplication.shared.keyWindow?.addSubview(homeBtn!) // home버튼 최상위뷰에 등록
+    }
+    
+    @IBAction func exit(_ sender: UIStoryboardSegue) {
+        // noop.
     }
     
     func setHomeBtn(){
@@ -190,6 +201,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         homeBtn?.image = #imageLiteral(resourceName: "home")
         homeBtn?.layer.cornerRadius = 25
         homeBtn?.layer.masksToBounds = true
+        homeBtn?.isHidden = true
         
         let doubleTap = UITapGestureRecognizer(target: self, action: #selector(HomeVC.doubleTapDetected))
         doubleTap.numberOfTapsRequired = 2 // you can change this value
@@ -260,17 +272,93 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         if presentedViewController?.className != nil && presentedViewController?.className != "SwitcherViewController" {
             let image = UIImage.init(view: (presentedViewController?.view)!)
             let arr = NSArray(objects: executedApp!, image)
-            appDelegate.screensArray.insert(arr, at: appDelegate.screensArray.count - 1)
+            
+            if appDelegate.screensArray.count == 1 {
+                appDelegate.screensArray.insert(arr, at: appDelegate.screensArray.count - 1)
+            } else {
+                for i in 0..<appDelegate.screensArray.count - 1 {
+                    let temp = appDelegate.screensArray.object(at: i) as! NSArray
+                    let previous = temp.object(at: 0) as! (icon: UIImage, name: String)
+                    if executedApp?.name == previous.name {
+                        appDelegate.screensArray.removeObject(at: i)
+                        appDelegate.screensArray.insert(arr, at: appDelegate.screensArray.count - 1)
+                        presentedViewController?.dismiss(animated: false, completion: nil)
+                        return
+                    }
+                }
+                appDelegate.screensArray.insert(arr, at: appDelegate.screensArray.count - 1)
+                
+            }
         }
         presentedViewController?.dismiss(animated: false, completion: nil)
+        print("Imageview Clicked")
         self.isEditing = false
     }
     
     //double tap Action
     func doubleTapDetected() {
-        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-        let switcher = storyboard.instantiateViewController(withIdentifier: "switcher")
-        self.present(switcher, animated: true, completion: nil)
+        if presentedViewController?.className == "SwitcherViewController" {
+            presentedViewController?.dismiss(animated: true, completion: nil)
+        } else {
+            let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+            let switcher = storyboard.instantiateViewController(withIdentifier: "switcher") as! SwitcherViewController
+            switcher.didClickApp = { appname in
+                self.dismiss(animated: false, completion: {
+                    
+                    for i in 0..<self.apps.count {
+                        if self.apps[i]?.name == appname {
+                            self.executedApp = self.apps[i]
+                        }
+                    }
+                    
+                    switch appname {
+                    case "지도":
+                        self.performSegue(withIdentifier: "mapSegue", sender: self)
+                        break
+                    case "시계":
+                        self.performSegue(withIdentifier: "clockSegue", sender: self)
+                        break
+                    case "마마고":
+                        self.performSegue(withIdentifier: "papagoSegue", sender: self)
+                    case "사진":
+                        self.photoLibraryAppExecuted()
+                        break
+                    case "카메라":
+                        self.cameraAppExecuted()
+                        break
+                    case "AppStore":
+                        self.performSegue(withIdentifier: "appstoreSegue", sender: self)
+                        break
+                    case "미리알림":
+                        self.performSegue(withIdentifier: "prenoticeSegue", sender: self)
+                        break
+                    case "비디오":
+                        self.performSegue(withIdentifier: "videoSegue", sender: self)
+                        break
+                    case "캘린더":
+                        self.performSegue(withIdentifier: "calenderSegue", sender: self)
+                        break
+                    case "날씨":
+                        self.performSegue(withIdentifier: "weatherSegue", sender: self)
+                        break
+                    case "계산기":
+                        self.performSegue(withIdentifier: "calculatorSegue", sender: self)
+                        break
+                    case "설정":
+                        self.performSegue(withIdentifier: "settingSegue", sender: self)
+                        break
+                        
+                    default:
+                        break
+                    }
+
+                    
+                })
+                
+            }
+            self.present(switcher, animated: true, completion: nil)
+        }
+        print("Imageview double Clicked")
     }
 
     
