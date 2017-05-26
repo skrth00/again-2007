@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -121,12 +121,12 @@
                     <connections>
                         <segue destination="7o4-yn-z5q" kind="relationship" relationship="viewControllers" id="wv5-sy-5eI"/>
                         <segue destination="6vK-7g-CuI" kind="relationship" relationship="viewControllers" id="3ja-YN-tlF"/>
-                        <segue destination="i0Q-lo-hBw" kind="relationship" relationship="viewControllers" id="APq-MJ-da1"/>
+                        <segue destination="i7a-Ky-l8b" kind="relationship" relationship="viewControllers" id="dm4-1N-cd4"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IOd-l4-cC0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-12" y="974"/>
+            <point key="canvasLocation" x="633" y="1704"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="aR7-IN-Ci2">
@@ -246,7 +246,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ect-sc-l8e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-12" y="1737.481259370315"/>
+            <point key="canvasLocation" x="-212" y="1718"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="DSa-Xg-UZm">
@@ -270,7 +270,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AfW-mn-Oju" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="764" y="1528.785607196402"/>
+            <point key="canvasLocation" x="764" y="997"/>
         </scene>
         <!--Pa Pago AppVC-->
         <scene sceneID="E9s-n2-5VU">
@@ -368,7 +368,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3sM-ve-57V" id="I0S-jX-vXX">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7b5-p9-J9V">
@@ -417,60 +417,133 @@
             </objects>
             <point key="canvasLocation" x="54" y="2461"/>
         </scene>
-        <!--알람-->
-        <scene sceneID="zwe-hs-BNJ">
+        <!--설정-->
+        <scene sceneID="Q8w-1L-JUa">
             <objects>
-                <viewController id="i0Q-lo-hBw" customClass="AlarmViewController" customModule="again2007project" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="FLB-nc-kIp" customClass="AlarmDetailViewController" customModule="again2007project" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Uqb-Ux-hc8"/>
-                        <viewControllerLayoutGuide type="bottom" id="g6J-Ju-xjj"/>
+                        <viewControllerLayoutGuide type="top" id="rpE-yN-Axt"/>
+                        <viewControllerLayoutGuide type="bottom" id="Z7m-Fk-7kg"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="lJn-J0-q0y">
+                    <view key="view" contentMode="scaleToFill" id="XhM-LG-YJc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="leR-Tn-obL">
-                                <rect key="frame" x="139" y="60" width="96.5" height="48"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="d6Z-2m-Pv5">
-                                <rect key="frame" x="27.5" y="118" width="320" height="216"/>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="gA1-FH-gZu">
+                                <rect key="frame" x="27.5" y="225.5" width="320" height="216"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="216" id="FGf-EQ-7MF"/>
+                                    <constraint firstAttribute="height" constant="216" id="LFe-GB-apt"/>
                                 </constraints>
                                 <date key="date" timeIntervalSinceReferenceDate="472054875.83579803">
                                     <!--2015-12-17 14:21:15 +0000-->
                                 </date>
                             </datePicker>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qER-LQ-4Uc">
-                                <rect key="frame" x="164" y="427" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="확인"/>
-                                <connections>
-                                    <action selector="editBtnAction:" destination="i0Q-lo-hBw" eventType="touchUpInside" id="0fK-PS-Htd"/>
-                                </connections>
-                            </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.15999999640000001" green="0.15999999640000001" blue="0.15999999640000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="leR-Tn-obL" firstAttribute="top" secondItem="Uqb-Ux-hc8" secondAttribute="bottom" constant="40" id="9b5-Ej-Jyq"/>
-                            <constraint firstItem="d6Z-2m-Pv5" firstAttribute="top" secondItem="leR-Tn-obL" secondAttribute="bottom" constant="10" id="BkM-5i-xvV"/>
-                            <constraint firstItem="leR-Tn-obL" firstAttribute="centerX" secondItem="lJn-J0-q0y" secondAttribute="centerX" id="XaG-ng-MSn"/>
-                            <constraint firstItem="d6Z-2m-Pv5" firstAttribute="centerX" secondItem="lJn-J0-q0y" secondAttribute="centerX" id="diM-1W-Tg4"/>
+                            <constraint firstItem="gA1-FH-gZu" firstAttribute="centerX" secondItem="XhM-LG-YJc" secondAttribute="centerX" id="Ivz-jV-snS"/>
+                            <constraint firstItem="gA1-FH-gZu" firstAttribute="centerY" secondItem="XhM-LG-YJc" secondAttribute="centerY" id="pXY-bq-XN7"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="알람" id="Nce-7E-h8i"/>
-                    <navigationItem key="navigationItem" title="알람" id="1QP-t1-DCY"/>
+                    <navigationItem key="navigationItem" title="설정" id="EmU-3I-bfe">
+                        <barButtonItem key="rightBarButtonItem" title="Item" systemItem="done" id="AZo-Lh-2jd">
+                            <connections>
+                                <action selector="editBtnAction:" destination="FLB-nc-kIp" id="M0v-nf-JzG"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <outlet property="datePicker" destination="d6Z-2m-Pv5" id="7FW-Fx-Nt9"/>
-                        <outlet property="showDateText" destination="leR-Tn-obL" id="is7-cd-5Ar"/>
+                        <outlet property="datePicker" destination="gA1-FH-gZu" id="yvJ-U8-CMm"/>
+                        <segue destination="cMZ-bw-78u" kind="unwind" identifier="unwindSegue" unwindAction="unwindToAlarmWithSegue:" id="8cd-ZA-rDf"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="rKM-Od-RLo" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4aY-KJ-AFN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="cMZ-bw-78u" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="764" y="2232"/>
+            <point key="canvasLocation" x="2400.8000000000002" y="2424.7376311844082"/>
+        </scene>
+        <!--알람-->
+        <scene sceneID="7gc-Tl-mvS">
+            <objects>
+                <viewController id="hZU-CU-psB" customClass="AlarmViewController" customModule="again2007project" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PAU-XQ-YAE"/>
+                        <viewControllerLayoutGuide type="bottom" id="zVO-ML-5gK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tos-oR-n73">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2bX-it-03r">
+                                <rect key="frame" x="0.0" y="20" width="375" height="616"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AlarmTableCell" id="UJR-Wf-sg0" customClass="AlarmTableCell" customModule="again2007project" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UJR-Wf-sg0" id="7fY-Jj-a5u">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mXp-GP-VnH">
+                                                    <rect key="frame" x="151.5" y="8" width="72.5" height="36"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="mXp-GP-VnH" firstAttribute="centerX" secondItem="7fY-Jj-a5u" secondAttribute="centerX" id="SnW-CP-UTI"/>
+                                                <constraint firstItem="mXp-GP-VnH" firstAttribute="top" secondItem="7fY-Jj-a5u" secondAttribute="top" constant="8" id="nKh-tX-rL6"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="setTime" destination="mXp-GP-VnH" id="LjD-e4-y7d"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="hZU-CU-psB" id="Lv1-o4-ZKS"/>
+                                    <outlet property="delegate" destination="hZU-CU-psB" id="85H-m1-gq5"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.15999999640000001" green="0.15999999640000001" blue="0.15999999640000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="알람" id="Bdd-Ib-8Js">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="hXC-iw-nnN">
+                            <connections>
+                                <segue destination="FLB-nc-kIp" kind="show" id="azw-n5-QFJ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="alarmTableView" destination="2bX-it-03r" id="eaz-AH-OkJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AoW-9a-7Bz" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1720.8" y="2424.7376311844082"/>
+        </scene>
+        <!--알람-->
+        <scene sceneID="mBW-Qz-CKV">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="i7a-Ky-l8b" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="알람" id="EeU-wj-mKc"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Zqw-7P-OA3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="hZU-CU-psB" kind="relationship" relationship="rootViewController" id="8is-yP-ktf"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Rm-PN-CaC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="781.60000000000002" y="2424.7376311844082"/>
         </scene>
     </scenes>
     <resources>

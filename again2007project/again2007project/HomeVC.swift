@@ -248,10 +248,19 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         }
         
     }
-    
+    var appActivityStatus = false
     //single tap Action
     func singleTapDetected() {
-        presentedViewController?.dismiss(animated: false, completion: nil)
+        if appActivityStatus {
+            presentedViewController?.dismiss(animated: false, completion: nil)
+            appActivityStatus = false
+        }else{
+            UIView.animate(withDuration: 0.3) {
+                self.mainCollectionView.contentOffset.x = 0
+            }
+            appActivityStatus = false
+        }
+        
         print("Imageview Clicked")
         self.isEditing = false
     }
@@ -423,6 +432,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     func appClick(_ sender: UIButton){
         
         let appname = apps[sender.tag]!.name
+        appActivityStatus = true
         switch appname {
         case "지도":
             performSegue(withIdentifier: "mapSegue", sender: self)

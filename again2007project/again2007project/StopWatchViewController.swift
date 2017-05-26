@@ -25,9 +25,7 @@ class StopWatchViewController: UIViewController,  UITableViewDataSource, UITable
         super.viewDidLoad()
         
     }
-    override func viewWillAppear(_ animated: Bool) {
-        recordTableView.reloadData()
-    }
+    
     @IBAction func start(_ sender: AnyObject) {
         if (startStatus) {
             stop()
@@ -51,7 +49,8 @@ class StopWatchViewController: UIViewController,  UITableViewDataSource, UITable
             time = 0
             elapsed = 0
             startStatus = false
-            
+            recordList.removeAll()
+            self.recordTableView.reloadData()
             displayTimeLabel.text = "00:00:00"
         } else {
             lab()
