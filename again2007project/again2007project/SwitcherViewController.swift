@@ -94,6 +94,7 @@ class SwitcherViewController: UIViewController, UICollectionViewDelegate, UIColl
             }
             print("Basket doors opened!")
             self.initViewArray()
+            self.screenCollectionView.deleteItems(at: [IndexPath(item: i!, section: 0)])
             self.screenCollectionView.reloadData()
         })
     }
