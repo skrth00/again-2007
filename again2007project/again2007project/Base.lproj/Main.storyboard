@@ -80,7 +80,7 @@
                         <segue destination="Lj9-c9-1oX" kind="show" identifier="papagoSegue" animates="NO" id="R9f-pH-E5p"/>
                         <segue destination="MNu-j2-PPf" kind="show" identifier="clockSegue" id="Z78-1B-Aso"/>
                         <segue destination="wq2-di-AYF" kind="show" identifier="appstoreSegue" animates="NO" id="A2a-wB-WI3"/>
-                        <segue destination="HIk-mL-ysa" kind="show" identifier="calendarSegue" animates="NO" id="5Wz-EH-4Lg"/>
+                        <segue destination="HIk-mL-ysa" kind="show" identifier="calenderSegue" animates="NO" id="5Wz-EH-4Lg"/>
                         <segue destination="S4u-ch-QDh" kind="show" identifier="prenoticeSegue" animates="NO" id="R1Z-km-nMp"/>
                         <segue destination="0b5-Ww-Eof" kind="show" identifier="weatherSegue" animates="NO" id="djd-fu-xvy"/>
                         <segue destination="cin-cI-hSF" kind="show" identifier="settingSegue" animates="NO" id="6yR-bU-ccV"/>
@@ -174,7 +174,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gjb-Y0-eIS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-743.20000000000005" y="943.17841079460277"/>
+            <point key="canvasLocation" x="-812" y="922"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Y43-29-jBL">
