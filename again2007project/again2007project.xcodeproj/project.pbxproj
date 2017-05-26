@@ -12,14 +12,23 @@
 		01A459C01ED7907C00850C33 /* StopWatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A459BF1ED7907C00850C33 /* StopWatchViewController.swift */; };
 		01A459C21ED7909000850C33 /* StopWatchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A459C11ED7909000850C33 /* StopWatchTableViewCell.swift */; };
 		01A459C41ED7909C00850C33 /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A459C31ED7909C00850C33 /* AlarmViewController.swift */; };
+<<<<<<< HEAD
 		01A45A401ED7E85600850C33 /* AlarmDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A45A3F1ED7E85600850C33 /* AlarmDetailViewController.swift */; };
 		01A45A421ED7E86100850C33 /* AlarmTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A45A411ED7E86100850C33 /* AlarmTableCell.swift */; };
+=======
+		1ED98DEE1ED7B1E7005CAA94 /* CalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED98DED1ED7B1E7005CAA94 /* CalculatorViewController.swift */; };
+		1ED98DF11ED7B675005CAA94 /* SwitcherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED98DF01ED7B675005CAA94 /* SwitcherViewController.swift */; };
+		1ED98DF31ED7B68F005CAA94 /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED98DF21ED7B68F005CAA94 /* CustomCollectionViewCell.swift */; };
+>>>>>>> 32ce7a17be96007f3f3baa15aeb34ac404fa34f2
 		23BA1F0F75E84C91ACCF4B48 /* Pods_again2007project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E3BFC3F5D05E7FBE09AC95 /* Pods_again2007project.framework */; };
 		30F941A21ED76F8200857C23 /* DeviceUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F941A11ED76F8200857C23 /* DeviceUtil.swift */; };
+		4A2AF43A1ED7CF0500282A9D /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A2AF4381ED7CF0500282A9D /* Map.storyboard */; };
+		4A2AF43C1ED7CF8300282A9D /* Watch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A2AF43B1ED7CF8300282A9D /* Watch.storyboard */; };
 		6778A64C1ED6D1F00031B43C /* ScreenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6778A64B1ED6D1F00031B43C /* ScreenCell.swift */; };
 		6778A6501ED746350031B43C /* AppleMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6778A64F1ED746350031B43C /* AppleMapVC.swift */; };
 		6778A6541ED750370031B43C /* Animation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6778A6531ED750370031B43C /* Animation+Extension.swift */; };
 		6778A6561ED75D500031B43C /* PaPagoAppVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6778A6551ED75D500031B43C /* PaPagoAppVC.swift */; };
+		678D85C91ED7B5BD00EB6DBD /* LaunchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678D85C81ED7B5BD00EB6DBD /* LaunchVC.swift */; };
 		67F34BE31ED6CD500094FB6D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F34BE21ED6CD500094FB6D /* AppDelegate.swift */; };
 		67F34BE51ED6CD500094FB6D /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F34BE41ED6CD500094FB6D /* HomeVC.swift */; };
 		67F34BE81ED6CD500094FB6D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67F34BE61ED6CD500094FB6D /* Main.storyboard */; };
@@ -48,12 +57,18 @@
 		01A45A411ED7E86100850C33 /* AlarmTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmTableCell.swift; sourceTree = "<group>"; };
 		122C30F930C74A7CE7FF6DFE /* Pods-again2007project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-again2007project.debug.xcconfig"; path = "Pods/Target Support Files/Pods-again2007project/Pods-again2007project.debug.xcconfig"; sourceTree = "<group>"; };
 		1BFA36850FA563F1FCDA3527 /* Pods-again2007project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-again2007project.release.xcconfig"; path = "Pods/Target Support Files/Pods-again2007project/Pods-again2007project.release.xcconfig"; sourceTree = "<group>"; };
+		1ED98DED1ED7B1E7005CAA94 /* CalculatorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorViewController.swift; sourceTree = "<group>"; };
+		1ED98DF01ED7B675005CAA94 /* SwitcherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitcherViewController.swift; sourceTree = "<group>"; };
+		1ED98DF21ED7B68F005CAA94 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
 		30F941A11ED76F8200857C23 /* DeviceUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceUtil.swift; sourceTree = "<group>"; };
 		3131BA03898700E789AF27A0 /* Pods_again2007projectTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_again2007projectTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A2AF4391ED7CF0500282A9D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Map.storyboard; sourceTree = "<group>"; };
+		4A2AF43B1ED7CF8300282A9D /* Watch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Watch.storyboard; sourceTree = "<group>"; };
 		6778A64B1ED6D1F00031B43C /* ScreenCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenCell.swift; sourceTree = "<group>"; };
 		6778A64F1ED746350031B43C /* AppleMapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleMapVC.swift; sourceTree = "<group>"; };
 		6778A6531ED750370031B43C /* Animation+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Animation+Extension.swift"; sourceTree = "<group>"; };
 		6778A6551ED75D500031B43C /* PaPagoAppVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaPagoAppVC.swift; sourceTree = "<group>"; };
+		678D85C81ED7B5BD00EB6DBD /* LaunchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchVC.swift; sourceTree = "<group>"; };
 		67F34BDF1ED6CD500094FB6D /* again2007project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = again2007project.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		67F34BE21ED6CD500094FB6D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		67F34BE41ED6CD500094FB6D /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
@@ -100,6 +115,15 @@
 			name = watchApp;
 			sourceTree = "<group>";
 		};
+		1ED98DEF1ED7B655005CAA94 /* multitasking */ = {
+			isa = PBXGroup;
+			children = (
+				1ED98DF01ED7B675005CAA94 /* SwitcherViewController.swift */,
+				1ED98DF21ED7B68F005CAA94 /* CustomCollectionViewCell.swift */,
+			);
+			name = multitasking;
+			sourceTree = "<group>";
+		};
 		34336CD29F6D3E0D1A4E7DD8 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -132,18 +156,23 @@
 		67F34BE11ED6CD500094FB6D /* again2007project */ = {
 			isa = PBXGroup;
 			children = (
+				1ED98DEF1ED7B655005CAA94 /* multitasking */,
 				01A459BA1ED7904300850C33 /* watchApp */,
 				67F34BE21ED6CD500094FB6D /* AppDelegate.swift */,
 				67F34BE41ED6CD500094FB6D /* HomeVC.swift */,
+				678D85C81ED7B5BD00EB6DBD /* LaunchVC.swift */,
 				6778A64F1ED746350031B43C /* AppleMapVC.swift */,
 				6778A6531ED750370031B43C /* Animation+Extension.swift */,
 				30F941A11ED76F8200857C23 /* DeviceUtil.swift */,
 				67F34BE61ED6CD500094FB6D /* Main.storyboard */,
+				4A2AF43B1ED7CF8300282A9D /* Watch.storyboard */,
+				4A2AF4381ED7CF0500282A9D /* Map.storyboard */,
 				67F34BE91ED6CD500094FB6D /* Assets.xcassets */,
 				67F34BEB1ED6CD500094FB6D /* LaunchScreen.storyboard */,
 				67F34BEE1ED6CD500094FB6D /* Info.plist */,
 				6778A64B1ED6D1F00031B43C /* ScreenCell.swift */,
 				6778A6551ED75D500031B43C /* PaPagoAppVC.swift */,
+				1ED98DED1ED7B1E7005CAA94 /* CalculatorViewController.swift */,
 			);
 			path = again2007project;
 			sourceTree = "<group>";
@@ -254,9 +283,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A2AF43C1ED7CF8300282A9D /* Watch.storyboard in Resources */,
 				67F34BED1ED6CD500094FB6D /* LaunchScreen.storyboard in Resources */,
 				67F34BEA1ED6CD500094FB6D /* Assets.xcassets in Resources */,
 				67F34BE81ED6CD500094FB6D /* Main.storyboard in Resources */,
+				4A2AF43A1ED7CF0500282A9D /* Map.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,8 +354,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				01A459BE1ED7906F00850C33 /* ClockViewController.swift in Sources */,
+				1ED98DF31ED7B68F005CAA94 /* CustomCollectionViewCell.swift in Sources */,
 				6778A6561ED75D500031B43C /* PaPagoAppVC.swift in Sources */,
 				6778A6541ED750370031B43C /* Animation+Extension.swift in Sources */,
+				678D85C91ED7B5BD00EB6DBD /* LaunchVC.swift in Sources */,
 				01A459BC1ED7906300850C33 /* Clock.swift in Sources */,
 				01A459C01ED7907C00850C33 /* StopWatchViewController.swift in Sources */,
 				6778A6501ED746350031B43C /* AppleMapVC.swift in Sources */,
@@ -333,6 +366,8 @@
 				01A45A421ED7E86100850C33 /* AlarmTableCell.swift in Sources */,
 				01A459C41ED7909C00850C33 /* AlarmViewController.swift in Sources */,
 				67F34BE51ED6CD500094FB6D /* HomeVC.swift in Sources */,
+				1ED98DEE1ED7B1E7005CAA94 /* CalculatorViewController.swift in Sources */,
+				1ED98DF11ED7B675005CAA94 /* SwitcherViewController.swift in Sources */,
 				67F34BE31ED6CD500094FB6D /* AppDelegate.swift in Sources */,
 				30F941A21ED76F8200857C23 /* DeviceUtil.swift in Sources */,
 				01A45A401ED7E85600850C33 /* AlarmDetailViewController.swift in Sources */,
@@ -358,6 +393,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		4A2AF4381ED7CF0500282A9D /* Map.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4A2AF4391ED7CF0500282A9D /* Base */,
+			);
+			name = Map.storyboard;
+			sourceTree = "<group>";
+		};
 		67F34BE61ED6CD500094FB6D /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

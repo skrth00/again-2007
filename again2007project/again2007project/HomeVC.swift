@@ -27,6 +27,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     
     // main collection view
     @IBOutlet weak var mainCollectionView: UICollectionView!
+    @IBOutlet weak var launchScreen: UIView!
     
     // editing mode
     override var isEditing: Bool {
@@ -39,6 +40,10 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
             }
         }
     }
+    
+    // for multitasking
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    var executedApp:(icon: UIImage, name: String)?
     
 //<<<<<<< Updated upstream
     var apps : [(icon: UIImage, name: String)?] = [(icon: #imageLiteral(resourceName: "캘린더"), name: "캘린더"),
@@ -86,6 +91,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         layoutInit()
         viewInit()
         setHomeBtn()
+
         let longpress = UILongPressGestureRecognizer(target: self, action: #selector(longPressGestureRecognized))
         mainCollectionView.addGestureRecognizer(longpress)
         
@@ -99,6 +105,10 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         pageControl.numberOfPages = appsCount.count
         self.view.addSubview(pageControl)
         
+    }
+    
+    func loadingViewHidden() {
+         addToAppdelegateArray()
     }
     
     func viewInit(){
@@ -159,8 +169,6 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         appName4.rframe(x: 288, y: 75, width: 60, height: 20)
         appName4.setLabel(text: "\(apps[23]!.name)", align: .center, fontSize: 12, color:UIColor.white)
         
-        
-        
         view.addSubview(bottomView)
         bottomView.addSubview(appIcon1)
         bottomView.addSubview(appName1)
@@ -170,12 +178,21 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         bottomView.addSubview(appName3)
         bottomView.addSubview(appIcon4)
         bottomView.addSubview(appName4)
-    
         
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        view.bringSubview(toFront: launchScreen)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         UIApplication.shared.keyWindow?.addSubview(homeBtn!) // home버튼 최상위뷰에 등록
+    }
+    
+    @IBAction func exit(_ sender: UIStoryboardSegue) {
+        // noop.
     }
     
     func setHomeBtn(){
@@ -184,6 +201,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         homeBtn?.image = #imageLiteral(resourceName: "home")
         homeBtn?.layer.cornerRadius = 25
         homeBtn?.layer.masksToBounds = true
+        homeBtn?.isHidden = true
         
         let doubleTap = UITapGestureRecognizer(target: self, action: #selector(HomeVC.doubleTapDetected))
         doubleTap.numberOfTapsRequired = 2 // you can change this value
@@ -251,6 +269,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     var appActivityStatus = false
     //single tap Action
     func singleTapDetected() {
+<<<<<<< HEAD
         if appActivityStatus {
             presentedViewController?.dismiss(animated: false, completion: nil)
             appActivityStatus = false
@@ -262,14 +281,107 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         }
         
         print("Imageview Clicked")
+=======
+        if presentedViewController?.className != nil && presentedViewController?.className != "SwitcherViewController" {
+            saveCurrentExcutedApp()
+        }
+        presentedViewController?.dismiss(animated: false, completion: nil)
+>>>>>>> 32ce7a17be96007f3f3baa15aeb34ac404fa34f2
         self.isEditing = false
     }
     
     //double tap Action
     func doubleTapDetected() {
-        print("Imageview double Clicked")
+        if presentedViewController?.className == "SwitcherViewController" {
+            presentedViewController?.dismiss(animated: true, completion: nil)
+        } else {
+            let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+            let switcher = storyboard.instantiateViewController(withIdentifier: "switcher") as! SwitcherViewController
+            switcher.didClickApp = { appname in
+                self.dismiss(animated: false, completion: {
+                    
+                    for i in 0..<self.apps.count {
+                        if self.apps[i]?.name == appname {
+                            self.executedApp = self.apps[i]
+                        }
+                    }
+                    
+                    switch appname {
+                    case "지도":
+                        self.performSegue(withIdentifier: "mapSegue", sender: self)
+                        break
+                    case "시계":
+                        self.performSegue(withIdentifier: "clockSegue", sender: self)
+                        break
+                    case "마마고":
+                        self.performSegue(withIdentifier: "papagoSegue", sender: self)
+                    case "사진":
+                        self.photoLibraryAppExecuted()
+                        break
+                    case "카메라":
+                        self.cameraAppExecuted()
+                        break
+                    case "AppStore":
+                        self.performSegue(withIdentifier: "appstoreSegue", sender: self)
+                        break
+                    case "미리알림":
+                        self.performSegue(withIdentifier: "prenoticeSegue", sender: self)
+                        break
+                    case "비디오":
+                        self.performSegue(withIdentifier: "videoSegue", sender: self)
+                        break
+                    case "캘린더":
+                        self.performSegue(withIdentifier: "calenderSegue", sender: self)
+                        break
+                    case "날씨":
+                        self.performSegue(withIdentifier: "weatherSegue", sender: self)
+                        break
+                    case "계산기":
+                        self.performSegue(withIdentifier: "calculatorSegue", sender: self)
+                        break
+                    case "설정":
+                        self.performSegue(withIdentifier: "settingSegue", sender: self)
+                        break
+                        
+                    default:
+                        break
+                    }
+                })
+                
+            }
+            
+            if presentedViewController?.className != nil {
+                self.saveCurrentExcutedApp()
+                self.dismiss(animated: false, completion: {
+                    self.present(switcher, animated: true, completion: nil)
+                })
+            } else {
+                self.present(switcher, animated: true, completion: nil)
+            }
+            
+        }
     }
 
+    // save a current executed app screen shot to the array in the appdelegate
+    func saveCurrentExcutedApp() {
+        let screenImg = UIImage.init(view: (presentedViewController?.view)!)
+        let arr = NSArray(objects: executedApp!, screenImg)
+        if appDelegate.screensArray.count == 1 {
+            appDelegate.screensArray.insert(arr, at: appDelegate.screensArray.count - 1)
+        } else {
+            for i in 0..<appDelegate.screensArray.count - 1 {
+                let temp = appDelegate.screensArray.object(at: i) as! NSArray
+                let previous = temp.object(at: 0) as! (icon: UIImage, name: String)
+                if executedApp?.name == previous.name {
+                    appDelegate.screensArray.removeObject(at: i)
+                    appDelegate.screensArray.insert(arr, at: appDelegate.screensArray.count - 1)
+                    presentedViewController?.dismiss(animated: false, completion: nil)
+                    return
+                }
+            }
+            appDelegate.screensArray.insert(arr, at: appDelegate.screensArray.count - 1)
+        }
+    }
     
     func longPressGestureRecognized(gestureRecognizer: UIGestureRecognizer) {
         self.isEditing = true
@@ -330,51 +442,71 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
                 center.y = locationInView.y
                 My.cellSnapshot!.center = center
                 
-                if ((indexPath != nil) && (indexPath != Path.initialIndexPath) && !isEnlarged) {
-                    
-                    //                    let mergedItem = self.collectionView.cellForItem(at: Path.initialIndexPath!) as! UICollectionViewCell
-                    //                    mergedItem.layer.removeAllAnimations()
-                    print("호출, \(gestureRecognizer.view)")
-                    print("[suejinv] isEnlarged true")
-                    isEnlarged = true
-                    //                    isEnlargeEnd = false
-                    
-                    let item = mainCollectionView.cellForItem(at: indexPath!)!
-                    item.layer.removeAllAnimations()
-                    
-                    self.lastDirCellIdx = indexPath
-                    
-                    UIView.animate(withDuration: 1, animations: {
+                if let indexPath = indexPath{
+                    let cell = mainCollectionView.cellForItem(at: indexPath) as UICollectionViewCell!
+                
+                    if (cell?.center.x)! - 5 <= center.x ,center.x <= (cell?.center.x)!+5,
+                        (cell?.center.y)! - 5 <= center.y ,center.y <= (cell?.center.y)!+5,
+                        !isEnlarged{
+                       
+                        cell?.layer.borderWidth = 100
+                        cell?.layer.cornerRadius = 15
+                        cell?.layer.borderColor = UIColor.lightGray.cgColor.copy(alpha: 0.8)
                         
-                        self.mainCollectionView.addSubview(self.blurEffectView)
-                        self.mainCollectionView.bringSubview(toFront: self.blurEffectView)
-                        //self.lastDirCellIdx = indexPath
-                        self.blurEffectView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.makeSmallCellSize)))
+                        isEnlarged = true
                         
-                        self.mainCollectionView.bringSubview(toFront: item)
-                        self.mainCollectionView.bringSubview(toFront: My.cellSnapshot!)
-                        item.frame.origin = self.view.frame.origin
-                        item.frame.origin.x = 40
-                        item.frame.origin.y = 200
-                        item.frame.size.width = self.view.frame.width - 80
-                        item.frame.size.height = self.view.frame.height - 400
-                        item.backgroundColor = UIColor.lightGray
-                    }, completion: { (finished) -> Void in
+                        
+                        let item = mainCollectionView.cellForItem(at: indexPath)!
+                        item.layer.removeAllAnimations()
+                        
+                        self.lastDirCellIdx = indexPath
+                        
                         
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        UIView.animate(withDuration: 1, animations: {
                             
-                            if item.frame.contains(longPress.location(in: self.mainCollectionView)) == false {
-                                self.makeSmallCellSize()
-                                self.mainCollectionView.moveItem(at: Path.initialIndexPath! as IndexPath, to: indexPath!)
-                                print(Path.initialIndexPath)
+                            self.mainCollectionView.addSubview(self.blurEffectView)
+                            self.mainCollectionView.bringSubview(toFront: self.blurEffectView)
+                            //self.lastDirCellIdx = indexPath
+                            self.blurEffectView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.makeSmallCellSize)))
+                            
+                            self.mainCollectionView.bringSubview(toFront: item)
+                            self.mainCollectionView.bringSubview(toFront: My.cellSnapshot!)
+                            item.frame.origin = self.view.frame.origin
+                            item.frame.origin.x = 40
+                            item.frame.origin.y = 200
+                            item.frame.size.width = self.view.frame.width - 80
+                            item.frame.size.height = self.view.frame.height - 400
+                            item.backgroundColor = UIColor.lightGray
+                            
+                        }, completion: { (finished) -> Void in
+                            //cell?.contentView.layer.borderWidth = 0
+                            cell?.layer.borderWidth = 0
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                                 
+                                if item.frame.contains(longPress.location(in: self.mainCollectionView)) == false {
+                                    self.makeSmallCellSize()
+                                    self.mainCollectionView.moveItem(at: Path.initialIndexPath! as IndexPath, to: indexPath)
+                                    print(Path.initialIndexPath)
+                                    
+                                }
                             }
+                            
+                            
+                        })
+                        
                         }
+        
                         
                         
-                    })
-                    
+                    }else{
+                        
+
+                    }
                 }
+                
+                
+
             }
 
         default:
@@ -463,13 +595,18 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         case "날씨":
             performSegue(withIdentifier: "weatherSegue", sender: self)
             break
+        case "계산기":
+            performSegue(withIdentifier: "calculatorSegue", sender: self)
+            break
         case "설정":
             performSegue(withIdentifier: "settingSegue", sender: self)
             break
-        
+            
         default:
             break
         }
+        
+        executedApp = apps[sender.tag]!
     }
     
     
@@ -575,7 +712,9 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         appDeleteAlert(appName: (apps[sender.tag]?.name)!, item: sender.tag)
     }
     
-    
+    func addToAppdelegateArray(){
+        appDelegate.screensArray.add(UIImage.init(view: self.view))
+    }
 }
 
 extension HomeVC{
@@ -591,7 +730,6 @@ extension HomeVC{
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "spaceCell", for: indexPath as IndexPath) as! ScreenCell
-        cell.borderWidth = 1
         
         let section = indexPath.section
         let appCountInPage = appsCount[section]
@@ -615,10 +753,10 @@ extension HomeVC{
                 cell.appDelete.isHidden = true
                 
                 cell.appName.rframe(x: 0, y: 60, width: 60, height: 20)
-                cell.appName.setLabel(text: "\(apps[indexPath.item]!.name)\(indexPath.item)", align: .center, fontSize: 12, color:UIColor.white)
+                cell.appName.setLabel(text: "\(apps[indexPath.item]!.name)", align: .center, fontSize: 12, color:UIColor.white)
             } else{
                 cell.appIcon.setImage(nil, for: .normal)
-                cell.appName.text = "\(indexPath.item)"
+                cell.appName.text = ""
                 cell.appDelete.setImage(nil, for: .normal)
             }
         default:
@@ -740,4 +878,24 @@ extension HomeVC{
     }
     
   
+}
+
+extension UIImage {
+    convenience init(view: UIView) {
+        UIGraphicsBeginImageContext(view.frame.size)
+        view.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        self.init(cgImage: (image?.cgImage)!)
+    }
+}
+
+extension NSObject {
+    var className: String {
+        return String(describing: type(of: self)).components(separatedBy: ".").last!
+    }
+    
+    class var className: String {
+        return String(describing: self).components(separatedBy: ".").last!
+    }
 }
