@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Dpt-lX-iV8">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--현재 시계-->
+        <scene sceneID="jde-Au-Gli">
+            <objects>
+                <viewController storyboardIdentifier="UIViewController-7o4-yn-z5q" id="7o4-yn-z5q" customClass="ClockViewController" customModule="again2007project" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="uuO-sZ-a8B"/>
+                        <viewControllerLayoutGuide type="bottom" id="Eb2-Il-1DA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Nmw-cC-4r4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xRW-DM-FEj">
+                                <rect key="frame" x="40" y="140" width="296" height="55"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="48"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.15999999640000001" green="0.15999999640000001" blue="0.15999999640000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="xRW-DM-FEj" firstAttribute="top" secondItem="uuO-sZ-a8B" secondAttribute="bottom" constant="120" id="S5a-pJ-6hV"/>
+                            <constraint firstItem="xRW-DM-FEj" firstAttribute="leading" secondItem="Nmw-cC-4r4" secondAttribute="leadingMargin" constant="24" id="TPA-2y-32v"/>
+                            <constraint firstItem="xRW-DM-FEj" firstAttribute="centerX" secondItem="Nmw-cC-4r4" secondAttribute="centerX" id="tCz-um-pdb"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="현재 시계" id="59W-lk-2nW"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="timeLabel" destination="xRW-DM-FEj" id="OdX-Il-A1Z"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WYy-Tp-HO2" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-743" y="3161"/>
+        </scene>
+        <!--스탑워치-->
+        <scene sceneID="ZY2-ua-3c4">
+            <objects>
+                <viewController storyboardIdentifier="UIViewController-6vK-7g-CuI" id="6vK-7g-CuI" customClass="StopWatchViewController" customModule="again2007project" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="XFE-Wy-tVb"/>
+                        <viewControllerLayoutGuide type="bottom" id="b4Q-nf-5t1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="P0j-cO-0vD">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vRX-SH-nq8">
+                                <rect key="frame" x="40" y="140" width="296" height="55"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="48"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JAb-ey-bmQ">
+                                <rect key="frame" x="74" y="399" width="39" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="재시작"/>
+                                <connections>
+                                    <action selector="restart:" destination="6vK-7g-CuI" eventType="touchUpInside" id="zRE-ZN-o2p"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oEI-n4-Gh6">
+                                <rect key="frame" x="267" y="399" width="57" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="시작"/>
+                                <connections>
+                                    <action selector="start:" destination="6vK-7g-CuI" eventType="touchUpInside" id="nYC-nD-Dtc"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WdC-Uu-qzs">
+                                <rect key="frame" x="0.0" y="452" width="375" height="215"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="STCell" id="3sM-ve-57V" customClass="StopWatchTableViewCell" customModule="again2007project" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3sM-ve-57V" id="I0S-jX-vXX">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7b5-p9-J9V">
+                                                    <rect key="frame" x="23" y="12" width="42" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fWV-Xz-6XU">
+                                                    <rect key="frame" x="256" y="12" width="111" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="number" destination="7b5-p9-J9V" id="8lM-Xz-RjG"/>
+                                            <outlet property="record" destination="fWV-Xz-6XU" id="itY-Hb-pVh"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="6vK-7g-CuI" id="isq-dg-gxN"/>
+                                    <outlet property="delegate" destination="6vK-7g-CuI" id="611-cb-BDF"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.15999999640000001" green="0.15999999640000001" blue="0.15999999640000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="vRX-SH-nq8" firstAttribute="centerX" secondItem="P0j-cO-0vD" secondAttribute="centerX" id="lAz-aN-iKj"/>
+                            <constraint firstItem="vRX-SH-nq8" firstAttribute="leading" secondItem="P0j-cO-0vD" secondAttribute="leadingMargin" constant="24" id="vNf-WU-aWD"/>
+                            <constraint firstItem="vRX-SH-nq8" firstAttribute="top" secondItem="XFE-Wy-tVb" secondAttribute="bottom" constant="120" id="xa9-mT-RJc"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="스탑워치" id="wxa-w0-X2J"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="displayTimeLabel" destination="vRX-SH-nq8" id="VPE-5f-IUc"/>
+                        <outlet property="recordTableView" destination="WdC-Uu-qzs" id="Hj7-Ig-fGc"/>
+                        <outlet property="resetBtn" destination="JAb-ey-bmQ" id="bcl-Bd-qza"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zi9-bS-HqY" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="54" y="3161"/>
+        </scene>
+        <!--알람-->
+        <scene sceneID="zwe-hs-BNJ">
+            <objects>
+                <viewController storyboardIdentifier="UIViewController-i0Q-lo-hBw" id="i0Q-lo-hBw" customClass="AlarmViewController" customModule="again2007project" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Uqb-Ux-hc8"/>
+                        <viewControllerLayoutGuide type="bottom" id="g6J-Ju-xjj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lJn-J0-q0y">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="leR-Tn-obL">
+                                <rect key="frame" x="139" y="60" width="96.5" height="48"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="d6Z-2m-Pv5">
+                                <rect key="frame" x="27.5" y="118" width="320" height="216"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="216" id="FGf-EQ-7MF"/>
+                                </constraints>
+                                <date key="date" timeIntervalSinceReferenceDate="472054875.83579803">
+                                    <!--2015-12-17 14:21:15 +0000-->
+                                </date>
+                            </datePicker>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qER-LQ-4Uc">
+                                <rect key="frame" x="164" y="427" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="확인"/>
+                                <connections>
+                                    <action selector="editBtnAction:" destination="i0Q-lo-hBw" eventType="touchUpInside" id="0fK-PS-Htd"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.15999999640000001" green="0.15999999640000001" blue="0.15999999640000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="leR-Tn-obL" firstAttribute="top" secondItem="Uqb-Ux-hc8" secondAttribute="bottom" constant="40" id="9b5-Ej-Jyq"/>
+                            <constraint firstItem="d6Z-2m-Pv5" firstAttribute="top" secondItem="leR-Tn-obL" secondAttribute="bottom" constant="10" id="BkM-5i-xvV"/>
+                            <constraint firstItem="leR-Tn-obL" firstAttribute="centerX" secondItem="lJn-J0-q0y" secondAttribute="centerX" id="XaG-ng-MSn"/>
+                            <constraint firstItem="d6Z-2m-Pv5" firstAttribute="centerX" secondItem="lJn-J0-q0y" secondAttribute="centerX" id="diM-1W-Tg4"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="알람" id="Nce-7E-h8i"/>
+                    <navigationItem key="navigationItem" title="알람" id="1QP-t1-DCY"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="datePicker" destination="d6Z-2m-Pv5" id="7FW-Fx-Nt9"/>
+                        <outlet property="showDateText" destination="leR-Tn-obL" id="is7-cd-5Ar"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rKM-Od-RLo" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="868" y="3161"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="qTb-zM-NyN">
+            <objects>
+                <tabBarController id="Dpt-lX-iV8" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="PJa-dd-eJP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="7o4-yn-z5q" kind="relationship" relationship="viewControllers" id="W57-wu-igg"/>
+                        <segue destination="6vK-7g-CuI" kind="relationship" relationship="viewControllers" id="7Oc-kt-GrR"/>
+                        <segue destination="i0Q-lo-hBw" kind="relationship" relationship="viewControllers" id="GXe-He-ynV"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AKt-BB-3ri" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="54" y="2398"/>
+        </scene>
+    </scenes>
+</document>
