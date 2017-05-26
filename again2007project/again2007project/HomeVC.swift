@@ -40,6 +40,10 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         }
     }
     
+    // for multitasking
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    var executedApp:(icon: UIImage, name: String)?
+    
 //<<<<<<< Updated upstream
     var apps : [(icon: UIImage, name: String)?] = [(icon: #imageLiteral(resourceName: "캘린더"), name: "캘린더"),
                                                    (icon: #imageLiteral(resourceName: "지도"), name: "지도"),
@@ -86,6 +90,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         layoutInit()
         viewInit()
         setHomeBtn()
+
         let longpress = UILongPressGestureRecognizer(target: self, action: #selector(longPressGestureRecognized))
         mainCollectionView.addGestureRecognizer(longpress)
         
@@ -99,6 +104,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         pageControl.numberOfPages = appsCount.count
         self.view.addSubview(pageControl)
         
+        addToAppdelegateArray()
     }
     
     func viewInit(){
@@ -251,14 +257,20 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     
     //single tap Action
     func singleTapDetected() {
+        if presentedViewController?.className != nil && presentedViewController?.className != "SwitcherViewController" {
+            let image = UIImage.init(view: (presentedViewController?.view)!)
+            let arr = NSArray(objects: executedApp!, image)
+            appDelegate.screensArray.insert(arr, at: appDelegate.screensArray.count - 1)
+        }
         presentedViewController?.dismiss(animated: false, completion: nil)
-        print("Imageview Clicked")
         self.isEditing = false
     }
     
     //double tap Action
     func doubleTapDetected() {
-        print("Imageview double Clicked")
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let switcher = storyboard.instantiateViewController(withIdentifier: "switcher")
+        self.present(switcher, animated: true, completion: nil)
     }
 
     
@@ -463,6 +475,8 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         default:
             break
         }
+        
+        executedApp = apps[sender.tag]!
     }
     
     
@@ -568,7 +582,9 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         appDeleteAlert(appName: (apps[sender.tag]?.name)!, item: sender.tag)
     }
     
-    
+    func addToAppdelegateArray(){
+        appDelegate.screensArray.add(UIImage.init(view: self.view))
+    }
 }
 
 extension HomeVC{
@@ -733,4 +749,24 @@ extension HomeVC{
     }
     
   
+}
+
+extension UIImage {
+    convenience init(view: UIView) {
+        UIGraphicsBeginImageContext(view.frame.size)
+        view.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        self.init(cgImage: (image?.cgImage)!)
+    }
+}
+
+extension NSObject {
+    var className: String {
+        return String(describing: type(of: self)).components(separatedBy: ".").last!
+    }
+    
+    class var className: String {
+        return String(describing: self).components(separatedBy: ".").last!
+    }
 }
