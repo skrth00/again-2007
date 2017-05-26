@@ -13,6 +13,12 @@ class CustomCollectionViewCell: UICollectionViewCell {
     var titleLabel: UILabel!
     var appImage: UIImageView!
     
+    deinit {
+        for view in self.subviews {
+            view.removeFromSuperview()
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         

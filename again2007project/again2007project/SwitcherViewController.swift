@@ -43,10 +43,10 @@ class SwitcherViewController: UIViewController, UICollectionViewDelegate, UIColl
     func initViewArray() {
         for i in 0..<appDelegate.screensArray.count {
             let tempCell = CustomCollectionViewCell.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.width / 2, height: self.view.frame.height / 2 + 50))
-            if appDelegate.screensArray.object(at: i) is UIImage {
+            if i == appDelegate.screensArray.count - 1 {
                 tempCell.screenView.image = appDelegate.screensArray.object(at: i) as? UIImage
-                tempCell.titleLabel = nil
-                tempCell.appImage = nil
+                tempCell.titleLabel.isHidden = true
+                tempCell.appImage.isHidden = true
             } else {
                 let imgArr = appDelegate.screensArray.object(at: i) as? NSArray
                 let app = imgArr?.object(at: 0) as! (icon: UIImage, name: String)
@@ -81,12 +81,12 @@ class SwitcherViewController: UIViewController, UICollectionViewDelegate, UIColl
     func respondToSwipeGesture(sender: UISwipeGestureRecognizer) {
         let cell = sender.view as! UICollectionViewCell
         let i = screenCollectionView.indexPath(for: cell)?.item
-        
         if i! < appDelegate.screensArray.count - 1 {
             appDelegate.screensArray.removeObject(at: i!)
         }
         
         customCellArray.removeAllObjects()
+        self.initViewArray()
         let origin = cell.frame
         UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseOut, animations: {
             var basketTopFrame = cell.frame
@@ -95,13 +95,11 @@ class SwitcherViewController: UIViewController, UICollectionViewDelegate, UIColl
         }, completion: { finished in
             if i! == self.appDelegate.screensArray.count - 1 {
                 cell.frame = origin
-                self.initViewArray()
-                self.screenCollectionView.reloadData()
             } else {
-                self.initViewArray()
                 self.screenCollectionView.deleteItems(at: [IndexPath(item: i!, section: 0)])
-                self.screenCollectionView.reloadData()
             }
+            self.screenCollectionView.reloadData()
+            
         })
     }
     
@@ -125,24 +123,6 @@ class SwitcherViewController: UIViewController, UICollectionViewDelegate, UIColl
             }
             
         })
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        /*
-         let screenCollectionViewFlowLayout = screenCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
-         let iconCollectionViewFlowLayout = iconCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
-         let screenDistanceBetweenItems = screenCollectionViewFlowLayout.minimumLineSpacing + screenCollectionViewFlowLayout.itemSize.width
-         let iconDistanceBetweenItems = iconCollectionViewFlowLayout.minimumLineSpacing + iconCollectionViewFlowLayout.itemSize.width
-         let offsetFactor = screenDistanceBetweenItems / iconDistanceBetweenItems
-         
-         if scrollView == screenCollectionView {
-         let xOffset = scrollView.contentOffset.x - scrollView.frame.origin.x
-         iconCollectionView.contentOffset.x = xOffset / offsetFactor
-         } else if scrollView == iconCollectionView {
-         let xOffset = scrollView.contentOffset.x - scrollView.frame.origin.x
-         screenCollectionView.contentOffset.x = xOffset * offsetFactor
-         }
-         */
     }
     
     override func didReceiveMemoryWarning() {

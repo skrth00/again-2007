@@ -270,28 +270,9 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     //single tap Action
     func singleTapDetected() {
         if presentedViewController?.className != nil && presentedViewController?.className != "SwitcherViewController" {
-            let image = UIImage.init(view: (presentedViewController?.view)!)
-            let arr = NSArray(objects: executedApp!, image)
-            
-            if appDelegate.screensArray.count == 1 {
-                appDelegate.screensArray.insert(arr, at: appDelegate.screensArray.count - 1)
-            } else {
-                for i in 0..<appDelegate.screensArray.count - 1 {
-                    let temp = appDelegate.screensArray.object(at: i) as! NSArray
-                    let previous = temp.object(at: 0) as! (icon: UIImage, name: String)
-                    if executedApp?.name == previous.name {
-                        appDelegate.screensArray.removeObject(at: i)
-                        appDelegate.screensArray.insert(arr, at: appDelegate.screensArray.count - 1)
-                        presentedViewController?.dismiss(animated: false, completion: nil)
-                        return
-                    }
-                }
-                appDelegate.screensArray.insert(arr, at: appDelegate.screensArray.count - 1)
-                
-            }
+            saveCurrentExcutedApp()
         }
         presentedViewController?.dismiss(animated: false, completion: nil)
-        print("Imageview Clicked")
         self.isEditing = false
     }
     
@@ -351,16 +332,42 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
                     default:
                         break
                     }
-
-                    
                 })
                 
             }
-            self.present(switcher, animated: true, completion: nil)
+            
+            if presentedViewController?.className != nil {
+                self.saveCurrentExcutedApp()
+                self.dismiss(animated: false, completion: {
+                    self.present(switcher, animated: true, completion: nil)
+                })
+            } else {
+                self.present(switcher, animated: true, completion: nil)
+            }
+            
         }
-        print("Imageview double Clicked")
     }
 
+    // save a current executed app screen shot to the array in the appdelegate
+    func saveCurrentExcutedApp() {
+        let screenImg = UIImage.init(view: (presentedViewController?.view)!)
+        let arr = NSArray(objects: executedApp!, screenImg)
+        if appDelegate.screensArray.count == 1 {
+            appDelegate.screensArray.insert(arr, at: appDelegate.screensArray.count - 1)
+        } else {
+            for i in 0..<appDelegate.screensArray.count - 1 {
+                let temp = appDelegate.screensArray.object(at: i) as! NSArray
+                let previous = temp.object(at: 0) as! (icon: UIImage, name: String)
+                if executedApp?.name == previous.name {
+                    appDelegate.screensArray.removeObject(at: i)
+                    appDelegate.screensArray.insert(arr, at: appDelegate.screensArray.count - 1)
+                    presentedViewController?.dismiss(animated: false, completion: nil)
+                    return
+                }
+            }
+            appDelegate.screensArray.insert(arr, at: appDelegate.screensArray.count - 1)
+        }
+    }
     
     func longPressGestureRecognized(gestureRecognizer: UIGestureRecognizer) {
         self.isEditing = true

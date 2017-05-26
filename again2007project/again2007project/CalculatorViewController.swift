@@ -18,14 +18,6 @@ class CalculatorViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        
-    }
-    
     @IBAction func touchDigit(_ sender: UIButton) {
         let digit = sender.titleLabel?.text
         if userIsInTheMiddleOfTypingANumber {
@@ -69,4 +61,7 @@ class CalculatorViewController: UIViewController {
         display.text = "0"
     }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
 }
