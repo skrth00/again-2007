@@ -45,7 +45,6 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var executedApp:(icon: UIImage, name: String)?
     
-//<<<<<<< Updated upstream
     var apps : [(icon: UIImage, name: String)?] = [(icon: #imageLiteral(resourceName: "캘린더"), name: "캘린더"),
                                                    (icon: #imageLiteral(resourceName: "지도"), name: "지도"),
                                                    (icon: #imageLiteral(resourceName: "시계"), name: "시계"),
@@ -269,7 +268,6 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     var appActivityStatus = false
     //single tap Action
     func singleTapDetected() {
-<<<<<<< HEAD
         if appActivityStatus {
             presentedViewController?.dismiss(animated: false, completion: nil)
             appActivityStatus = false
@@ -281,12 +279,12 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         }
         
         print("Imageview Clicked")
-=======
-        if presentedViewController?.className != nil && presentedViewController?.className != "SwitcherViewController" {
-            saveCurrentExcutedApp()
-        }
-        presentedViewController?.dismiss(animated: false, completion: nil)
->>>>>>> 32ce7a17be96007f3f3baa15aeb34ac404fa34f2
+//=======
+//        if presentedViewController?.className != nil && presentedViewController?.className != "SwitcherViewController" {
+//            saveCurrentExcutedApp()
+//        }
+//        presentedViewController?.dismiss(animated: false, completion: nil)
+//>>>>>>> 32ce7a17be96007f3f3baa15aeb34ac404fa34f2
         self.isEditing = false
     }
     
