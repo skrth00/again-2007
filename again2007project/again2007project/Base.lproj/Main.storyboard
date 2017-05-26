@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -78,16 +78,13 @@
                         <outlet property="mainCollectionView" destination="p3R-ga-jSK" id="W9E-ob-2KY"/>
                         <segue destination="J8z-ra-jK0" kind="show" identifier="mapSegue" animates="NO" action="showDetailViewController:sender:" id="Kx7-P2-iXb"/>
                         <segue destination="Lj9-c9-1oX" kind="show" identifier="papagoSegue" animates="NO" id="R9f-pH-E5p"/>
-<<<<<<< HEAD
                         <segue destination="MNu-j2-PPf" kind="show" identifier="clockSegue" id="Z78-1B-Aso"/>
-=======
                         <segue destination="wq2-di-AYF" kind="show" identifier="appstoreSegue" animates="NO" id="A2a-wB-WI3"/>
                         <segue destination="HIk-mL-ysa" kind="show" identifier="calendarSegue" animates="NO" id="5Wz-EH-4Lg"/>
                         <segue destination="S4u-ch-QDh" kind="show" identifier="prenoticeSegue" animates="NO" id="R1Z-km-nMp"/>
                         <segue destination="0b5-Ww-Eof" kind="show" identifier="weatherSegue" animates="NO" id="djd-fu-xvy"/>
                         <segue destination="cin-cI-hSF" kind="show" identifier="settingSegue" animates="NO" id="6yR-bU-ccV"/>
                         <segue destination="84A-xn-2EG" kind="show" identifier="videoSegue" animates="NO" id="MCx-3A-rJl"/>
->>>>>>> 9791850b3e42ceb98a6182afc2aa770837e942b8
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -112,7 +109,6 @@
             </objects>
             <point key="canvasLocation" x="782" y="76"/>
         </scene>
-<<<<<<< HEAD
         <!--Tab Bar Controller-->
         <scene sceneID="lCf-8T-FF5">
             <objects>
@@ -130,8 +126,8 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IOd-l4-cC0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="54" y="869"/>
-=======
+            <point key="canvasLocation" x="-12" y="974"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="aR7-IN-Ci2">
             <objects>
@@ -202,7 +198,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jrx-pz-T4C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="12" y="944.97751124437787"/>
+            <point key="canvasLocation" x="1569" y="1319"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="3ms-iH-mTQ">
@@ -275,7 +271,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AfW-mn-Oju" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="764" y="1528.785607196402"/>
->>>>>>> 9791850b3e42ceb98a6182afc2aa770837e942b8
         </scene>
         <!--Pa Pago AppVC-->
         <scene sceneID="E9s-n2-5VU">
@@ -328,7 +323,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WYy-Tp-HO2" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-564" y="1568"/>
+            <point key="canvasLocation" x="-743" y="2461"/>
         </scene>
         <!--스탑워치-->
         <scene sceneID="ZY2-ua-3c4">
@@ -373,7 +368,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3sM-ve-57V" id="I0S-jX-vXX">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7b5-p9-J9V">
@@ -420,7 +415,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zi9-bS-HqY" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="54" y="1617"/>
+            <point key="canvasLocation" x="54" y="2461"/>
         </scene>
         <!--알람-->
         <scene sceneID="zwe-hs-BNJ">
@@ -475,7 +470,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rKM-Od-RLo" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="722" y="1617"/>
+            <point key="canvasLocation" x="764" y="2232"/>
         </scene>
     </scenes>
     <resources>
