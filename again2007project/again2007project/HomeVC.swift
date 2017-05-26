@@ -600,7 +600,6 @@ extension HomeVC{
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "spaceCell", for: indexPath as IndexPath) as! ScreenCell
-        cell.borderWidth = 1
         
         let section = indexPath.section
         let appCountInPage = appsCount[section]
@@ -624,10 +623,10 @@ extension HomeVC{
                 cell.appDelete.isHidden = true
                 
                 cell.appName.rframe(x: 0, y: 60, width: 60, height: 20)
-                cell.appName.setLabel(text: "\(apps[indexPath.item]!.name)\(indexPath.item)", align: .center, fontSize: 12, color:UIColor.white)
+                cell.appName.setLabel(text: "\(apps[indexPath.item]!.name)", align: .center, fontSize: 12, color:UIColor.white)
             } else{
                 cell.appIcon.setImage(nil, for: .normal)
-                cell.appName.text = "\(indexPath.item)"
+                cell.appName.text = ""
                 cell.appDelete.setImage(nil, for: .normal)
             }
         default:
