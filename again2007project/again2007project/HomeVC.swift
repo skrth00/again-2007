@@ -438,6 +438,25 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         case "카메라":
             cameraAppExecuted()
             break
+        case "AppStore":
+            performSegue(withIdentifier: "appstoreSegue", sender: self)
+            break
+        case "미리알림":
+            performSegue(withIdentifier: "prenoticeSegue", sender: self)
+            break
+        case "비디오":
+            performSegue(withIdentifier: "videoSegue", sender: self)
+            break
+        case "캘린더":
+            performSegue(withIdentifier: "calenderSegue", sender: self)
+            break
+        case "날씨":
+            performSegue(withIdentifier: "weatherSegue", sender: self)
+            break
+        case "설정":
+            performSegue(withIdentifier: "settingSegue", sender: self)
+            break
+        
         default:
             break
         }
@@ -616,10 +635,10 @@ extension HomeVC{
                 cell.appDelete.addTarget(self, action: #selector(deleteAction), for: .touchUpInside)
                 
                 cell.appName.rframe(x: 0, y: 60, width: 60, height: 20)
-                cell.appName.setLabel(text: "\(apps[count + indexPath.item]!.name)\(indexPath.item)", align: .center, fontSize: 12, color:UIColor.white)
+                cell.appName.setLabel(text: "\(apps[count + indexPath.item]!.name)", align: .center, fontSize: 12, color:UIColor.white)
             } else{
                 cell.appIcon.setImage(nil, for: .normal)
-                cell.appName.text = "\(indexPath.item)"
+                cell.appName.text = ""
                 cell.appDelete.setImage(nil, for: .normal)
             }
         }
