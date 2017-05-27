@@ -24,6 +24,8 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     var isEnlargeEnd = false
     let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.regular))
     
+    static var homeTouchLocation : CGPoint!
+    
     
     // main collection view
     @IBOutlet weak var mainCollectionView: UICollectionView!
@@ -40,6 +42,9 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
             }
         }
     }
+    
+    // app dismiss state
+    var appDismissState :Bool = false
     
     // for multitasking
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -128,6 +133,8 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         
         // 배경
         mainCollectionView.backgroundColor = UIColor(white: 0, alpha: 0)
+        
+        
 
     }
     func dockerViewInit(){
@@ -184,6 +191,15 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         view.bringSubview(toFront: launchScreen)
+        if appDismissState {
+            self.mainCollectionView.frame = CGRect(x: 100, y: -50, width: 0, height: 0)
+            UIView.animate(withDuration: 0.05, delay: 0, options: .curveEaseInOut, animations: {
+                self.mainCollectionView.rframe(x: 0, y: 30, width: 375, height: 507)
+            }) { (success) in
+                self.appDismissState = false
+            }
+        }
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -269,7 +285,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     //single tap Action
     func singleTapDetected() {
         if appActivityStatus {
-            presentedViewController?.dismiss(animated: false, completion: nil)
+            dismissWithAnimation()
             appActivityStatus = false
         }else{
             UIView.animate(withDuration: 0.3) {
@@ -561,6 +577,14 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     
     func appClick(_ sender: UIButton){
         
+        let touchX = (sender.superview?.superview?.x)! - (UIScreen.main.bounds.size.width * CGFloat(pageControl.currentPage))
+        
+        let touchY = sender.superview?.superview?.y
+        
+        HomeVC.homeTouchLocation = CGPoint(x: touchX, y: touchY!)
+        
+        self.appDismissState = true
+        
         let appname = apps[sender.tag]!.name
         appActivityStatus = true
         switch appname {
@@ -588,7 +612,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
             performSegue(withIdentifier: "videoSegue", sender: self)
             break
         case "캘린더":
-            performSegue(withIdentifier: "calenderSegue", sender: self)
+            performSegue(withIdentifier: "calendarSegue", sender: self)
             break
         case "날씨":
             performSegue(withIdentifier: "weatherSegue", sender: self)
@@ -621,7 +645,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
             //imagePicker.showsCameraControls = true
             //imagePicker.
             
-            self.present(imagePicker, animated: true, completion: nil)
+            self.present(imagePicker, animated: false, completion: nil)
             newMedia = true     // 이 사진이 새로 만들어진 것이며 카메라 롤에 있던 사진이 아님을 공지
         }
     }
@@ -643,7 +667,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         imagePickerController.navigationBar.tintColor = UIColor.clear
         imagePickerController.navigationBar.isUserInteractionEnabled = false
         
-        present(imagePickerController, animated: true, completion: nil)
+        present(imagePickerController, animated: false, completion: nil)
         
     }
     
@@ -653,7 +677,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         
         
         // Dismiss the picker.
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: false, completion: nil)
         
         
         
@@ -875,7 +899,11 @@ extension HomeVC{
         
     }
     
-  
+    func dismissWithAnimation(){
+        self.presentedViewController?.dismiss(animated: false, completion: {
+
+        })
+    }
 }
 
 extension UIImage {
@@ -897,3 +925,4 @@ extension NSObject {
         return String(describing: self).components(separatedBy: ".").last!
     }
 }
+
