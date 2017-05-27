@@ -9,6 +9,7 @@
 import UIKit
 import DORM
 import MobileCoreServices
+import MessageUI
 
 class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     var homeBtn: UIImageView?
@@ -67,7 +68,6 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
                                                    (icon: #imageLiteral(resourceName: "지도"), name: "지도"),
                                                    (icon: #imageLiteral(resourceName: "Passbook"), name: "Passbook"),
                                                    (icon: #imageLiteral(resourceName: "나침반"), name: "나침반"),
-                                                   (icon: #imageLiteral(resourceName: "전화"), name: "전화"),
                                                    (icon: #imageLiteral(resourceName: "뉴스스탠드"), name: "뉴스스탠드"),
                                                    (icon: #imageLiteral(resourceName: "설정"), name: "설정"),
                                                    (icon: #imageLiteral(resourceName: "연락처"), name: "연락처"),
@@ -77,8 +77,6 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
                                                    (icon: #imageLiteral(resourceName: "AppStore"), name: "AppStore"),
                                                    (icon: #imageLiteral(resourceName: "game_center"), name: "Game Center"),
                                                    (icon: #imageLiteral(resourceName: "itunes"), name: "itunes"),
-                                                   (icon: #imageLiteral(resourceName: "itunes"), name: "iTunes"),
-                                                   (icon: #imageLiteral(resourceName: "safari"), name: "Safari"),
                                                    ]
     var docApps : [(icon: UIImage, name: String)?] = [(icon: #imageLiteral(resourceName: "전화"), name: "전화"),(icon: #imageLiteral(resourceName: "메시지"), name: "메시지"),                                                   (icon: #imageLiteral(resourceName: "연락처"), name: "연락처"),(icon: #imageLiteral(resourceName: "safari"), name: "safari")]
     
@@ -148,6 +146,8 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         let appIcon1 = UIButton()
         appIcon1.rframe(x: 27, y: 15, width: 60, height: 60)
         appIcon1.setImage(docApps[0]?.icon, for: .normal)
+        appIcon1.addTarget(self, action: #selector(docAppClick), for: .touchUpInside)
+        appIcon1.tag = 0
         
         let appName1 = UILabel()
         appName1.rframe(x: 27, y: 75, width: 60, height: 20)
@@ -156,6 +156,9 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         let appIcon2 = UIButton()
         appIcon2.rframe(x: 114, y: 15, width: 60, height: 60)
         appIcon2.setImage(docApps[1]?.icon, for: .normal)
+        appIcon2.addTarget(self, action: #selector(docAppClick), for: .touchUpInside)
+        appIcon2.tag = 1
+        
         
         let appName2 = UILabel()
         appName2.rframe(x: 114, y: 75, width: 60, height: 20)
@@ -653,8 +656,23 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         appActivityStatus = true
         switch appname {
         case "전화":
+            let url = NSURL(string: "tel://1588-3830")!
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(url as URL)
+            } else {
+                UIApplication.shared.openURL(url as URL)
+            }
+            print("=== 시뮬레이터에선 작업을 할 수 없습니다.===")
             break
         case "메시지":
+            if MFMessageComposeViewController.canSendText() {
+                let view = MFMessageComposeViewController()
+                view.body = "Again 2007! 화이팅!"
+                view.recipients = ["1588-3830"]
+                present(view, animated: false, completion: { _ in })
+            } else{
+                print("=== 시뮬레이터에선 작업을 할 수 없습니다.===")
+            }
             break
         case "연락처":
             break

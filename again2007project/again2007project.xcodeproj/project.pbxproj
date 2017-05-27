@@ -28,6 +28,7 @@
 		6780C3EE1ED97F2200D084D1 /* CustomSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6780C3ED1ED97F2200D084D1 /* CustomSegue.swift */; };
 		6780C3F01ED9C82100D084D1 /* SafariVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6780C3EF1ED9C82100D084D1 /* SafariVC.swift */; };
 		6780C3F31ED9CE5300D084D1 /* Safari.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6780C3F11ED9CE5300D084D1 /* Safari.storyboard */; };
+		6780C3F51ED9D93700D084D1 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6780C3F41ED9D93700D084D1 /* MessageUI.framework */; };
 		678D85C91ED7B5BD00EB6DBD /* LaunchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678D85C81ED7B5BD00EB6DBD /* LaunchVC.swift */; };
 		67F34BE31ED6CD500094FB6D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F34BE21ED6CD500094FB6D /* AppDelegate.swift */; };
 		67F34BE51ED6CD500094FB6D /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F34BE41ED6CD500094FB6D /* HomeVC.swift */; };
@@ -71,6 +72,7 @@
 		6780C3ED1ED97F2200D084D1 /* CustomSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSegue.swift; sourceTree = "<group>"; };
 		6780C3EF1ED9C82100D084D1 /* SafariVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafariVC.swift; sourceTree = "<group>"; };
 		6780C3F21ED9CE5300D084D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Safari.storyboard; sourceTree = "<group>"; };
+		6780C3F41ED9D93700D084D1 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		678D85C81ED7B5BD00EB6DBD /* LaunchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchVC.swift; sourceTree = "<group>"; };
 		67F34BDF1ED6CD500094FB6D /* again2007project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = again2007project.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		67F34BE21ED6CD500094FB6D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6780C3F51ED9D93700D084D1 /* MessageUI.framework in Frameworks */,
 				23BA1F0F75E84C91ACCF4B48 /* Pods_again2007project.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -195,6 +198,7 @@
 		FB155A5130778805184D0478 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6780C3F41ED9D93700D084D1 /* MessageUI.framework */,
 				C9E3BFC3F5D05E7FBE09AC95 /* Pods_again2007project.framework */,
 				3131BA03898700E789AF27A0 /* Pods_again2007projectTests.framework */,
 			);
