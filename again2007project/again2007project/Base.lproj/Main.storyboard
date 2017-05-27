@@ -42,7 +42,7 @@
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Emu-mG-P7r">
                                                     <rect key="frame" x="-76" y="-84" width="214" height="214"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" image="pic">
+                                                    <state key="normal">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
@@ -72,6 +72,9 @@
                             </collectionView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R8T-Wl-pUR">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <connections>
+                                    <segue destination="pJu-LH-v1e" kind="embed" id="Asd-RK-JTM"/>
+                                </connections>
                             </containerView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -85,36 +88,29 @@
                     <connections>
                         <outlet property="launchScreen" destination="R8T-Wl-pUR" id="IsO-1B-HzA"/>
                         <outlet property="mainCollectionView" destination="p3R-ga-jSK" id="W9E-ob-2KY"/>
+                        <segue destination="Eu6-tA-hB5" kind="show" identifier="mapSegue" animates="NO" action="showDetailViewController:sender:" id="Kx7-P2-iXb"/>
                         <segue destination="Lj9-c9-1oX" kind="show" identifier="papagoSegue" animates="NO" id="R9f-pH-E5p"/>
                         <segue destination="wq2-di-AYF" kind="show" identifier="appstoreSegue" animates="NO" id="A2a-wB-WI3"/>
-                        <segue destination="HIk-mL-ysa" kind="show" identifier="calenderSegue" animates="NO" id="5Wz-EH-4Lg"/>
+                        <segue destination="HIk-mL-ysa" kind="show" identifier="calendarSegue" animates="NO" id="5Wz-EH-4Lg"/>
                         <segue destination="S4u-ch-QDh" kind="show" identifier="prenoticeSegue" animates="NO" id="R1Z-km-nMp"/>
                         <segue destination="0b5-Ww-Eof" kind="show" identifier="weatherSegue" animates="NO" id="djd-fu-xvy"/>
                         <segue destination="cin-cI-hSF" kind="show" identifier="settingSegue" animates="NO" id="6yR-bU-ccV"/>
                         <segue destination="84A-xn-2EG" kind="show" identifier="videoSegue" animates="NO" id="MCx-3A-rJl"/>
                         <segue destination="wbM-oQ-acy" kind="show" identifier="calculatorSegue" animates="NO" id="Txb-Dt-OPI"/>
+                        <segue destination="u0t-Dz-MhF" kind="show" identifier="clockSegue" id="2R5-Ei-wFD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="53.600000000000001" y="84.107946026986511"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Watch-->
         <scene sceneID="gsZ-K9-x0A">
             <objects>
-                <tabBarController id="MNu-j2-PPf" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="PDo-vl-jyW">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="i7a-Ky-l8b" kind="relationship" relationship="viewControllers" id="dm4-1N-cd4"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IOd-l4-cC0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="Watch" id="u0t-Dz-MhF" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tgZ-sd-IMG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="633" y="1704"/>
+            <point key="canvasLocation" x="218" y="1984"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="aR7-IN-Ci2">
@@ -162,7 +158,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gjb-Y0-eIS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-812" y="922"/>
+            <point key="canvasLocation" x="-743.20000000000005" y="943.17841079460277"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Y43-29-jBL">
@@ -234,7 +230,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ect-sc-l8e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-212" y="1718"/>
+            <point key="canvasLocation" x="-670" y="1539"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="DSa-Xg-UZm">
@@ -258,7 +254,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AfW-mn-Oju" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="764" y="997"/>
+            <point key="canvasLocation" x="764" y="1528.785607196402"/>
         </scene>
         <!--Pa Pago AppVC-->
         <scene sceneID="E9s-n2-5VU">
@@ -317,7 +313,11 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KaS-tm-yd2">
                                 <rect key="frame" x="190" y="287" width="94" height="93"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.83912390469999998" green="0.83926850559999999" blue="0.83911478520000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-UltraLight" family="Apple SD Gothic Neo" pointSize="30"/>
+                                <state key="normal" title="9">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
                                     <action selector="touchDigit:" destination="wbM-oQ-acy" eventType="touchUpInside" id="P0S-f8-uZV"/>
                                 </connections>
@@ -497,139 +497,84 @@
             </objects>
             <point key="canvasLocation" x="1569" y="2136"/>
         </scene>
-        <!--설정-->
-        <scene sceneID="Q8w-1L-JUa">
+        <!--Switcher View Controller-->
+        <scene sceneID="mCh-xM-YPe">
             <objects>
-                <viewController id="FLB-nc-kIp" customClass="AlarmDetailViewController" customModule="again2007project" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="switcher" useStoryboardIdentifierAsRestorationIdentifier="YES" id="C1r-G6-OjA" customClass="SwitcherViewController" customModule="again2007project" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="rpE-yN-Axt"/>
-                        <viewControllerLayoutGuide type="bottom" id="Z7m-Fk-7kg"/>
+                        <viewControllerLayoutGuide type="top" id="kwd-qm-0Ii"/>
+                        <viewControllerLayoutGuide type="bottom" id="AoO-3W-f1c"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="XhM-LG-YJc">
+                    <view key="view" contentMode="scaleToFill" id="a0c-VU-JKc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="gA1-FH-gZu">
-                                <rect key="frame" x="27.5" y="225.5" width="320" height="216"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="216" id="LFe-GB-apt"/>
-                                </constraints>
-                                <date key="date" timeIntervalSinceReferenceDate="472054875.83579803">
-                                    <!--2015-12-17 14:21:15 +0000-->
-                                </date>
-                            </datePicker>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="gA1-FH-gZu" firstAttribute="centerX" secondItem="XhM-LG-YJc" secondAttribute="centerX" id="Ivz-jV-snS"/>
-                            <constraint firstItem="gA1-FH-gZu" firstAttribute="centerY" secondItem="XhM-LG-YJc" secondAttribute="centerY" id="pXY-bq-XN7"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="설정" id="EmU-3I-bfe">
-                        <barButtonItem key="rightBarButtonItem" title="Item" systemItem="done" id="AZo-Lh-2jd">
-                            <connections>
-                                <action selector="editBtnAction:" destination="FLB-nc-kIp" id="M0v-nf-JzG"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="datePicker" destination="gA1-FH-gZu" id="yvJ-U8-CMm"/>
-                        <segue destination="cMZ-bw-78u" kind="unwind" identifier="unwindSegue" unwindAction="unwindToAlarmWithSegue:" id="8cd-ZA-rDf"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4aY-KJ-AFN" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="cMZ-bw-78u" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="2400.8000000000002" y="2424.7376311844082"/>
-        </scene>
-        <!--알람-->
-        <scene sceneID="7gc-Tl-mvS">
-            <objects>
-                <viewController id="hZU-CU-psB" customClass="AlarmViewController" customModule="again2007project" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="PAU-XQ-YAE"/>
-                        <viewControllerLayoutGuide type="bottom" id="zVO-ML-5gK"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="tos-oR-n73">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2bX-it-03r">
-                                <rect key="frame" x="0.0" y="20" width="375" height="616"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="iQm-Br-M91">
+                                <rect key="frame" x="0.0" y="108" width="375" height="451"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AlarmTableCell" id="UJR-Wf-sg0" customClass="AlarmTableCell" customModule="again2007project" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UJR-Wf-sg0" id="7fY-Jj-a5u">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="b4R-p4-AME">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="screen" id="eSY-F2-jMW">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mXp-GP-VnH">
-                                                    <rect key="frame" x="151.5" y="8" width="72.5" height="36"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="mXp-GP-VnH" firstAttribute="centerX" secondItem="7fY-Jj-a5u" secondAttribute="centerX" id="SnW-CP-UTI"/>
-                                                <constraint firstItem="mXp-GP-VnH" firstAttribute="top" secondItem="7fY-Jj-a5u" secondAttribute="top" constant="8" id="nKh-tX-rL6"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="setTime" destination="mXp-GP-VnH" id="LjD-e4-y7d"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
                                 <connections>
-                                    <outlet property="dataSource" destination="hZU-CU-psB" id="Lv1-o4-ZKS"/>
-                                    <outlet property="delegate" destination="hZU-CU-psB" id="85H-m1-gq5"/>
+                                    <outlet property="dataSource" destination="C1r-G6-OjA" id="daH-Qp-BrM"/>
+                                    <outlet property="delegate" destination="C1r-G6-OjA" id="R0U-fV-bKj"/>
                                 </connections>
-                            </tableView>
+                            </collectionView>
                         </subviews>
-                        <color key="backgroundColor" red="0.15999999640000001" green="0.15999999640000001" blue="0.15999999640000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="알람" id="Bdd-Ib-8Js">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="hXC-iw-nnN">
-                            <connections>
-                                <segue destination="FLB-nc-kIp" kind="show" id="azw-n5-QFJ"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
                     <connections>
-                        <outlet property="alarmTableView" destination="2bX-it-03r" id="eaz-AH-OkJ"/>
+                        <outlet property="screenCollectionView" destination="iQm-Br-M91" id="JR0-nm-g48"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="AoW-9a-7Bz" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eYT-ZF-6E4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1720.8" y="2424.7376311844082"/>
+            <point key="canvasLocation" x="1569" y="240"/>
         </scene>
-        <!--알람-->
-        <scene sceneID="mBW-Qz-CKV">
+        <!--LaunchVC-->
+        <scene sceneID="pb4-iT-2hl">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="i7a-Ky-l8b" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="알람" id="EeU-wj-mKc"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Zqw-7P-OA3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="hZU-CU-psB" kind="relationship" relationship="rootViewController" id="8is-yP-ktf"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2Rm-PN-CaC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="pJu-LH-v1e" customClass="LaunchVC" customModule="again2007project" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6R0-Gr-KBQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="ewK-jd-jcu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tIS-YK-UCJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rLQ-xe-ddD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="781.60000000000002" y="2424.7376311844082"/>
+            <point key="canvasLocation" x="782" y="-655"/>
+        </scene>
+        <!--Map-->
+        <scene sceneID="jmd-Hx-XfO">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Map" id="Eu6-tA-hB5" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kcr-g0-Hdf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="763" y="107"/>
         </scene>
     </scenes>
     <resources>
         <image name="appstore" width="750" height="1334"/>
         <image name="calender" width="750" height="1334"/>
-        <image name="pic" width="214" height="214"/>
         <image name="prenotice" width="750" height="1334"/>
         <image name="setting" width="750" height="1334"/>
         <image name="video" width="750" height="1334"/>
