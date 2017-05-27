@@ -80,6 +80,8 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
                                                    (icon: #imageLiteral(resourceName: "itunes"), name: "iTunes"),
                                                    (icon: #imageLiteral(resourceName: "safari"), name: "Safari"),
                                                    ]
+    var docApps : [(icon: UIImage, name: String)?] = [(icon: #imageLiteral(resourceName: "전화"), name: "전화"),(icon: #imageLiteral(resourceName: "메시지"), name: "메시지"),                                                   (icon: #imageLiteral(resourceName: "연락처"), name: "연락처"),(icon: #imageLiteral(resourceName: "safari"), name: "safari")]
+    
     var appsCount: [Int] = [10, 8, 8]
 
     
@@ -145,35 +147,37 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         
         let appIcon1 = UIButton()
         appIcon1.rframe(x: 27, y: 15, width: 60, height: 60)
-        appIcon1.setImage(apps[17]?.icon, for: .normal)
+        appIcon1.setImage(docApps[0]?.icon, for: .normal)
         
         let appName1 = UILabel()
         appName1.rframe(x: 27, y: 75, width: 60, height: 20)
-        appName1.setLabel(text: "\(apps[17]!.name)", align: .center, fontSize: 12, color:UIColor.white)
+        appName1.setLabel(text: "\(docApps[0]!.name)", align: .center, fontSize: 12, color:UIColor.white)
         
         let appIcon2 = UIButton()
         appIcon2.rframe(x: 114, y: 15, width: 60, height: 60)
-        appIcon2.setImage(apps[9]?.icon, for: .normal)
+        appIcon2.setImage(docApps[1]?.icon, for: .normal)
         
         let appName2 = UILabel()
         appName2.rframe(x: 114, y: 75, width: 60, height: 20)
-        appName2.setLabel(text: "\(apps[9]!.name)", align: .center, fontSize: 12, color:UIColor.white)
+        appName2.setLabel(text: "\(docApps[1]!.name)", align: .center, fontSize: 12, color:UIColor.white)
         
         let appIcon3 = UIButton()
         appIcon3.rframe(x: 201, y: 15, width: 60, height: 60)
-        appIcon3.setImage(apps[24]?.icon, for: .normal)
+        appIcon3.setImage(docApps[2]?.icon, for: .normal)
         
         let appName3 = UILabel()
         appName3.rframe(x: 201, y: 75, width: 60, height: 20)
-        appName3.setLabel(text: "\(apps[24]!.name)", align: .center, fontSize: 12, color:UIColor.white)
+        appName3.setLabel(text: "\(docApps[2]!.name)", align: .center, fontSize: 12, color:UIColor.white)
         
         let appIcon4 = UIButton()
         appIcon4.rframe(x: 288, y: 15, width: 60, height: 60)
-        appIcon4.setImage(apps[23]?.icon, for: .normal)
+        appIcon4.setImage(docApps[3]?.icon, for: .normal)
+        appIcon4.addTarget(self, action: #selector(docAppClick), for: .touchUpInside)
+        appIcon4.tag = 3
         
         let appName4 = UILabel()
         appName4.rframe(x: 288, y: 75, width: 60, height: 20)
-        appName4.setLabel(text: "\(apps[23]!.name)", align: .center, fontSize: 12, color:UIColor.white)
+        appName4.setLabel(text: "\(docApps[3]!.name)", align: .center, fontSize: 12, color:UIColor.white)
         
         view.addSubview(bottomView)
         bottomView.addSubview(appIcon1)
@@ -356,6 +360,9 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
                         break
                     case "설정":
                         self.performSegue(withIdentifier: "settingSegue", sender: self)
+                        break
+                    case "safari":
+                        self.performSegue(withIdentifier: "safariSegue", sender: self)
                         break
                         
                     default:
@@ -624,12 +631,39 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         case "설정":
             performSegue(withIdentifier: "settingSegue", sender: self)
             break
-            
+        case "safari":
+            performSegue(withIdentifier: "safariSegue", sender: self)
+            break
         default:
             break
         }
         
         executedApp = apps[sender.tag]!
+    }
+    
+    func docAppClick(_ sender: UIButton){
+        
+        let touchX = sender.x
+        
+        let touchY = sender.y + 570.multiplyWidthRatio()
+        
+        HomeVC.homeTouchLocation = CGPoint(x: touchX, y: touchY)
+        
+        let appname = docApps[sender.tag]!.name
+        appActivityStatus = true
+        switch appname {
+        case "전화":
+            break
+        case "메시지":
+            break
+        case "연락처":
+            break
+        case "safari":
+            performSegue(withIdentifier: "safariSegue", sender: self)
+            break
+        default:
+            break
+        }
     }
     
     

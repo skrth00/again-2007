@@ -98,6 +98,7 @@
                         <segue destination="84A-xn-2EG" kind="custom" identifier="videoSegue" customClass="CustomSegue" customModule="again2007project" id="MCx-3A-rJl"/>
                         <segue destination="wbM-oQ-acy" kind="custom" identifier="calculatorSegue" customClass="CustomSegue" customModule="again2007project" id="Txb-Dt-OPI"/>
                         <segue destination="u0t-Dz-MhF" kind="custom" identifier="clockSegue" customClass="CustomSegue" customModule="again2007project" id="2R5-Ei-wFD"/>
+                        <segue destination="aqC-Zu-au9" kind="custom" identifier="safariSegue" customClass="CustomSegue" customModule="again2007project" id="5uu-XQ-Wat"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -570,6 +571,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kcr-g0-Hdf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="763" y="107"/>
+        </scene>
+        <!--Safari-->
+        <scene sceneID="2hi-Td-S48">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Safari" id="aqC-Zu-au9" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iOZ-b9-gfW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1066" y="-566"/>
         </scene>
     </scenes>
     <resources>
