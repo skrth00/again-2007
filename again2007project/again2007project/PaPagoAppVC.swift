@@ -29,7 +29,6 @@ class PaPagoAppVC: UIViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewInit()
-        // Do any additional setup after loading the view.
     }
 
     func viewInit(){

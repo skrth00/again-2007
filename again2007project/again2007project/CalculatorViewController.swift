@@ -60,8 +60,4 @@ class CalculatorViewController: UIViewController {
         operation = ""
         display.text = "0"
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
 }

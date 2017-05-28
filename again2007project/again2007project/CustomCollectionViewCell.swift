@@ -9,6 +9,7 @@
 import UIKit
 
 class CustomCollectionViewCell: UICollectionViewCell {
+    
     var screenView: UIImageView!
     var titleLabel: UILabel!
     var appImage: UIImageView!

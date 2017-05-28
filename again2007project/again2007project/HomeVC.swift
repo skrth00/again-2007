@@ -575,7 +575,6 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         return cellSnapshot
     }
     
-
     func layoutInit(){
         let layout = mainCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
         layout.sectionInset = UIEdgeInsetsMake(0,27.multiplyWidthRatio(),0,27.multiplyWidthRatio())
@@ -645,9 +644,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     func docAppClick(_ sender: UIButton){
         
         let touchX = sender.x
-        
         let touchY = sender.y + 570.multiplyWidthRatio()
-        
         HomeVC.homeTouchLocation = CGPoint(x: touchX, y: touchY)
         
         let appname = docApps[sender.tag]!.name
@@ -870,7 +867,6 @@ extension HomeVC{
         //
         collectionView.deselectItem(at: indexPath, animated: false)
     }
-
 }
 
 //directory

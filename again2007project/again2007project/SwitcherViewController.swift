@@ -124,10 +124,4 @@ class SwitcherViewController: UIViewController, UICollectionViewDelegate, UIColl
             
         })
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-    
 }
