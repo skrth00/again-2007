@@ -39,7 +39,9 @@ class HomeVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
             let visibleCells = mainCollectionView.visibleCells
             for i in 0..<visibleCells.count{
                 let cell = mainCollectionView.visibleCells[i] as! AppCell
-                cell.isEditting = newValue
+                if cell.appIcon.image != nil{
+                    cell.isEditting = newValue
+                }
             }
         }
     }
@@ -621,10 +623,7 @@ extension HomeVC: UICollectionViewDataSource {
         cell.appDelete.tag = appIndex(for: indexPath) ?? -1
         cell.appDelete.addTarget(self, action: #selector(deleteAction), for: .touchUpInside)
         cell.appDelete.isHidden = true
-        
-        if ((app?.icon) == nil) {
-            cell.appDelete.setImage(nil, for: .normal)
-        }
+
         
         return cell
     }
