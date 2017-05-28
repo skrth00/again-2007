@@ -107,8 +107,6 @@ class HomeVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         }
         return nil
     }
-
-    var appButtons : [UIButton] = []
     
     var newMedia: Bool?
     
@@ -124,7 +122,6 @@ class HomeVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         mainCollectionView.addGestureRecognizer(longpress)
         
         addParallaxToView(vw: view)
-        dockerViewInit()
         
         pageControl = UIPageControl()
         pageControl.rcenter(y: 552, width: 375, height: 10, targetWidth: 375)
@@ -139,64 +136,6 @@ class HomeVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
          addToAppdelegateArray()
     }
     
-    func dockerViewInit(){
-        
-        let bottomView = UIView()
-        bottomView.rframe(x: 0, y: 570, width: 375, height: 97)
-        bottomView.backgroundColor = UIColor.init(red: 245/255, green: 245/255, blue: 245/255, alpha: 0.6)
-        
-        let appIcon1 = UIButton()
-        appIcon1.rframe(x: 27, y: 15, width: 60, height: 60)
-        appIcon1.setImage(docApps[0]?.icon, for: .normal)
-        appIcon1.addTarget(self, action: #selector(docAppClick), for: .touchUpInside)
-        appIcon1.tag = 0
-        
-        let appName1 = UILabel()
-        appName1.rframe(x: 27, y: 75, width: 60, height: 20)
-        appName1.setLabel(text: "\(docApps[0]!.name)", align: .center, fontSize: 12, color:UIColor.white)
-        
-        let appIcon2 = UIButton()
-        appIcon2.rframe(x: 114, y: 15, width: 60, height: 60)
-        appIcon2.setImage(docApps[1]?.icon, for: .normal)
-        appIcon2.addTarget(self, action: #selector(docAppClick), for: .touchUpInside)
-        appIcon2.tag = 1
-        
-        
-        let appName2 = UILabel()
-        appName2.rframe(x: 114, y: 75, width: 60, height: 20)
-        appName2.setLabel(text: "\(docApps[1]!.name)", align: .center, fontSize: 12, color:UIColor.white)
-        
-        let appIcon3 = UIButton()
-        appIcon3.rframe(x: 201, y: 15, width: 60, height: 60)
-        appIcon3.setImage(docApps[2]?.icon, for: .normal)
-        
-        let appName3 = UILabel()
-        appName3.rframe(x: 201, y: 75, width: 60, height: 20)
-        appName3.setLabel(text: "\(docApps[2]!.name)", align: .center, fontSize: 12, color:UIColor.white)
-        
-        let appIcon4 = UIButton()
-        appIcon4.rframe(x: 288, y: 15, width: 60, height: 60)
-        appIcon4.setImage(docApps[3]?.icon, for: .normal)
-        appIcon4.addTarget(self, action: #selector(docAppClick), for: .touchUpInside)
-        appIcon4.tag = 3
-        
-        let appName4 = UILabel()
-        appName4.rframe(x: 288, y: 75, width: 60, height: 20)
-        appName4.setLabel(text: "\(docApps[3]!.name)", align: .center, fontSize: 12, color:UIColor.white)
-        
-        view.addSubview(bottomView)
-        bottomView.addSubview(appIcon1)
-        bottomView.addSubview(appName1)
-        bottomView.addSubview(appIcon2)
-        bottomView.addSubview(appName2)
-        bottomView.addSubview(appIcon3)
-        bottomView.addSubview(appName3)
-        bottomView.addSubview(appIcon4)
-        bottomView.addSubview(appName4)
-        
-    }
-    
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if appDismissState {
@@ -208,7 +147,6 @@ class HomeVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
                 self.appDismissState = false
             }
         }
-
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -589,29 +527,6 @@ class HomeVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         executedApp = apps[sender.tag]!
     }
     
-    func docAppClick(_ sender: UIButton){
-        
-        let touchX = sender.x
-        let touchY = sender.y + 570.multiplyWidthRatio()
-        HomeVC.homeTouchLocation = CGPoint(x: touchX, y: touchY)
-        
-        let appname = docApps[sender.tag]!.name
-        appActivityStatus = true
-        switch appname {
-        case "전화":
-            executePhone()
-            break
-        case "메시지":
-            executeMessage()
-            break
-        case "연락처":
-            break
-        case "safari":
-            performSegue(withIdentifier: "safariSegue", sender: self)
-            break
-        default:
-            break
-        }
     }
     
     func executePhone() {
