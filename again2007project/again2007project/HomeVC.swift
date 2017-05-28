@@ -48,40 +48,65 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     
     // for multitasking
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    var executedApp:(icon: UIImage, name: String)?
+    var executedApp: App?
     
-    var apps : [(icon: UIImage, name: String)?] = [(icon: #imageLiteral(resourceName: "캘린더"), name: "캘린더"),
-                                                   (icon: #imageLiteral(resourceName: "지도"), name: "지도"),
-                                                   (icon: #imageLiteral(resourceName: "시계"), name: "시계"),
-                                                   (icon: #imageLiteral(resourceName: "카메라"), name: "카메라"),
-                                                   (icon: #imageLiteral(resourceName: "사진"), name: "사진"),
-                                                   (icon: #imageLiteral(resourceName: "계산기"), name: "계산기"),
-                                                   (icon: #imageLiteral(resourceName: "papago"), name: "마마고"),
-                                                   (icon: #imageLiteral(resourceName: "메일"), name: "메일"),
-                                                   (icon: #imageLiteral(resourceName: "날씨"), name: "날씨"),
-                                                   (icon: #imageLiteral(resourceName: "메모"), name: "메모"),
-                                                   (icon: #imageLiteral(resourceName: "메시지"), name: "메시지"),
-                                                   (icon: #imageLiteral(resourceName: "미리알림"), name: "미리알림"),
-                                                   (icon: #imageLiteral(resourceName: "비디오"), name: "비디오"),
-                                                   (icon: #imageLiteral(resourceName: "주식"), name: "주식"),
-                                                   (icon: #imageLiteral(resourceName: "지도"), name: "지도"),
-                                                   (icon: #imageLiteral(resourceName: "Passbook"), name: "Passbook"),
-                                                   (icon: #imageLiteral(resourceName: "나침반"), name: "나침반"),
-                                                   (icon: #imageLiteral(resourceName: "뉴스스탠드"), name: "뉴스스탠드"),
-                                                   (icon: #imageLiteral(resourceName: "설정"), name: "설정"),
-                                                   (icon: #imageLiteral(resourceName: "연락처"), name: "연락처"),
-                                                   (icon: #imageLiteral(resourceName: "음악"), name: "음악"),
-                                                   (icon: #imageLiteral(resourceName: "face_time"), name: "Face time"),
-                                                   (icon: #imageLiteral(resourceName: "safari"), name: "safari"),
-                                                   (icon: #imageLiteral(resourceName: "AppStore"), name: "AppStore"),
-                                                   (icon: #imageLiteral(resourceName: "game_center"), name: "Game Center"),
-                                                   (icon: #imageLiteral(resourceName: "itunes"), name: "itunes"),
-                                                   ]
-    var docApps : [(icon: UIImage, name: String)?] = [(icon: #imageLiteral(resourceName: "전화"), name: "전화"),(icon: #imageLiteral(resourceName: "메시지"), name: "메시지"),                                                   (icon: #imageLiteral(resourceName: "연락처"), name: "연락처"),(icon: #imageLiteral(resourceName: "safari"), name: "safari")]
+    var apps : [App?] = [
+        .calendar,
+        .map,
+        .clock,
+        .camera,
+        .photo,
+        .calculator,
+        .mamago,
+        .mail,
+        .weather,
+        .memo,
+        .message,
+        .reminder,
+        .video,
+        .stock,
+        .passbook,
+        .compass,
+        .newsstand,
+        .settings,
+        .contacts,
+        .music,
+        .facetime,
+        .safari,
+        .appStore,
+        .gameCenter,
+        .iTunes,
+        .phone,
+        ]
+    
+    var docApps : [App?] = [
+        .phone,
+        .message,
+        .contacts,
+        .safari,
+    ]
     
     var appsCount: [Int] = [10, 8, 8]
 
     
+    func appIndex(for indexPath: IndexPath) -> Int? {
+        if indexPath.item < appsCount[indexPath.section] {
+            var count = 0
+            for i in 0..<indexPath.section {
+                count += appsCount[i]
+            }
+            return count + indexPath.item
+        }
+        return nil
+    }
+    
+    func appItem(for indexPath: IndexPath) -> App? {
+        if let index = appIndex(for: indexPath) {
+            return apps[index]
+        }
+        return nil
+    }
+
     var appButtons : [UIButton] = []
     
     var newMedia: Bool?
@@ -336,10 +361,10 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
                     case "마마고":
                         self.performSegue(withIdentifier: "papagoSegue", sender: self)
                     case "사진":
-                        self.photoLibraryAppExecuted()
+                        self.executePhoto()
                         break
                     case "카메라":
-                        self.cameraAppExecuted()
+                        self.executeCamera()
                         break
                     case "AppStore":
                         self.performSegue(withIdentifier: "appstoreSegue", sender: self)
@@ -651,23 +676,10 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         appActivityStatus = true
         switch appname {
         case "전화":
-            let url = NSURL(string: "tel://1588-3830")!
-            if #available(iOS 10.0, *) {
-                UIApplication.shared.open(url as URL)
-            } else {
-                UIApplication.shared.openURL(url as URL)
-            }
-            print("=== 시뮬레이터에선 작업을 할 수 없습니다.===")
+            executePhone()
             break
         case "메시지":
-            if MFMessageComposeViewController.canSendText() {
-                let view = MFMessageComposeViewController()
-                view.body = "Again 2007! 화이팅!"
-                view.recipients = ["1588-3830"]
-                present(view, animated: false, completion: { _ in })
-            } else{
-                print("=== 시뮬레이터에선 작업을 할 수 없습니다.===")
-            }
+            executeMessage()
             break
         case "연락처":
             break
@@ -679,8 +691,28 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         }
     }
     
+    func executePhone() {
+        let url = NSURL(string: "tel://1588-3830")!
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(url as URL)
+        } else {
+            UIApplication.shared.openURL(url as URL)
+        }
+        print("=== 시뮬레이터에선 작업을 할 수 없습니다.===")
+    }
     
-    func cameraAppExecuted(){
+    func executeMessage() {
+        if MFMessageComposeViewController.canSendText() {
+            let view = MFMessageComposeViewController()
+            view.body = "Again 2007! 화이팅!"
+            view.recipients = ["1588-3830"]
+            present(view, animated: false, completion: { _ in })
+        } else{
+            print("=== 시뮬레이터에선 작업을 할 수 없습니다.===")
+        }
+    }
+    
+    func executeCamera() {
         
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
             // UIImagePickerController 인스턴스를 생성하고 cameraViewController를 객체의 델리게이트로 설정
@@ -698,7 +730,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         }
     }
     
-    func photoLibraryAppExecuted(){
+    func executePhoto(){
         
         // Hide the keyboard.
         //textView.resignFirstResponder()
@@ -799,73 +831,24 @@ extension HomeVC{
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "spaceCell", for: indexPath as IndexPath) as! ScreenCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath as IndexPath) as! ScreenCell
         
-        let section = indexPath.section
-        let appCountInPage = appsCount[section]
+        let app = appItem(for: indexPath)
+        cell.appIcon.image = app?.icon
+        cell.appName.text = app?.name
+        cell.appDelete.tag = appIndex(for: indexPath) ?? -1
+        cell.appDelete.addTarget(self, action: #selector(deleteAction), for: .touchUpInside)
+        cell.appDelete.isHidden = true
         
-        switch section {
-        case 0:
-            if indexPath.item < appCountInPage {
-                cell.appIcon.layer.masksToBounds = true
-                cell.appIcon.layer.cornerRadius = 11.multiplyWidthRatio()
-                cell.appIcon.rframe(x: 0, y: 0, width: 60, height: 60)
-                cell.appIcon.setImage(apps[(indexPath.item)]?.icon, for: .normal)
-                cell.appIcon.tag = indexPath.item
-                cell.appIcon.addTarget(self, action: #selector(appClick), for: .touchUpInside)
-                
-                cell.appDelete.layer.masksToBounds = true
-                cell.appDelete.layer.cornerRadius = 9.multiplyWidthRatio()
-                cell.appDelete.rframe(x: 0, y: 0, width: 18, height: 18)
-                cell.appDelete.setImage(#imageLiteral(resourceName: "del"), for: .normal)
-                cell.appDelete.addTarget(self, action: #selector(deleteAction), for: .touchUpInside)
-                cell.appDelete.tag = indexPath.item
-                cell.appDelete.isHidden = true
-                
-                cell.appName.rframe(x: 0, y: 60, width: 60, height: 20)
-                cell.appName.setLabel(text: "\(apps[indexPath.item]!.name)", align: .center, fontSize: 12, color:UIColor.white)
-            } else{
-                cell.appIcon.setImage(nil, for: .normal)
-                cell.appName.text = ""
-                cell.appDelete.setImage(nil, for: .normal)
-            }
-        default:
-            if indexPath.item < appCountInPage {
-                
-                var count = 0
-                for i in 0..<section{
-                    count += appsCount[i]
-                }
-                
-                cell.appIcon.layer.masksToBounds = true
-                cell.appIcon.layer.cornerRadius = 11.multiplyWidthRatio()
-                cell.appIcon.rframe(x: 0, y: 0, width: 60, height: 60)
-                cell.appIcon.setImage(apps[count + indexPath.item]?.icon, for: .normal)
-                cell.appIcon.tag = count + indexPath.item
-                cell.appIcon.addTarget(self, action: #selector(appClick), for: .touchUpInside)
-                
-                cell.appDelete.layer.masksToBounds = true
-                cell.appDelete.layer.cornerRadius = 9.multiplyWidthRatio()
-                cell.appDelete.rframe(x: 0, y: 0, width: 18, height: 18)
-                cell.appDelete.setImage(#imageLiteral(resourceName: "del"), for: .normal)
-                cell.appDelete.isHidden = true
-                cell.appDelete.tag = count + indexPath.item
-                cell.appDelete.addTarget(self, action: #selector(deleteAction), for: .touchUpInside)
-                
-                cell.appName.rframe(x: 0, y: 60, width: 60, height: 20)
-                cell.appName.setLabel(text: "\(apps[count + indexPath.item]!.name)", align: .center, fontSize: 12, color:UIColor.white)
-            } else{
-                cell.appIcon.setImage(nil, for: .normal)
-                cell.appName.text = ""
-                cell.appDelete.setImage(nil, for: .normal)
-            }
-        }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //
-        collectionView.deselectItem(at: indexPath, animated: false)
+        if let app = appItem(for: indexPath) {
+            executedApp = app
+            appActivityStatus = true
+            app.execute()
+        }
     }
 }
 
