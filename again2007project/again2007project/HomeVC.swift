@@ -11,7 +11,8 @@ import DORM
 import MobileCoreServices
 import MessageUI
 
-class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+class HomeVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
     var homeBtn: UIImageView?
     var viewControllerList = [UIViewController]()
     
@@ -37,7 +38,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         willSet(newValue) {
             let visibleCells = mainCollectionView.visibleCells
             for i in 0..<visibleCells.count{
-                let cell = mainCollectionView.visibleCells[i] as! ScreenCell
+                let cell = mainCollectionView.visibleCells[i] as! AppCell
                 cell.isEditting = newValue
             }
         }
@@ -117,7 +118,6 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         self.view.layer.contents = UIImage(named: "background")?.cgImage
         
         layoutInit()
-        viewInit()
         setHomeBtn()
 
         let longpress = UILongPressGestureRecognizer(target: self, action: #selector(longPressGestureRecognized))
@@ -139,28 +139,6 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
          addToAppdelegateArray()
     }
     
-    func viewInit(){
-        mainCollectionView.rframe(x: 0, y: 30, width: 375, height: 507)
-        
-        // user interaction
-        mainCollectionView.isUserInteractionEnabled = true
-        
-        // show indicator
-        mainCollectionView.showsHorizontalScrollIndicator = false
-        
-        // 페이징 가능
-        mainCollectionView.isPagingEnabled = true
-        
-        // 델리게이트
-        mainCollectionView.delegate = self
-        mainCollectionView.dataSource = self
-        
-        // 배경
-        mainCollectionView.backgroundColor = UIColor(white: 0, alpha: 0)
-        
-        
-
-    }
     func dockerViewInit(){
         
         let bottomView = UIView()
@@ -247,7 +225,6 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         homeBtn?.image = #imageLiteral(resourceName: "home")
         homeBtn?.layer.cornerRadius = 25
         homeBtn?.layer.masksToBounds = true
-        homeBtn?.isHidden = true
         
         let doubleTap = UITapGestureRecognizer(target: self, action: #selector(HomeVC.doubleTapDetected))
         doubleTap.numberOfTapsRequired = 2 // you can change this value
@@ -601,66 +578,12 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     }
     
     func layoutInit(){
-        let layout = mainCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        layout.sectionInset = UIEdgeInsetsMake(0,27.multiplyWidthRatio(),0,27.multiplyWidthRatio())
-        layout.itemSize = CGSize(width: 60.multiplyWidthRatio() , height: 80.multiplyHeightRatio())
-        layout.minimumLineSpacing = 27.multiplyWidthRatio()
-        layout.scrollDirection = .horizontal
-    }
-    
-    func appClick(_ sender: UIButton){
-        
-        let touchX = (sender.superview?.superview?.x)! - (UIScreen.main.bounds.size.width * CGFloat(pageControl.currentPage))
-        
-        let touchY = sender.superview?.superview?.y
-        
-        HomeVC.homeTouchLocation = CGPoint(x: touchX, y: touchY!)
-        
-        self.appDismissState = true
-        
-        let appname = apps[sender.tag]!.name
-        appActivityStatus = true
-        switch appname {
-        case "지도":
-            performSegue(withIdentifier: "mapSegue", sender: self)
-            break
-        case "시계":
-            performSegue(withIdentifier: "clockSegue", sender: self)
-            break
-        case "마마고":
-            performSegue(withIdentifier: "papagoSegue", sender: self)
-        case "사진":
-            photoLibraryAppExecuted()
-            break
-        case "카메라":
-            cameraAppExecuted()
-            break
-        case "AppStore":
-            performSegue(withIdentifier: "appstoreSegue", sender: self)
-            break
-        case "미리알림":
-            performSegue(withIdentifier: "prenoticeSegue", sender: self)
-            break
-        case "비디오":
-            performSegue(withIdentifier: "videoSegue", sender: self)
-            break
-        case "캘린더":
-            performSegue(withIdentifier: "calendarSegue", sender: self)
-            break
-        case "날씨":
-            performSegue(withIdentifier: "weatherSegue", sender: self)
-            break
-        case "계산기":
-            performSegue(withIdentifier: "calculatorSegue", sender: self)
-            break
-        case "설정":
-            performSegue(withIdentifier: "settingSegue", sender: self)
-            break
-        case "safari":
-            performSegue(withIdentifier: "safariSegue", sender: self)
-            break
-        default:
-            break
+        if let layout = mainCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            let col = CGFloat(4)
+            let spacing = (mainCollectionView.bounds.width - (60 * col)) / (col + 1)
+            layout.minimumLineSpacing = spacing
+            layout.minimumInteritemSpacing = 5
+            layout.sectionInset = UIEdgeInsets(top: 7, left: spacing, bottom: 0, right: spacing)
         }
         
         executedApp = apps[sender.tag]!
@@ -819,7 +742,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     }
 }
 
-extension HomeVC{
+extension HomeVC: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return appsCount.count
@@ -827,11 +750,10 @@ extension HomeVC{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 24
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath as IndexPath) as! ScreenCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath as IndexPath) as! AppCell
         
         let app = appItem(for: indexPath)
         cell.appIcon.image = app?.icon
