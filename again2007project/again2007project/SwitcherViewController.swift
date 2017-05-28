@@ -11,11 +11,11 @@ import UIKit
 class SwitcherViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    var customCellArray:NSMutableArray = NSMutableArray()
+    var customCellArray: [UICollectionViewCell] = []
     
     @IBOutlet weak var screenCollectionView: UICollectionView!
     
-    var didClickApp: (_ name: String) -> () = { _ in}
+    var didClickApp: ((App?) -> Void) = { _ in}
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,22 +41,19 @@ class SwitcherViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     func initViewArray() {
-        for i in 0..<appDelegate.screensArray.count {
-            let tempCell = CustomCollectionViewCell.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.width / 2, height: self.view.frame.height / 2 + 50))
-            if i == appDelegate.screensArray.count - 1 {
-                tempCell.screenView.image = appDelegate.screensArray.object(at: i) as? UIImage
-                tempCell.titleLabel.isHidden = true
-                tempCell.appImage.isHidden = true
-            } else {
-                let imgArr = appDelegate.screensArray.object(at: i) as? NSArray
-                let app = imgArr?.object(at: 0) as! (icon: UIImage, name: String)
-                tempCell.titleLabel.text = app.name
-                tempCell.appImage.image = app.icon
-                tempCell.screenView.image = imgArr?.object(at: 1) as? UIImage
-            }
-            customCellArray.add(tempCell)
+        customCellArray = HomeModel.shared.screenshots.map {
+            let cell = CustomCollectionViewCell(frame: CGRect(x: 0, y: 0, width: view.frame.width / 2, height: view.frame.height / 2 + 50))
+            cell.titleLabel.text = $0.name
+            cell.appImage.image = $0.icon
+            cell.screenView.image = $1
+            return cell
         }
         
+        let homeCell = CustomCollectionViewCell(frame: CGRect(x: 0, y: 0, width: view.frame.width / 2, height: view.frame.height / 2 + 50))
+        homeCell.screenView.image = HomeModel.shared.homeScreenshot
+        homeCell.titleLabel.isHidden = true
+        homeCell.appImage.isHidden = true
+        customCellArray.append(homeCell)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -67,7 +64,7 @@ class SwitcherViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "screen", for: indexPath)
         
-        let tempCell = customCellArray.object(at: indexPath.row) as! CustomCollectionViewCell
+        let tempCell = customCellArray[indexPath.item] as! CustomCollectionViewCell
         
         cell.addSubview(tempCell.contentView)
         
@@ -80,23 +77,23 @@ class SwitcherViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     func respondToSwipeGesture(sender: UISwipeGestureRecognizer) {
         let cell = sender.view as! UICollectionViewCell
-        let i = screenCollectionView.indexPath(for: cell)?.item
-        if i! < appDelegate.screensArray.count - 1 {
-            appDelegate.screensArray.removeObject(at: i!)
-        }
+        let i = screenCollectionView.indexPath(for: cell)!.item
         
-        customCellArray.removeAllObjects()
-        self.initViewArray()
+        let app = HomeModel.shared.app(at: i)
+        HomeModel.shared.deleteHistory(app)
+        
+        customCellArray.removeAll()
+        initViewArray()
         let origin = cell.frame
         UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseOut, animations: {
             var basketTopFrame = cell.frame
             basketTopFrame.origin.y -= basketTopFrame.size.height
             cell.frame = basketTopFrame
         }, completion: { finished in
-            if i! == self.appDelegate.screensArray.count - 1 {
+            if i == HomeModel.shared.history.count - 1 {
                 cell.frame = origin
             } else {
-                self.screenCollectionView.deleteItems(at: [IndexPath(item: i!, section: 0)])
+                self.screenCollectionView.deleteItems(at: [IndexPath(item: i, section: 0)])
             }
             self.screenCollectionView.reloadData()
             
@@ -107,9 +104,8 @@ class SwitcherViewController: UIViewController, UICollectionViewDelegate, UIColl
         if indexPath.row == self.customCellArray.count - 1 {
             removeAnimate()
         } else {
-            let temp = appDelegate.screensArray.object(at: indexPath.row) as! NSArray
-            let app = temp.object(at: 0) as! (icon: UIImage, name: String)
-            self.didClickApp(app.name)
+            let app = HomeModel.shared.app(at: indexPath.item)
+            didClickApp(app)
         }
     }
     

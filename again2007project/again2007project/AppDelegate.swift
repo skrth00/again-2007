@@ -14,7 +14,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var splashWindow = SplashWindow()
-    var screensArray:NSMutableArray = NSMutableArray()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         UNUserNotificationCenter.current().delegate = self

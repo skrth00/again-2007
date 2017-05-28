@@ -49,7 +49,6 @@ class HomeVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     
     // for multitasking
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    var executedApp: App?
     
     var apps : [App?] = [
         .calendar,
@@ -130,10 +129,6 @@ class HomeVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         pageControl.numberOfPages = appsCount.count
         self.view.addSubview(pageControl)
         
-    }
-    
-    func loadingViewHidden() {
-         addToAppdelegateArray()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -227,17 +222,17 @@ class HomeVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         }
         
     }
-    var appActivityStatus = false
+
     //single tap Action
     func singleTapDetected() {
-        if appActivityStatus {
+        if HomeModel.shared.appIsRunning {
             dismissWithAnimation()
-            appActivityStatus = false
+            HomeModel.shared.appIsRunning = false
         }else{
             UIView.animate(withDuration: 0.3) {
                 self.mainCollectionView.contentOffset.x = 0
             }
-            appActivityStatus = false
+            HomeModel.shared.appIsRunning = false
         }
         
         print("Imageview Clicked")
@@ -252,63 +247,18 @@ class HomeVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     
     //double tap Action
     func doubleTapDetected() {
+        HomeModel.shared.homeScreenshot = UIImage(view: view)
+        
         if presentedViewController?.className == "SwitcherViewController" {
             presentedViewController?.dismiss(animated: true, completion: nil)
         } else {
             let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
             let switcher = storyboard.instantiateViewController(withIdentifier: "switcher") as! SwitcherViewController
-            switcher.didClickApp = { appname in
+            switcher.didClickApp = { app in
                 self.dismiss(animated: false, completion: {
                     
-                    for i in 0..<self.apps.count {
-                        if self.apps[i]?.name == appname {
-                            self.executedApp = self.apps[i]
-                        }
-                    }
-                    
-                    switch appname {
-                    case "지도":
-                        self.performSegue(withIdentifier: "mapSegue", sender: self)
-                        break
-                    case "시계":
-                        self.performSegue(withIdentifier: "clockSegue", sender: self)
-                        break
-                    case "마마고":
-                        self.performSegue(withIdentifier: "papagoSegue", sender: self)
-                    case "사진":
-                        self.executePhoto()
-                        break
-                    case "카메라":
-                        self.executeCamera()
-                        break
-                    case "AppStore":
-                        self.performSegue(withIdentifier: "appstoreSegue", sender: self)
-                        break
-                    case "미리알림":
-                        self.performSegue(withIdentifier: "prenoticeSegue", sender: self)
-                        break
-                    case "비디오":
-                        self.performSegue(withIdentifier: "videoSegue", sender: self)
-                        break
-                    case "캘린더":
-                        self.performSegue(withIdentifier: "calenderSegue", sender: self)
-                        break
-                    case "날씨":
-                        self.performSegue(withIdentifier: "weatherSegue", sender: self)
-                        break
-                    case "계산기":
-                        self.performSegue(withIdentifier: "calculatorSegue", sender: self)
-                        break
-                    case "설정":
-                        self.performSegue(withIdentifier: "settingSegue", sender: self)
-                        break
-                    case "safari":
-                        self.performSegue(withIdentifier: "safariSegue", sender: self)
-                        break
-                        
-                    default:
-                        break
-                    }
+                    HomeModel.shared.executedApp = app
+                    app?.execute()
                 })
                 
             }
@@ -327,23 +277,29 @@ class HomeVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
 
     // save a current executed app screen shot to the array in the appdelegate
     func saveCurrentExcutedApp() {
-        let screenImg = UIImage.init(view: (presentedViewController?.view)!)
-        let arr = NSArray(objects: executedApp!, screenImg)
-        if appDelegate.screensArray.count == 1 {
-            appDelegate.screensArray.insert(arr, at: appDelegate.screensArray.count - 1)
-        } else {
-            for i in 0..<appDelegate.screensArray.count - 1 {
-                let temp = appDelegate.screensArray.object(at: i) as! NSArray
-                let previous = temp.object(at: 0) as! (icon: UIImage, name: String)
-                if executedApp?.name == previous.name {
-                    appDelegate.screensArray.removeObject(at: i)
-                    appDelegate.screensArray.insert(arr, at: appDelegate.screensArray.count - 1)
-                    presentedViewController?.dismiss(animated: false, completion: nil)
-                    return
-                }
-            }
-            appDelegate.screensArray.insert(arr, at: appDelegate.screensArray.count - 1)
+        let screenImg = UIImage(view: (presentedViewController?.view)!)
+        if let app = HomeModel.shared.executedApp {
+            HomeModel.shared.saveScreenshot(image: screenImg, for: app)
+            HomeModel.shared.updateHistory(app)
         }
+//        
+//        
+//        let arr = NSArray(objects: HomeModel.shared.executedApp!, screenImg)
+//        if appDelegate.screensArray.count == 1 {
+//            appDelegate.screensArray.insert(arr, at: appDelegate.screensArray.count - 1)
+//        } else {
+//            for i in 0..<appDelegate.screensArray.count - 1 {
+//                let temp = appDelegate.screensArray.object(at: i) as! NSArray
+//                let previous = temp.object(at: 0) as! (icon: UIImage, name: String)
+//                if HomeModel.shared.executedApp?.name == previous.name {
+//                    appDelegate.screensArray.removeObject(at: i)
+//                    appDelegate.screensArray.insert(arr, at: appDelegate.screensArray.count - 1)
+//                    presentedViewController?.dismiss(animated: false, completion: nil)
+//                    return
+//                }
+//            }
+//            appDelegate.screensArray.insert(arr, at: appDelegate.screensArray.count - 1)
+//        }
     }
     
     func longPressGestureRecognized(gestureRecognizer: UIGestureRecognizer) {
@@ -523,10 +479,6 @@ class HomeVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
             layout.minimumInteritemSpacing = 5
             layout.sectionInset = UIEdgeInsets(top: 7, left: spacing, bottom: 0, right: spacing)
         }
-        
-        executedApp = apps[sender.tag]!
-    }
-    
     }
     
     func executePhone() {
@@ -651,10 +603,6 @@ class HomeVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     func deleteAction(_ sender: UIButton){
         appDeleteAlert(appName: (apps[sender.tag]?.name)!, item: sender.tag)
     }
-    
-    func addToAppdelegateArray(){
-        appDelegate.screensArray.add(UIImage.init(view: self.view))
-    }
 }
 
 extension HomeVC: UICollectionViewDataSource {
@@ -679,11 +627,14 @@ extension HomeVC: UICollectionViewDataSource {
         
         return cell
     }
+}
+
+extension HomeVC: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let app = appItem(for: indexPath) {
-            executedApp = app
-            appActivityStatus = true
+            HomeModel.shared.executedApp = app
+            HomeModel.shared.appIsRunning = true
             app.execute()
         }
     }
