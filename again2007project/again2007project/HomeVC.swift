@@ -238,7 +238,7 @@ class HomeVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         print("Imageview Clicked")
 
         if !(presentedViewController is SwitcherViewController) {
-            saveCurrentExcutedApp()
+            //saveCurrentExcutedApp()
         }
         presentedViewController?.dismiss(animated: false, completion: nil)
         
@@ -621,6 +621,10 @@ extension HomeVC: UICollectionViewDataSource {
         cell.appDelete.tag = appIndex(for: indexPath) ?? -1
         cell.appDelete.addTarget(self, action: #selector(deleteAction), for: .touchUpInside)
         cell.appDelete.isHidden = true
+        
+        if ((app?.icon) == nil) {
+            cell.appDelete.setImage(nil, for: .normal)
+        }
         
         return cell
     }
