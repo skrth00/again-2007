@@ -88,17 +88,17 @@
                     <connections>
                         <outlet property="launchScreen" destination="R8T-Wl-pUR" id="IsO-1B-HzA"/>
                         <outlet property="mainCollectionView" destination="p3R-ga-jSK" id="W9E-ob-2KY"/>
-                        <segue destination="Eu6-tA-hB5" kind="custom" identifier="mapSegue" customClass="CustomSegue" customModule="again2007project" id="Kx7-P2-iXb"/>
-                        <segue destination="Lj9-c9-1oX" kind="custom" identifier="papagoSegue" customClass="CustomSegue" customModule="again2007project" id="R9f-pH-E5p"/>
-                        <segue destination="wq2-di-AYF" kind="custom" identifier="appstoreSegue" customClass="CustomSegue" customModule="again2007project" id="A2a-wB-WI3"/>
-                        <segue destination="HIk-mL-ysa" kind="custom" identifier="calendarSegue" customClass="CustomSegue" customModule="again2007project" id="5Wz-EH-4Lg"/>
-                        <segue destination="S4u-ch-QDh" kind="custom" identifier="prenoticeSegue" customClass="CustomSegue" customModule="again2007project" id="R1Z-km-nMp"/>
-                        <segue destination="0b5-Ww-Eof" kind="custom" identifier="weatherSegue" customClass="CustomSegue" customModule="again2007project" id="djd-fu-xvy"/>
-                        <segue destination="cin-cI-hSF" kind="custom" identifier="settingSegue" customClass="CustomSegue" customModule="again2007project" id="6yR-bU-ccV"/>
-                        <segue destination="84A-xn-2EG" kind="custom" identifier="videoSegue" customClass="CustomSegue" customModule="again2007project" id="MCx-3A-rJl"/>
-                        <segue destination="wbM-oQ-acy" kind="custom" identifier="calculatorSegue" customClass="CustomSegue" customModule="again2007project" id="Txb-Dt-OPI"/>
-                        <segue destination="u0t-Dz-MhF" kind="custom" identifier="clockSegue" customClass="CustomSegue" customModule="again2007project" id="2R5-Ei-wFD"/>
-                        <segue destination="aqC-Zu-au9" kind="custom" identifier="safariSegue" customClass="CustomSegue" customModule="again2007project" id="5uu-XQ-Wat"/>
+                        <segue destination="Eu6-tA-hB5" kind="custom" identifier="mapSegue" customClass="CustomSegue" customModule="again2007project" customModuleProvider="target" id="Kx7-P2-iXb"/>
+                        <segue destination="hRf-CX-Cgg" kind="custom" identifier="papagoSegue" customClass="CustomSegue" customModule="again2007project" customModuleProvider="target" id="R9f-pH-E5p"/>
+                        <segue destination="7by-Zz-mdf" kind="custom" identifier="appstoreSegue" customClass="CustomSegue" customModule="again2007project" customModuleProvider="target" id="A2a-wB-WI3"/>
+                        <segue destination="6wy-u2-RXs" kind="custom" identifier="calendarSegue" customClass="CustomSegue" customModule="again2007project" customModuleProvider="target" id="5Wz-EH-4Lg"/>
+                        <segue destination="Hhd-wg-63D" kind="custom" identifier="prenoticeSegue" customClass="CustomSegue" customModule="again2007project" customModuleProvider="target" id="R1Z-km-nMp"/>
+                        <segue destination="i4q-Kn-MYv" kind="custom" identifier="weatherSegue" customClass="CustomSegue" customModule="again2007project" customModuleProvider="target" id="djd-fu-xvy"/>
+                        <segue destination="Gud-Eh-WwA" kind="custom" identifier="settingSegue" customClass="CustomSegue" customModule="again2007project" customModuleProvider="target" id="6yR-bU-ccV"/>
+                        <segue destination="08Z-Ke-EZw" kind="custom" identifier="videoSegue" customClass="CustomSegue" customModule="again2007project" customModuleProvider="target" id="MCx-3A-rJl"/>
+                        <segue destination="myN-oD-wZA" kind="custom" identifier="calculatorSegue" customClass="CustomSegue" customModule="again2007project" customModuleProvider="target" id="Txb-Dt-OPI"/>
+                        <segue destination="u0t-Dz-MhF" kind="custom" identifier="clockSegue" customClass="CustomSegue" customModule="again2007project" customModuleProvider="target" id="2R5-Ei-wFD"/>
+                        <segue destination="Ebs-3V-Zlh" kind="custom" identifier="safariSegue" customClass="CustomSegue" customModule="again2007project" customModuleProvider="target" id="DvJ-MZ-bMi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -111,392 +111,7 @@
                 <viewControllerPlaceholder storyboardName="Watch" id="u0t-Dz-MhF" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tgZ-sd-IMG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="218" y="1984"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="aR7-IN-Ci2">
-            <objects>
-                <viewController id="S4u-ch-QDh" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="s4S-jt-EtE"/>
-                        <viewControllerLayoutGuide type="bottom" id="rWW-v9-vCm"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="3aa-w3-DaI">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="prenotice" translatesAutoresizingMaskIntoConstraints="NO" id="87D-xf-Zkm">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ys1-Si-fLZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1186.4000000000001" y="179.46026986506749"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="mVk-Vt-scf">
-            <objects>
-                <viewController id="HIk-mL-ysa" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Mzc-Lo-WeJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="2dM-lF-1Sk"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="p5D-0r-vRr">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="calender" translatesAutoresizingMaskIntoConstraints="NO" id="dKP-Jr-Ph0">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gjb-Y0-eIS" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1350" y="945"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="Y43-29-jBL">
-            <objects>
-                <viewController id="wq2-di-AYF" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="8ay-JY-5Ke"/>
-                        <viewControllerLayoutGuide type="bottom" id="3nC-I6-zhH"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="et9-tc-e68">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="appstore" translatesAutoresizingMaskIntoConstraints="NO" id="7Zm-7V-aso">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jrx-pz-T4C" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1569" y="1319"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="3ms-iH-mTQ">
-            <objects>
-                <viewController id="84A-xn-2EG" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="udA-qa-IiJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="Wox-IS-iBg"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="lj1-xZ-EaX">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="video" translatesAutoresizingMaskIntoConstraints="NO" id="8NL-QZ-9dK">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Rr5-e9-pb4" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1124" y="1725.7871064467768"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="X7s-5X-d7G">
-            <objects>
-                <viewController id="cin-cI-hSF" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="dEX-yV-4sh"/>
-                        <viewControllerLayoutGuide type="bottom" id="5Vl-iG-Q0w"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ee8-lS-hqM">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="setting" translatesAutoresizingMaskIntoConstraints="NO" id="wta-L1-2ac">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ect-sc-l8e" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-351" y="1529"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="DSa-Xg-UZm">
-            <objects>
-                <viewController id="0b5-Ww-Eof" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="zVM-ZM-jk9"/>
-                        <viewControllerLayoutGuide type="bottom" id="oqB-Wa-sNW"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="COC-W9-0Kw">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="weather" translatesAutoresizingMaskIntoConstraints="NO" id="gIz-EX-d71">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="AfW-mn-Oju" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="764" y="1528.785607196402"/>
-        </scene>
-        <!--Pa Pago AppVC-->
-        <scene sceneID="E9s-n2-5VU">
-            <objects>
-                <viewController id="Lj9-c9-1oX" customClass="PaPagoAppVC" customModule="again2007project" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="p2K-Sb-ifE"/>
-                        <viewControllerLayoutGuide type="bottom" id="brz-8X-WQl"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="nss-Rk-v7s">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DrW-pe-99P" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="782" y="783"/>
-        </scene>
-        <!--Calculator View Controller-->
-        <scene sceneID="gdi-ra-L3N">
-            <objects>
-                <viewController id="wbM-oQ-acy" customClass="CalculatorViewController" customModule="again2007project" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="QFL-J7-A0h"/>
-                        <viewControllerLayoutGuide type="bottom" id="7JZ-Bg-gmr"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="vQB-Ef-sqQ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I28-P4-Bj5">
-                                <rect key="frame" x="95" y="287" width="94" height="93"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.83912390469999998" green="0.83926850559999999" blue="0.83911478520000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-UltraLight" family="Apple SD Gothic Neo" pointSize="30"/>
-                                <state key="normal" title="8">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="touchDigit:" destination="wbM-oQ-acy" eventType="touchUpInside" id="AnD-lF-25h"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iHa-W2-QBP">
-                                <rect key="frame" x="0.0" y="287" width="94" height="93"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.83912390469999998" green="0.83926850559999999" blue="0.83911478520000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-UltraLight" family="Apple SD Gothic Neo" pointSize="30"/>
-                                <state key="normal" title="7">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="touchDigit:" destination="wbM-oQ-acy" eventType="touchUpInside" id="4F9-Bc-2wf"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KaS-tm-yd2">
-                                <rect key="frame" x="190" y="287" width="94" height="93"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.83912390469999998" green="0.83926850559999999" blue="0.83911478520000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-UltraLight" family="Apple SD Gothic Neo" pointSize="30"/>
-                                <state key="normal" title="9">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="touchDigit:" destination="wbM-oQ-acy" eventType="touchUpInside" id="P0S-f8-uZV"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T5g-DI-Dol">
-                                <rect key="frame" x="95" y="382" width="94" height="93"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.83912390469999998" green="0.83926850559999999" blue="0.83911478520000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-UltraLight" family="Apple SD Gothic Neo" pointSize="30"/>
-                                <state key="normal" title="5">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="touchDigit:" destination="wbM-oQ-acy" eventType="touchUpInside" id="utP-qB-D2e"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e6H-KB-Zo7">
-                                <rect key="frame" x="0.0" y="382" width="94" height="93"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.83912390469999998" green="0.83926850559999999" blue="0.83911478520000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-UltraLight" family="Apple SD Gothic Neo" pointSize="30"/>
-                                <state key="normal" title="4">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="touchDigit:" destination="wbM-oQ-acy" eventType="touchUpInside" id="sxn-oR-bvG"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rKD-n2-t72">
-                                <rect key="frame" x="190" y="382" width="94" height="93"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.83912390469999998" green="0.83926850559999999" blue="0.83911478520000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-UltraLight" family="Apple SD Gothic Neo" pointSize="30"/>
-                                <state key="normal" title="6">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="touchDigit:" destination="wbM-oQ-acy" eventType="touchUpInside" id="dgw-fL-12V"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lE3-xa-9Pk">
-                                <rect key="frame" x="95" y="477" width="94" height="93"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.83912390469999998" green="0.83926850559999999" blue="0.83911478520000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-UltraLight" family="Apple SD Gothic Neo" pointSize="30"/>
-                                <state key="normal" title="2">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="touchDigit:" destination="wbM-oQ-acy" eventType="touchUpInside" id="4p9-6O-qf8"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5db-2M-Z3J">
-                                <rect key="frame" x="95" y="572" width="94" height="93"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.83912390469999998" green="0.83926850559999999" blue="0.83911478520000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-UltraLight" family="Apple SD Gothic Neo" pointSize="30"/>
-                                <state key="normal" title="0">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="touchDigit:" destination="wbM-oQ-acy" eventType="touchUpInside" id="xhV-BD-yBa"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dhA-nG-95l">
-                                <rect key="frame" x="0.0" y="477" width="94" height="93"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.83912390469999998" green="0.83926850559999999" blue="0.83911478520000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-UltraLight" family="Apple SD Gothic Neo" pointSize="30"/>
-                                <state key="normal" title="1">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="touchDigit:" destination="wbM-oQ-acy" eventType="touchUpInside" id="0tX-dH-oKq"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hKm-sR-Gj0">
-                                <rect key="frame" x="190" y="477" width="94" height="93"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.83912390469999998" green="0.83926850559999999" blue="0.83911478520000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-UltraLight" family="Apple SD Gothic Neo" pointSize="30"/>
-                                <state key="normal" title="3">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="touchDigit:" destination="wbM-oQ-acy" eventType="touchUpInside" id="SY4-EU-rll"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ldb-pW-pcr">
-                                <rect key="frame" x="285" y="382" width="93" height="93"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.96870177980000005" green="0.57434099910000003" blue="0.1928980649" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-UltraLight" family="Apple SD Gothic Neo" pointSize="30"/>
-                                <state key="normal" title="-">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="performOperation:" destination="wbM-oQ-acy" eventType="touchUpInside" id="JEN-Ro-c5i"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PbV-Dz-1Py">
-                                <rect key="frame" x="285" y="287" width="93" height="93"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.96870177980000005" green="0.57434099910000003" blue="0.1928980649" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-UltraLight" family="Apple SD Gothic Neo" pointSize="30"/>
-                                <state key="normal" title="+">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="performOperation:" destination="wbM-oQ-acy" eventType="touchUpInside" id="ZF3-ui-p10"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gRf-Lf-ZtI">
-                                <rect key="frame" x="285" y="477" width="93" height="93"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.96870177980000005" green="0.57434099910000003" blue="0.1928980649" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-UltraLight" family="Apple SD Gothic Neo" pointSize="30"/>
-                                <state key="normal" title="×">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="performOperation:" destination="wbM-oQ-acy" eventType="touchUpInside" id="j0z-Mo-Msn"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="frJ-Sr-Inb">
-                                <rect key="frame" x="285" y="572" width="93" height="93"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.96870177980000005" green="0.57434099910000003" blue="0.1928980649" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-UltraLight" family="Apple SD Gothic Neo" pointSize="30"/>
-                                <state key="normal" title="÷">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="performOperation:" destination="wbM-oQ-acy" eventType="touchUpInside" id="vqY-lz-bwc"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Awm-JV-0gu">
-                                <rect key="frame" x="190" y="572" width="94" height="93"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.96870177980000005" green="0.57434099910000003" blue="0.1928980649" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-UltraLight" family="Apple SD Gothic Neo" pointSize="30"/>
-                                <state key="normal" title="=">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="getResult:" destination="wbM-oQ-acy" eventType="touchUpInside" id="i9J-zr-NdZ"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ewm-M1-6zg">
-                                <rect key="frame" x="0.0" y="572" width="94" height="93"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.83912390469999998" green="0.83926850559999999" blue="0.83911478520000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-UltraLight" family="Apple SD Gothic Neo" pointSize="30"/>
-                                <state key="normal" title="C">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="clear:" destination="wbM-oQ-acy" eventType="touchUpInside" id="5rm-ti-7ms"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="bottomLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iD4-hJ-5wf">
-                                <rect key="frame" x="0.0" y="191" width="375" height="88"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-UltraLight" family="Apple SD Gothic Neo" pointSize="90"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <connections>
-                        <outlet property="display" destination="iD4-hJ-5wf" id="FIi-pL-57P"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Gym-we-P3E" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1569" y="2136"/>
+            <point key="canvasLocation" x="873" y="-167"/>
         </scene>
         <!--Switcher View Controller-->
         <scene sceneID="mCh-xM-YPe">
@@ -544,25 +159,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eYT-ZF-6E4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1569" y="240"/>
-        </scene>
-        <!--LaunchVC-->
-        <scene sceneID="pb4-iT-2hl">
-            <objects>
-                <viewController id="pJu-LH-v1e" customClass="LaunchVC" customModule="again2007project" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="6R0-Gr-KBQ"/>
-                        <viewControllerLayoutGuide type="bottom" id="ewK-jd-jcu"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="tIS-YK-UCJ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="rLQ-xe-ddD" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="782" y="-655"/>
+            <point key="canvasLocation" x="54" y="-690"/>
         </scene>
         <!--Map-->
         <scene sceneID="jmd-Hx-XfO">
@@ -570,7 +167,181 @@
                 <viewControllerPlaceholder storyboardName="Map" id="Eu6-tA-hB5" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kcr-g0-Hdf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="763" y="107"/>
+            <point key="canvasLocation" x="864" y="-296"/>
+        </scene>
+        <!--Calculator-->
+        <scene sceneID="ZXo-wb-1md">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Calculator" id="myN-oD-wZA" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rgs-Vy-BfS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="892" y="-44"/>
+        </scene>
+        <!--AppStore-->
+        <scene sceneID="nrt-fD-MEY">
+            <objects>
+                <viewControllerPlaceholder storyboardName="AppStore" id="7by-Zz-mdf" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ouG-eW-CWT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="887" y="85"/>
+        </scene>
+        <!--Weather-->
+        <scene sceneID="Ru0-og-6fH">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Weather" id="i4q-Kn-MYv" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QGY-EE-r8j" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="881" y="273"/>
+        </scene>
+        <!--Safari-->
+        <scene sceneID="Noc-gh-agl">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Safari" id="Ebs-3V-Zlh" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uON-vP-69V" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="869" y="332"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="lwn-6d-Ym6">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Settings" id="Gud-Eh-WwA" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WHW-Sw-yqJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="881" y="146"/>
+        </scene>
+        <!--Calendar-->
+        <scene sceneID="MbH-eh-2Rv">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Calendar" id="6wy-u2-RXs" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="C2D-Kf-gO8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="884" y="20"/>
+        </scene>
+        <!--Video-->
+        <scene sceneID="Vpe-Et-Kqz">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Video" id="08Z-Ke-EZw" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2CV-yU-jhC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="868" y="-108"/>
+        </scene>
+        <!--Reminder-->
+        <scene sceneID="Yul-rL-CEa">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Reminder" id="Hhd-wg-63D" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vyY-Ql-hxf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="888" y="-231"/>
+        </scene>
+        <!--Papago-->
+        <scene sceneID="f6P-zp-jjb">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Papago" id="hRf-CX-Cgg" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x2t-g8-Kha" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="876" y="207"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="UdM-N3-re9">
+            <objects>
+                <viewController id="YkX-uN-DTR" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FXW-50-Wee"/>
+                        <viewControllerLayoutGuide type="bottom" id="off-yQ-MBJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="XmP-he-B22">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="tEs-9F-ZPr">
+                                <rect key="frame" x="16" y="14" width="343" height="82"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="jrH-n6-QZ3">
+                                        <rect key="frame" x="0.0" y="0.0" width="74" height="82"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vEf-4P-SYO">
+                                                <rect key="frame" x="0.0" y="0.0" width="74" height="60"/>
+                                                <state key="normal" image="AppStore"/>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="앱스토어" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HWf-XE-kJn">
+                                                <rect key="frame" x="0.0" y="60" width="74" height="22"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="22" id="Cbb-GV-Iar"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="BW0-L8-zgD">
+                                        <rect key="frame" x="90" y="0.0" width="73.5" height="82"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IkQ-KD-X8G">
+                                                <rect key="frame" x="0.0" y="0.0" width="73.5" height="60"/>
+                                                <state key="normal" image="safari"/>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Safari" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kbn-g6-V6H">
+                                                <rect key="frame" x="0.0" y="60" width="73.5" height="22"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="22" id="jEU-Zf-ABS"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="YGa-A2-Az9">
+                                        <rect key="frame" x="179.5" y="0.0" width="74" height="82"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="npt-Md-8hx">
+                                                <rect key="frame" x="0.0" y="0.0" width="74" height="60"/>
+                                                <state key="normal" image="메일"/>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mail" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JdU-C7-Ckf">
+                                                <rect key="frame" x="0.0" y="60" width="74" height="22"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="22" id="AWZ-0a-BnU"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="JJn-qu-HfW">
+                                        <rect key="frame" x="269.5" y="0.0" width="73.5" height="82"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="La8-ea-0cO">
+                                                <rect key="frame" x="0.0" y="0.0" width="73.5" height="60"/>
+                                                <state key="normal" image="음악"/>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="음악" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F8R-8s-2Tx">
+                                                <rect key="frame" x="0.0" y="60" width="73.5" height="22"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="22" id="2Gq-am-Rst"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="tEs-9F-ZPr" secondAttribute="bottom" id="Smp-Ma-kfT"/>
+                            <constraint firstItem="tEs-9F-ZPr" firstAttribute="leading" secondItem="XmP-he-B22" secondAttribute="leading" constant="16" id="WIm-kN-dCT"/>
+                            <constraint firstItem="tEs-9F-ZPr" firstAttribute="top" secondItem="XmP-he-B22" secondAttribute="top" constant="14" id="Z9k-qr-hd3"/>
+                            <constraint firstAttribute="trailing" secondItem="tEs-9F-ZPr" secondAttribute="trailing" constant="16" id="hNE-aE-Lwx"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="szM-U2-lO8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="54" y="565"/>
         </scene>
         <!--Safari-->
         <scene sceneID="2hi-Td-S48">
