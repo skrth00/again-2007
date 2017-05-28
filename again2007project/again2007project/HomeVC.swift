@@ -236,39 +236,36 @@ class HomeVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         }
         
         print("Imageview Clicked")
-//=======
-//        if presentedViewController?.className != nil && presentedViewController?.className != "SwitcherViewController" {
-//            saveCurrentExcutedApp()
-//        }
-//        presentedViewController?.dismiss(animated: false, completion: nil)
-//>>>>>>> 32ce7a17be96007f3f3baa15aeb34ac404fa34f2
+
+        if !(presentedViewController is SwitcherViewController) {
+            saveCurrentExcutedApp()
+        }
+        presentedViewController?.dismiss(animated: false, completion: nil)
+        
         self.isEditing = false
     }
     
     //double tap Action
     func doubleTapDetected() {
-        HomeModel.shared.homeScreenshot = UIImage(view: view)
-        
-        if presentedViewController?.className == "SwitcherViewController" {
+        if presentedViewController is SwitcherViewController {
             presentedViewController?.dismiss(animated: true, completion: nil)
         } else {
-            let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-            let switcher = storyboard.instantiateViewController(withIdentifier: "switcher") as! SwitcherViewController
+            let storyboard = UIStoryboard(name: "Switcher", bundle: nil)
+            let switcher = storyboard.instantiateInitialViewController() as! SwitcherViewController
             switcher.didClickApp = { app in
                 self.dismiss(animated: false, completion: {
-                    
                     HomeModel.shared.executedApp = app
                     app?.execute()
                 })
-                
             }
             
-            if presentedViewController?.className != nil {
+            if presentedViewController != nil {
                 self.saveCurrentExcutedApp()
                 self.dismiss(animated: false, completion: {
                     self.present(switcher, animated: true, completion: nil)
                 })
             } else {
+                HomeModel.shared.homeScreenshot = UIImage(view: view)
                 self.present(switcher, animated: true, completion: nil)
             }
             
