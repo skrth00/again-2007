@@ -30,7 +30,6 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     
     // main collection view
     @IBOutlet weak var mainCollectionView: UICollectionView!
-    @IBOutlet weak var launchScreen: UIView!
     
     // editing mode
     override var isEditing: Bool {
@@ -197,7 +196,6 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        view.bringSubview(toFront: launchScreen)
         if appDismissState {
             self.mainCollectionView.frame = CGRect(x: 100 + (375.multiplyWidthRatio() * CGFloat(pageControl.currentPage)), y: -50, width: 0, height: 0)
             UIView.animate(withDuration: 0.05, delay: 0, options: .curveEaseInOut, animations: {

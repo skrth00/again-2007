@@ -86,7 +86,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="launchScreen" destination="R8T-Wl-pUR" id="IsO-1B-HzA"/>
                         <outlet property="mainCollectionView" destination="p3R-ga-jSK" id="W9E-ob-2KY"/>
                         <segue destination="Eu6-tA-hB5" kind="custom" identifier="mapSegue" customClass="CustomSegue" customModule="again2007project" customModuleProvider="target" id="Kx7-P2-iXb"/>
                         <segue destination="hRf-CX-Cgg" kind="custom" identifier="papagoSegue" customClass="CustomSegue" customModule="again2007project" customModuleProvider="target" id="R9f-pH-E5p"/>
