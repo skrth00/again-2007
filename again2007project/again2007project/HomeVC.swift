@@ -52,7 +52,7 @@ class HomeVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     
     var apps : [App?] = [
         .calendar,
-        .map,
+        .maps,
         .clock,
         .camera,
         .photo,

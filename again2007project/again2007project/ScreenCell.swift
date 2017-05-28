@@ -14,6 +14,11 @@ class AppCell: UICollectionViewCell {
     @IBOutlet weak var appName: UILabel!
     @IBOutlet weak var appDelete: UIButton!
     
+    override func awakeFromNib() {
+        appDelete.layer.masksToBounds = true
+        appDelete.layer.cornerRadius = 9.multiplyWidthRatio()
+    }
+    
     var isEditting: Bool = false {
         willSet(newValue){
             if newValue{

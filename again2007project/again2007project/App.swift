@@ -12,7 +12,7 @@ import MessageUI
 enum App {
     
     case calendar
-    case map
+    case maps
     case clock
     case camera
     case photo
@@ -41,7 +41,7 @@ enum App {
     var name: String {
         switch self {
         case .calendar: return "캘린더"
-        case .map: return "지도"
+        case .maps: return "지도"
         case .clock: return "시계"
         case .camera: return "카메라"
         case .photo: return "사진"
@@ -72,7 +72,7 @@ enum App {
     var icon: UIImage {
         switch self {
         case .calendar: return #imageLiteral(resourceName: "캘린더")
-        case .map: return #imageLiteral(resourceName: "map")
+        case .maps: return #imageLiteral(resourceName: "map")
         case .clock: return #imageLiteral(resourceName: "시계")
         case .camera: return #imageLiteral(resourceName: "카메라")
         case .photo: return #imageLiteral(resourceName: "사진")
@@ -105,8 +105,8 @@ enum App {
         let vc = appDelegate.window!.rootViewController as! HomeVC
         
         switch self {
-        case .calendar: vc.performSegue(withIdentifier: "calenderSegue", sender: self)
-        case .map: vc.performSegue(withIdentifier: "mapSegue", sender: self)
+        case .calendar: vc.performSegue(withIdentifier: "calendarSegue", sender: self)
+        case .maps: vc.performSegue(withIdentifier: "mapSegue", sender: self)
         case .clock: vc.performSegue(withIdentifier: "clockSegue", sender: self)
         case .camera: vc.executeCamera()
         case .photo: vc.executePhoto()
