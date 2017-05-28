@@ -8,8 +8,6 @@
 
 import UIKit
 
-
-
 class CustomSegue: UIStoryboardSegue {
 
     override func perform() {
@@ -23,8 +21,7 @@ class CustomSegue: UIStoryboardSegue {
         fakeView.frame = toViewController.view.frame
         fakeView.layer.contents = UIImage(named: "background")?.cgImage
 
-        
-        toViewController.view.center = CGPoint(x: HomeVC.homeTouchLocation.x, y: HomeVC.homeTouchLocation.y)
+//        toViewController.view.center = CGPoint(x: HomeVC.homeTouchLocation.x, y: HomeVC.homeTouchLocation.y)
         
         toViewController.view.transform = CGAffineTransform(scaleX: 0, y: 0)
         fromViewController.view.addSubview(fakeView)
@@ -39,7 +36,5 @@ class CustomSegue: UIStoryboardSegue {
             fakeView.removeFromSuperview()
             fromViewController.present(toViewController, animated: false, completion: nil)
         }
-        
     }
-    
 }

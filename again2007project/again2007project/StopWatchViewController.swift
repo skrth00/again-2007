@@ -101,15 +101,9 @@ class StopWatchViewController: UIViewController,  UITableViewDataSource, UITable
         displayTimeLabel.text = "\(strMinutes):\(strSeconds):\(strMilliseconds)"
         
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
 }
+
 extension StopWatchViewController{
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(recordList.count < 0){
@@ -126,9 +120,6 @@ extension StopWatchViewController{
         
         return cell
     }
-    
-    
-    
 }
 
 

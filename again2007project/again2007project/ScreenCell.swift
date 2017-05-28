@@ -8,14 +8,13 @@
 
 import UIKit
 
-class ScreenCell: UICollectionViewCell {
+class AppCell: UICollectionViewCell {
     
-    @IBOutlet weak var appIcon: UIButton!
+    @IBOutlet weak var appIcon: UIImageView!
     @IBOutlet weak var appName: UILabel!
     @IBOutlet weak var appDelete: UIButton!
     
- 
-    var isEditting : Bool = false {
+    var isEditting: Bool = false {
         willSet(newValue){
             if newValue{
                 startWiggle(for: appIcon)
@@ -29,6 +28,4 @@ class ScreenCell: UICollectionViewCell {
             }
         }
     }
-    
-  
 }

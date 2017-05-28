@@ -24,6 +24,4 @@ class SafariVC: UIViewController {
         safariWebView.scrollView.bounces = false
         safariWebView.scrollView.showsVerticalScrollIndicator = false
     }
-    
-    
 }

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="pJu-LH-v1e">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Splash View Controller-->
+        <scene sceneID="pb4-iT-2hl">
+            <objects>
+                <viewController storyboardIdentifier="launch" id="pJu-LH-v1e" customClass="SplashViewController" customModule="again2007project" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6R0-Gr-KBQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="ewK-jd-jcu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tIS-YK-UCJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Hfg-OP-Lzb">
+                                <rect key="frame" x="147.5" y="262" width="80" height="103"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="IgC-vx-cYg"/>
+                                    <constraint firstAttribute="width" secondItem="Hfg-OP-Lzb" secondAttribute="height" multiplier="100:129" id="l5x-3o-RZC"/>
+                                </constraints>
+                            </imageView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="D1p-H6-keO">
+                                <rect key="frame" x="112" y="405" width="150" height="2"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="p2A-BA-Igp"/>
+                                </constraints>
+                                <color key="progressTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="trackTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </progressView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="D1p-H6-keO" firstAttribute="top" secondItem="Hfg-OP-Lzb" secondAttribute="bottom" constant="40" id="4gp-PO-CdL"/>
+                            <constraint firstItem="Hfg-OP-Lzb" firstAttribute="centerY" secondItem="tIS-YK-UCJ" secondAttribute="centerY" constant="-20" id="9xw-BA-ReR"/>
+                            <constraint firstItem="D1p-H6-keO" firstAttribute="centerX" secondItem="Hfg-OP-Lzb" secondAttribute="centerX" id="ZJs-gJ-ejo"/>
+                            <constraint firstItem="Hfg-OP-Lzb" firstAttribute="centerX" secondItem="tIS-YK-UCJ" secondAttribute="centerX" id="wJt-sU-OaD"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="logo" destination="Hfg-OP-Lzb" id="FCm-dD-Dw3"/>
+                        <outlet property="progressBar" destination="D1p-H6-keO" id="wF8-Qg-xh9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rLQ-xe-ddD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="54" y="856"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="logo" width="100" height="129"/>
+    </resources>
+</document>

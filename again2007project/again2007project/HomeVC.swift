@@ -11,7 +11,8 @@ import DORM
 import MobileCoreServices
 import MessageUI
 
-class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+class HomeVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
     var homeBtn: UIImageView?
     var viewControllerList = [UIViewController]()
     
@@ -30,7 +31,6 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     
     // main collection view
     @IBOutlet weak var mainCollectionView: UICollectionView!
-    @IBOutlet weak var launchScreen: UIView!
     
     // editing mode
     override var isEditing: Bool {
@@ -38,7 +38,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         willSet(newValue) {
             let visibleCells = mainCollectionView.visibleCells
             for i in 0..<visibleCells.count{
-                let cell = mainCollectionView.visibleCells[i] as! ScreenCell
+                let cell = mainCollectionView.visibleCells[i] as! AppCell
                 cell.isEditting = newValue
             }
         }
@@ -49,41 +49,63 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     
     // for multitasking
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    var executedApp:(icon: UIImage, name: String)?
     
-    var apps : [(icon: UIImage, name: String)?] = [(icon: #imageLiteral(resourceName: "캘린더"), name: "캘린더"),
-                                                   (icon: #imageLiteral(resourceName: "지도"), name: "지도"),
-                                                   (icon: #imageLiteral(resourceName: "시계"), name: "시계"),
-                                                   (icon: #imageLiteral(resourceName: "카메라"), name: "카메라"),
-                                                   (icon: #imageLiteral(resourceName: "사진"), name: "사진"),
-                                                   (icon: #imageLiteral(resourceName: "계산기"), name: "계산기"),
-                                                   (icon: #imageLiteral(resourceName: "papago"), name: "마마고"),
-                                                   (icon: #imageLiteral(resourceName: "메일"), name: "메일"),
-                                                   (icon: #imageLiteral(resourceName: "날씨"), name: "날씨"),
-                                                   (icon: #imageLiteral(resourceName: "메모"), name: "메모"),
-                                                   (icon: #imageLiteral(resourceName: "메시지"), name: "메시지"),
-                                                   (icon: #imageLiteral(resourceName: "미리알림"), name: "미리알림"),
-                                                   (icon: #imageLiteral(resourceName: "비디오"), name: "비디오"),
-                                                   (icon: #imageLiteral(resourceName: "주식"), name: "주식"),
-                                                   (icon: #imageLiteral(resourceName: "지도"), name: "지도"),
-                                                   (icon: #imageLiteral(resourceName: "Passbook"), name: "Passbook"),
-                                                   (icon: #imageLiteral(resourceName: "나침반"), name: "나침반"),
-                                                   (icon: #imageLiteral(resourceName: "뉴스스탠드"), name: "뉴스스탠드"),
-                                                   (icon: #imageLiteral(resourceName: "설정"), name: "설정"),
-                                                   (icon: #imageLiteral(resourceName: "연락처"), name: "연락처"),
-                                                   (icon: #imageLiteral(resourceName: "음악"), name: "음악"),
-                                                   (icon: #imageLiteral(resourceName: "face_time"), name: "Face time"),
-                                                   (icon: #imageLiteral(resourceName: "safari"), name: "safari"),
-                                                   (icon: #imageLiteral(resourceName: "AppStore"), name: "AppStore"),
-                                                   (icon: #imageLiteral(resourceName: "game_center"), name: "Game Center"),
-                                                   (icon: #imageLiteral(resourceName: "itunes"), name: "itunes"),
-                                                   ]
-    var docApps : [(icon: UIImage, name: String)?] = [(icon: #imageLiteral(resourceName: "전화"), name: "전화"),(icon: #imageLiteral(resourceName: "메시지"), name: "메시지"),                                                   (icon: #imageLiteral(resourceName: "연락처"), name: "연락처"),(icon: #imageLiteral(resourceName: "safari"), name: "safari")]
+    var apps : [App?] = [
+        .calendar,
+        .map,
+        .clock,
+        .camera,
+        .photo,
+        .calculator,
+        .mamago,
+        .mail,
+        .weather,
+        .memo,
+        .message,
+        .reminder,
+        .video,
+        .stock,
+        .passbook,
+        .compass,
+        .newsstand,
+        .settings,
+        .contacts,
+        .music,
+        .facetime,
+        .safari,
+        .appStore,
+        .gameCenter,
+        .iTunes,
+        .phone,
+        ]
+    
+    var docApps : [App?] = [
+        .phone,
+        .message,
+        .contacts,
+        .safari,
+    ]
     
     var appsCount: [Int] = [10, 8, 8]
 
     
-    var appButtons : [UIButton] = []
+    func appIndex(for indexPath: IndexPath) -> Int? {
+        if indexPath.item < appsCount[indexPath.section] {
+            var count = 0
+            for i in 0..<indexPath.section {
+                count += appsCount[i]
+            }
+            return count + indexPath.item
+        }
+        return nil
+    }
+    
+    func appItem(for indexPath: IndexPath) -> App? {
+        if let index = appIndex(for: indexPath) {
+            return apps[index]
+        }
+        return nil
+    }
     
     var newMedia: Bool?
     
@@ -93,14 +115,12 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         self.view.layer.contents = UIImage(named: "background")?.cgImage
         
         layoutInit()
-        viewInit()
         setHomeBtn()
 
         let longpress = UILongPressGestureRecognizer(target: self, action: #selector(longPressGestureRecognized))
         mainCollectionView.addGestureRecognizer(longpress)
         
         addParallaxToView(vw: view)
-        dockerViewInit()
         
         pageControl = UIPageControl()
         pageControl.rcenter(y: 552, width: 375, height: 10, targetWidth: 375)
@@ -111,93 +131,8 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         
     }
     
-    func loadingViewHidden() {
-         addToAppdelegateArray()
-    }
-    
-    func viewInit(){
-        mainCollectionView.rframe(x: 0, y: 30, width: 375, height: 507)
-        
-        // user interaction
-        mainCollectionView.isUserInteractionEnabled = true
-        
-        // show indicator
-        mainCollectionView.showsHorizontalScrollIndicator = false
-        
-        // 페이징 가능
-        mainCollectionView.isPagingEnabled = true
-        
-        // 델리게이트
-        mainCollectionView.delegate = self
-        mainCollectionView.dataSource = self
-        
-        // 배경
-        mainCollectionView.backgroundColor = UIColor(white: 0, alpha: 0)
-        
-        
-
-    }
-    func dockerViewInit(){
-        
-        let bottomView = UIView()
-        bottomView.rframe(x: 0, y: 570, width: 375, height: 97)
-        bottomView.backgroundColor = UIColor.init(red: 245/255, green: 245/255, blue: 245/255, alpha: 0.6)
-        
-        let appIcon1 = UIButton()
-        appIcon1.rframe(x: 27, y: 15, width: 60, height: 60)
-        appIcon1.setImage(docApps[0]?.icon, for: .normal)
-        appIcon1.addTarget(self, action: #selector(docAppClick), for: .touchUpInside)
-        appIcon1.tag = 0
-        
-        let appName1 = UILabel()
-        appName1.rframe(x: 27, y: 75, width: 60, height: 20)
-        appName1.setLabel(text: "\(docApps[0]!.name)", align: .center, fontSize: 12, color:UIColor.white)
-        
-        let appIcon2 = UIButton()
-        appIcon2.rframe(x: 114, y: 15, width: 60, height: 60)
-        appIcon2.setImage(docApps[1]?.icon, for: .normal)
-        appIcon2.addTarget(self, action: #selector(docAppClick), for: .touchUpInside)
-        appIcon2.tag = 1
-        
-        
-        let appName2 = UILabel()
-        appName2.rframe(x: 114, y: 75, width: 60, height: 20)
-        appName2.setLabel(text: "\(docApps[1]!.name)", align: .center, fontSize: 12, color:UIColor.white)
-        
-        let appIcon3 = UIButton()
-        appIcon3.rframe(x: 201, y: 15, width: 60, height: 60)
-        appIcon3.setImage(docApps[2]?.icon, for: .normal)
-        
-        let appName3 = UILabel()
-        appName3.rframe(x: 201, y: 75, width: 60, height: 20)
-        appName3.setLabel(text: "\(docApps[2]!.name)", align: .center, fontSize: 12, color:UIColor.white)
-        
-        let appIcon4 = UIButton()
-        appIcon4.rframe(x: 288, y: 15, width: 60, height: 60)
-        appIcon4.setImage(docApps[3]?.icon, for: .normal)
-        appIcon4.addTarget(self, action: #selector(docAppClick), for: .touchUpInside)
-        appIcon4.tag = 3
-        
-        let appName4 = UILabel()
-        appName4.rframe(x: 288, y: 75, width: 60, height: 20)
-        appName4.setLabel(text: "\(docApps[3]!.name)", align: .center, fontSize: 12, color:UIColor.white)
-        
-        view.addSubview(bottomView)
-        bottomView.addSubview(appIcon1)
-        bottomView.addSubview(appName1)
-        bottomView.addSubview(appIcon2)
-        bottomView.addSubview(appName2)
-        bottomView.addSubview(appIcon3)
-        bottomView.addSubview(appName3)
-        bottomView.addSubview(appIcon4)
-        bottomView.addSubview(appName4)
-        
-    }
-    
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        view.bringSubview(toFront: launchScreen)
         if appDismissState {
             self.mainCollectionView.frame = CGRect(x: 100 + (375.multiplyWidthRatio() * CGFloat(pageControl.currentPage)), y: -50, width: 0, height: 0)
             UIView.animate(withDuration: 0.05, delay: 0, options: .curveEaseInOut, animations: {
@@ -207,7 +142,6 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
                 self.appDismissState = false
             }
         }
-
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -224,7 +158,6 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         homeBtn?.image = #imageLiteral(resourceName: "home")
         homeBtn?.layer.cornerRadius = 25
         homeBtn?.layer.masksToBounds = true
-        homeBtn?.isHidden = true
         
         let doubleTap = UITapGestureRecognizer(target: self, action: #selector(HomeVC.doubleTapDetected))
         doubleTap.numberOfTapsRequired = 2 // you can change this value
@@ -289,98 +222,50 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         }
         
     }
-    var appActivityStatus = false
+
     //single tap Action
     func singleTapDetected() {
-        if appActivityStatus {
+        if HomeModel.shared.appIsRunning {
             dismissWithAnimation()
-            appActivityStatus = false
+            HomeModel.shared.appIsRunning = false
         }else{
             UIView.animate(withDuration: 0.3) {
                 self.mainCollectionView.contentOffset.x = 0
             }
-            appActivityStatus = false
+            HomeModel.shared.appIsRunning = false
         }
         
         print("Imageview Clicked")
-//=======
-//        if presentedViewController?.className != nil && presentedViewController?.className != "SwitcherViewController" {
-//            saveCurrentExcutedApp()
-//        }
-//        presentedViewController?.dismiss(animated: false, completion: nil)
-//>>>>>>> 32ce7a17be96007f3f3baa15aeb34ac404fa34f2
+
+        if !(presentedViewController is SwitcherViewController) {
+            saveCurrentExcutedApp()
+        }
+        presentedViewController?.dismiss(animated: false, completion: nil)
+        
         self.isEditing = false
     }
     
     //double tap Action
     func doubleTapDetected() {
-        if presentedViewController?.className == "SwitcherViewController" {
+        if presentedViewController is SwitcherViewController {
             presentedViewController?.dismiss(animated: true, completion: nil)
         } else {
-            let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-            let switcher = storyboard.instantiateViewController(withIdentifier: "switcher") as! SwitcherViewController
-            switcher.didClickApp = { appname in
+            let storyboard = UIStoryboard(name: "Switcher", bundle: nil)
+            let switcher = storyboard.instantiateInitialViewController() as! SwitcherViewController
+            switcher.didClickApp = { app in
                 self.dismiss(animated: false, completion: {
-                    
-                    for i in 0..<self.apps.count {
-                        if self.apps[i]?.name == appname {
-                            self.executedApp = self.apps[i]
-                        }
-                    }
-                    
-                    switch appname {
-                    case "지도":
-                        self.performSegue(withIdentifier: "mapSegue", sender: self)
-                        break
-                    case "시계":
-                        self.performSegue(withIdentifier: "clockSegue", sender: self)
-                        break
-                    case "마마고":
-                        self.performSegue(withIdentifier: "papagoSegue", sender: self)
-                    case "사진":
-                        self.photoLibraryAppExecuted()
-                        break
-                    case "카메라":
-                        self.cameraAppExecuted()
-                        break
-                    case "AppStore":
-                        self.performSegue(withIdentifier: "appstoreSegue", sender: self)
-                        break
-                    case "미리알림":
-                        self.performSegue(withIdentifier: "prenoticeSegue", sender: self)
-                        break
-                    case "비디오":
-                        self.performSegue(withIdentifier: "videoSegue", sender: self)
-                        break
-                    case "캘린더":
-                        self.performSegue(withIdentifier: "calenderSegue", sender: self)
-                        break
-                    case "날씨":
-                        self.performSegue(withIdentifier: "weatherSegue", sender: self)
-                        break
-                    case "계산기":
-                        self.performSegue(withIdentifier: "calculatorSegue", sender: self)
-                        break
-                    case "설정":
-                        self.performSegue(withIdentifier: "settingSegue", sender: self)
-                        break
-                    case "safari":
-                        self.performSegue(withIdentifier: "safariSegue", sender: self)
-                        break
-                        
-                    default:
-                        break
-                    }
+                    HomeModel.shared.executedApp = app
+                    app?.execute()
                 })
-                
             }
             
-            if presentedViewController?.className != nil {
+            if presentedViewController != nil {
                 self.saveCurrentExcutedApp()
                 self.dismiss(animated: false, completion: {
                     self.present(switcher, animated: true, completion: nil)
                 })
             } else {
+                HomeModel.shared.homeScreenshot = UIImage(view: view)
                 self.present(switcher, animated: true, completion: nil)
             }
             
@@ -389,23 +274,29 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
 
     // save a current executed app screen shot to the array in the appdelegate
     func saveCurrentExcutedApp() {
-        let screenImg = UIImage.init(view: (presentedViewController?.view)!)
-        let arr = NSArray(objects: executedApp!, screenImg)
-        if appDelegate.screensArray.count == 1 {
-            appDelegate.screensArray.insert(arr, at: appDelegate.screensArray.count - 1)
-        } else {
-            for i in 0..<appDelegate.screensArray.count - 1 {
-                let temp = appDelegate.screensArray.object(at: i) as! NSArray
-                let previous = temp.object(at: 0) as! (icon: UIImage, name: String)
-                if executedApp?.name == previous.name {
-                    appDelegate.screensArray.removeObject(at: i)
-                    appDelegate.screensArray.insert(arr, at: appDelegate.screensArray.count - 1)
-                    presentedViewController?.dismiss(animated: false, completion: nil)
-                    return
-                }
-            }
-            appDelegate.screensArray.insert(arr, at: appDelegate.screensArray.count - 1)
+        let screenImg = UIImage(view: (presentedViewController?.view)!)
+        if let app = HomeModel.shared.executedApp {
+            HomeModel.shared.saveScreenshot(image: screenImg, for: app)
+            HomeModel.shared.updateHistory(app)
         }
+//        
+//        
+//        let arr = NSArray(objects: HomeModel.shared.executedApp!, screenImg)
+//        if appDelegate.screensArray.count == 1 {
+//            appDelegate.screensArray.insert(arr, at: appDelegate.screensArray.count - 1)
+//        } else {
+//            for i in 0..<appDelegate.screensArray.count - 1 {
+//                let temp = appDelegate.screensArray.object(at: i) as! NSArray
+//                let previous = temp.object(at: 0) as! (icon: UIImage, name: String)
+//                if HomeModel.shared.executedApp?.name == previous.name {
+//                    appDelegate.screensArray.removeObject(at: i)
+//                    appDelegate.screensArray.insert(arr, at: appDelegate.screensArray.count - 1)
+//                    presentedViewController?.dismiss(animated: false, completion: nil)
+//                    return
+//                }
+//            }
+//            appDelegate.screensArray.insert(arr, at: appDelegate.screensArray.count - 1)
+//        }
     }
     
     func longPressGestureRecognized(gestureRecognizer: UIGestureRecognizer) {
@@ -577,115 +468,38 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         return cellSnapshot
     }
     
-
     func layoutInit(){
-        let layout = mainCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        layout.sectionInset = UIEdgeInsetsMake(0,27.multiplyWidthRatio(),0,27.multiplyWidthRatio())
-        layout.itemSize = CGSize(width: 60.multiplyWidthRatio() , height: 80.multiplyHeightRatio())
-        layout.minimumLineSpacing = 27.multiplyWidthRatio()
-        layout.scrollDirection = .horizontal
-    }
-    
-    func appClick(_ sender: UIButton){
-        
-        let touchX = (sender.superview?.superview?.x)! - (UIScreen.main.bounds.size.width * CGFloat(pageControl.currentPage))
-        
-        let touchY = sender.superview?.superview?.y
-        
-        HomeVC.homeTouchLocation = CGPoint(x: touchX, y: touchY!)
-        
-        self.appDismissState = true
-        
-        let appname = apps[sender.tag]!.name
-        appActivityStatus = true
-        switch appname {
-        case "지도":
-            performSegue(withIdentifier: "mapSegue", sender: self)
-            break
-        case "시계":
-            performSegue(withIdentifier: "clockSegue", sender: self)
-            break
-        case "마마고":
-            performSegue(withIdentifier: "papagoSegue", sender: self)
-        case "사진":
-            photoLibraryAppExecuted()
-            break
-        case "카메라":
-            cameraAppExecuted()
-            break
-        case "AppStore":
-            performSegue(withIdentifier: "appstoreSegue", sender: self)
-            break
-        case "미리알림":
-            performSegue(withIdentifier: "prenoticeSegue", sender: self)
-            break
-        case "비디오":
-            performSegue(withIdentifier: "videoSegue", sender: self)
-            break
-        case "캘린더":
-            performSegue(withIdentifier: "calendarSegue", sender: self)
-            break
-        case "날씨":
-            performSegue(withIdentifier: "weatherSegue", sender: self)
-            break
-        case "계산기":
-            performSegue(withIdentifier: "calculatorSegue", sender: self)
-            break
-        case "설정":
-            performSegue(withIdentifier: "settingSegue", sender: self)
-            break
-        case "safari":
-            performSegue(withIdentifier: "safariSegue", sender: self)
-            break
-        default:
-            break
+        if let layout = mainCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            let col = CGFloat(4)
+            let spacing = (mainCollectionView.bounds.width - (60 * col)) / (col + 1)
+            layout.minimumLineSpacing = spacing
+            layout.minimumInteritemSpacing = 5
+            layout.sectionInset = UIEdgeInsets(top: 7, left: spacing, bottom: 0, right: spacing)
         }
-        
-        executedApp = apps[sender.tag]!
     }
     
-    func docAppClick(_ sender: UIButton){
-        
-        let touchX = sender.x
-        
-        let touchY = sender.y + 570.multiplyWidthRatio()
-        
-        HomeVC.homeTouchLocation = CGPoint(x: touchX, y: touchY)
-        
-        let appname = docApps[sender.tag]!.name
-        appActivityStatus = true
-        switch appname {
-        case "전화":
-            let url = NSURL(string: "tel://1588-3830")!
-            if #available(iOS 10.0, *) {
-                UIApplication.shared.open(url as URL)
-            } else {
-                UIApplication.shared.openURL(url as URL)
-            }
+    func executePhone() {
+        let url = NSURL(string: "tel://1588-3830")!
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(url as URL)
+        } else {
+            UIApplication.shared.openURL(url as URL)
+        }
+        print("=== 시뮬레이터에선 작업을 할 수 없습니다.===")
+    }
+    
+    func executeMessage() {
+        if MFMessageComposeViewController.canSendText() {
+            let view = MFMessageComposeViewController()
+            view.body = "Again 2007! 화이팅!"
+            view.recipients = ["1588-3830"]
+            present(view, animated: false, completion: { _ in })
+        } else{
             print("=== 시뮬레이터에선 작업을 할 수 없습니다.===")
-            break
-        case "메시지":
-            if MFMessageComposeViewController.canSendText() {
-                let view = MFMessageComposeViewController()
-                view.body = "Again 2007! 화이팅!"
-                view.recipients = ["1588-3830"]
-                present(view, animated: false, completion: { _ in })
-            } else{
-                print("=== 시뮬레이터에선 작업을 할 수 없습니다.===")
-            }
-            break
-        case "연락처":
-            break
-        case "safari":
-            performSegue(withIdentifier: "safariSegue", sender: self)
-            break
-        default:
-            break
         }
     }
     
-    
-    func cameraAppExecuted(){
+    func executeCamera() {
         
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
             // UIImagePickerController 인스턴스를 생성하고 cameraViewController를 객체의 델리게이트로 설정
@@ -703,7 +517,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         }
     }
     
-    func photoLibraryAppExecuted(){
+    func executePhoto(){
         
         // Hide the keyboard.
         //textView.resignFirstResponder()
@@ -786,13 +600,9 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     func deleteAction(_ sender: UIButton){
         appDeleteAlert(appName: (apps[sender.tag]?.name)!, item: sender.tag)
     }
-    
-    func addToAppdelegateArray(){
-        appDelegate.screensArray.add(UIImage.init(view: self.view))
-    }
 }
 
-extension HomeVC{
+extension HomeVC: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return appsCount.count
@@ -800,79 +610,31 @@ extension HomeVC{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 24
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "spaceCell", for: indexPath as IndexPath) as! ScreenCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath as IndexPath) as! AppCell
         
-        let section = indexPath.section
-        let appCountInPage = appsCount[section]
+        let app = appItem(for: indexPath)
+        cell.appIcon.image = app?.icon
+        cell.appName.text = app?.name
+        cell.appDelete.tag = appIndex(for: indexPath) ?? -1
+        cell.appDelete.addTarget(self, action: #selector(deleteAction), for: .touchUpInside)
+        cell.appDelete.isHidden = true
         
-        switch section {
-        case 0:
-            if indexPath.item < appCountInPage {
-                cell.appIcon.layer.masksToBounds = true
-                cell.appIcon.layer.cornerRadius = 11.multiplyWidthRatio()
-                cell.appIcon.rframe(x: 0, y: 0, width: 60, height: 60)
-                cell.appIcon.setImage(apps[(indexPath.item)]?.icon, for: .normal)
-                cell.appIcon.tag = indexPath.item
-                cell.appIcon.addTarget(self, action: #selector(appClick), for: .touchUpInside)
-                
-                cell.appDelete.layer.masksToBounds = true
-                cell.appDelete.layer.cornerRadius = 9.multiplyWidthRatio()
-                cell.appDelete.rframe(x: 0, y: 0, width: 18, height: 18)
-                cell.appDelete.setImage(#imageLiteral(resourceName: "del"), for: .normal)
-                cell.appDelete.addTarget(self, action: #selector(deleteAction), for: .touchUpInside)
-                cell.appDelete.tag = indexPath.item
-                cell.appDelete.isHidden = true
-                
-                cell.appName.rframe(x: 0, y: 60, width: 60, height: 20)
-                cell.appName.setLabel(text: "\(apps[indexPath.item]!.name)", align: .center, fontSize: 12, color:UIColor.white)
-            } else{
-                cell.appIcon.setImage(nil, for: .normal)
-                cell.appName.text = ""
-                cell.appDelete.setImage(nil, for: .normal)
-            }
-        default:
-            if indexPath.item < appCountInPage {
-                
-                var count = 0
-                for i in 0..<section{
-                    count += appsCount[i]
-                }
-                
-                cell.appIcon.layer.masksToBounds = true
-                cell.appIcon.layer.cornerRadius = 11.multiplyWidthRatio()
-                cell.appIcon.rframe(x: 0, y: 0, width: 60, height: 60)
-                cell.appIcon.setImage(apps[count + indexPath.item]?.icon, for: .normal)
-                cell.appIcon.tag = count + indexPath.item
-                cell.appIcon.addTarget(self, action: #selector(appClick), for: .touchUpInside)
-                
-                cell.appDelete.layer.masksToBounds = true
-                cell.appDelete.layer.cornerRadius = 9.multiplyWidthRatio()
-                cell.appDelete.rframe(x: 0, y: 0, width: 18, height: 18)
-                cell.appDelete.setImage(#imageLiteral(resourceName: "del"), for: .normal)
-                cell.appDelete.isHidden = true
-                cell.appDelete.tag = count + indexPath.item
-                cell.appDelete.addTarget(self, action: #selector(deleteAction), for: .touchUpInside)
-                
-                cell.appName.rframe(x: 0, y: 60, width: 60, height: 20)
-                cell.appName.setLabel(text: "\(apps[count + indexPath.item]!.name)", align: .center, fontSize: 12, color:UIColor.white)
-            } else{
-                cell.appIcon.setImage(nil, for: .normal)
-                cell.appName.text = ""
-                cell.appDelete.setImage(nil, for: .normal)
-            }
-        }
         return cell
     }
+}
+
+extension HomeVC: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //
-        collectionView.deselectItem(at: indexPath, animated: false)
+        if let app = appItem(for: indexPath) {
+            HomeModel.shared.executedApp = app
+            HomeModel.shared.appIsRunning = true
+            app.execute()
+        }
     }
-
 }
 
 //directory

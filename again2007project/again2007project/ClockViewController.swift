@@ -9,7 +9,9 @@
 import UIKit
 
 class ClockViewController: UIViewController {
+    
     @IBOutlet weak var timeLabel: UILabel!
+    
     let clock = Clock()
     var timer: Timer?
     
@@ -39,15 +41,9 @@ class ClockViewController: UIViewController {
         return UIInterfaceOrientationMask.all
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     deinit {
         if let timer = self.timer {
             timer.invalidate()
         }
     }
-    
 }

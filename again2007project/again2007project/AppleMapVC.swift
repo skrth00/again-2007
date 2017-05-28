@@ -11,7 +11,6 @@ import MapKit
 import CoreLocation
 
 class AppleMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
-
     
     // mapKit
     var mapView: MKMapView!
@@ -28,10 +27,7 @@ class AppleMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate
         super.viewDidLoad()
         viewInit()
         updateLocation()
-        
-        
     }
-    
     
     func viewInit(){
         mapView = MKMapView()
@@ -60,7 +56,6 @@ class AppleMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate
         print("Errors: " + error.localizedDescription)
     }
         
-
     func centerMapOnLocation(location: CLLocation) {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
                                                                   regionRadius * 2.0, regionRadius * 2.0)
