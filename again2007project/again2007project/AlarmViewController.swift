@@ -14,6 +14,7 @@ class AlarmViewController: UIViewController,  UITableViewDataSource, UITableView
     var passTime:String?
     
     @IBOutlet weak var alarmTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         alarmTableView.tableFooterView = UIView()

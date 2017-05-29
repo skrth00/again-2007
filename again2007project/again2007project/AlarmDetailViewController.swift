@@ -18,6 +18,7 @@ import UIKit
 import UserNotifications
 
 class AlarmDetailViewController: UIViewController {
+    @IBOutlet weak var showDateText: UILabel!
     @IBOutlet weak var datePicker: UIDatePicker!
     
     
