@@ -123,7 +123,7 @@ enum App {
         case .compass: break
         case .newsstand: break
         case .settings: vc.performSegue(withIdentifier: "settingSegue", sender: self)
-        case .contacts: break
+        case .contacts: vc.executeContacts()
         case .music: break
         case .facetime: break
         case .safari: vc.performSegue(withIdentifier: "safariSegue", sender: self)

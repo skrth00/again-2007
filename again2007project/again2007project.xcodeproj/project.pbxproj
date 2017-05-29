@@ -37,6 +37,8 @@
 		6778A6501ED746350031B43C /* AppleMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6778A64F1ED746350031B43C /* AppleMapVC.swift */; };
 		6778A6541ED750370031B43C /* Animation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6778A6531ED750370031B43C /* Animation+Extension.swift */; };
 		6778A6561ED75D500031B43C /* PaPagoAppVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6778A6551ED75D500031B43C /* PaPagoAppVC.swift */; };
+		677C3E871EDC0812002E1413 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 677C3E851EDC0812002E1413 /* Contacts.framework */; };
+		677C3E881EDC0812002E1413 /* ContactsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 677C3E861EDC0812002E1413 /* ContactsUI.framework */; };
 		6780C3EE1ED97F2200D084D1 /* CustomSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6780C3ED1ED97F2200D084D1 /* CustomSegue.swift */; };
 		6780C3F01ED9C82100D084D1 /* SafariVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6780C3EF1ED9C82100D084D1 /* SafariVC.swift */; };
 		6780C3F31ED9CE5300D084D1 /* Safari.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6780C3F11ED9CE5300D084D1 /* Safari.storyboard */; };
@@ -93,6 +95,8 @@
 		6778A64F1ED746350031B43C /* AppleMapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleMapVC.swift; sourceTree = "<group>"; };
 		6778A6531ED750370031B43C /* Animation+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Animation+Extension.swift"; sourceTree = "<group>"; };
 		6778A6551ED75D500031B43C /* PaPagoAppVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaPagoAppVC.swift; sourceTree = "<group>"; };
+		677C3E851EDC0812002E1413 /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
+		677C3E861EDC0812002E1413 /* ContactsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ContactsUI.framework; path = System/Library/Frameworks/ContactsUI.framework; sourceTree = SDKROOT; };
 		6780C3ED1ED97F2200D084D1 /* CustomSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSegue.swift; sourceTree = "<group>"; };
 		6780C3EF1ED9C82100D084D1 /* SafariVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SafariVC.swift; path = ../SafariVC.swift; sourceTree = "<group>"; };
 		6780C3F21ED9CE5300D084D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Safari.storyboard; sourceTree = "<group>"; };
@@ -116,6 +120,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				677C3E871EDC0812002E1413 /* Contacts.framework in Frameworks */,
+				677C3E881EDC0812002E1413 /* ContactsUI.framework in Frameworks */,
 				6780C3F51ED9D93700D084D1 /* MessageUI.framework in Frameworks */,
 				23BA1F0F75E84C91ACCF4B48 /* Pods_again2007project.framework in Frameworks */,
 			);
@@ -234,6 +240,8 @@
 		FB155A5130778805184D0478 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				677C3E851EDC0812002E1413 /* Contacts.framework */,
+				677C3E861EDC0812002E1413 /* ContactsUI.framework */,
 				6780C3F41ED9D93700D084D1 /* MessageUI.framework */,
 				C9E3BFC3F5D05E7FBE09AC95 /* Pods_again2007project.framework */,
 				3131BA03898700E789AF27A0 /* Pods_again2007projectTests.framework */,

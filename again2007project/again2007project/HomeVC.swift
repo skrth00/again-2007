@@ -10,8 +10,9 @@ import UIKit
 import DORM
 import MobileCoreServices
 import MessageUI
+import ContactsUI
 
-class HomeVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class HomeVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CNContactPickerDelegate {
     
     var homeBtn: UIImageView?
     var viewControllerList = [UIViewController]()
@@ -538,6 +539,14 @@ class HomeVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         
         present(imagePickerController, animated: false, completion: nil)
         
+    }
+    
+    func executeContacts(){
+        let contactPicker = CNContactPickerViewController()
+        contactPicker.delegate = self
+        contactPicker.displayedPropertyKeys = [CNContactPhoneNumbersKey]
+        
+        self.present(contactPicker, animated: false, completion: nil)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
