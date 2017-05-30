@@ -87,10 +87,10 @@ class HomeVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         .message,
         .contacts,
         .safari,
-    ]
+        ]
     
     var appsCount: [Int] = [10, 8, 8]
-
+    
     
     func appIndex(for indexPath: IndexPath) -> Int? {
         if indexPath.item < appsCount[indexPath.section] {
@@ -115,11 +115,11 @@ class HomeVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     override func viewDidLoad() {
         super.viewDidLoad()
         // 배경화면
-        self.view.layer.contents = UIImage(named: "background")?.cgImage
+        self.view.layer.contents = #imageLiteral(resourceName: "시차배경화면").cgImage
         
         layoutInit()
         setHomeBtn()
-
+        
         let longpress = UILongPressGestureRecognizer(target: self, action: #selector(longPressGestureRecognized))
         mainCollectionView.addGestureRecognizer(longpress)
         
@@ -225,7 +225,7 @@ class HomeVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         }
         
     }
-
+    
     //single tap Action
     func singleTapDetected() {
         if HomeModel.shared.appIsRunning {
@@ -239,7 +239,7 @@ class HomeVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         }
         
         print("Imageview Clicked")
-
+        
         if !(presentedViewController is SwitcherViewController) {
             //saveCurrentExcutedApp()
         }
@@ -274,7 +274,7 @@ class HomeVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
             
         }
     }
-
+    
     // save a current executed app screen shot to the array in the appdelegate
     func saveCurrentExcutedApp() {
         let screenImg = UIImage(view: (presentedViewController?.view)!)
@@ -282,24 +282,24 @@ class HomeVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
             HomeModel.shared.saveScreenshot(image: screenImg, for: app)
             HomeModel.shared.updateHistory(app)
         }
-//        
-//        
-//        let arr = NSArray(objects: HomeModel.shared.executedApp!, screenImg)
-//        if appDelegate.screensArray.count == 1 {
-//            appDelegate.screensArray.insert(arr, at: appDelegate.screensArray.count - 1)
-//        } else {
-//            for i in 0..<appDelegate.screensArray.count - 1 {
-//                let temp = appDelegate.screensArray.object(at: i) as! NSArray
-//                let previous = temp.object(at: 0) as! (icon: UIImage, name: String)
-//                if HomeModel.shared.executedApp?.name == previous.name {
-//                    appDelegate.screensArray.removeObject(at: i)
-//                    appDelegate.screensArray.insert(arr, at: appDelegate.screensArray.count - 1)
-//                    presentedViewController?.dismiss(animated: false, completion: nil)
-//                    return
-//                }
-//            }
-//            appDelegate.screensArray.insert(arr, at: appDelegate.screensArray.count - 1)
-//        }
+        //
+        //
+        //        let arr = NSArray(objects: HomeModel.shared.executedApp!, screenImg)
+        //        if appDelegate.screensArray.count == 1 {
+        //            appDelegate.screensArray.insert(arr, at: appDelegate.screensArray.count - 1)
+        //        } else {
+        //            for i in 0..<appDelegate.screensArray.count - 1 {
+        //                let temp = appDelegate.screensArray.object(at: i) as! NSArray
+        //                let previous = temp.object(at: 0) as! (icon: UIImage, name: String)
+        //                if HomeModel.shared.executedApp?.name == previous.name {
+        //                    appDelegate.screensArray.removeObject(at: i)
+        //                    appDelegate.screensArray.insert(arr, at: appDelegate.screensArray.count - 1)
+        //                    presentedViewController?.dismiss(animated: false, completion: nil)
+        //                    return
+        //                }
+        //            }
+        //            appDelegate.screensArray.insert(arr, at: appDelegate.screensArray.count - 1)
+        //        }
     }
     
     func longPressGestureRecognized(gestureRecognizer: UIGestureRecognizer) {
@@ -363,11 +363,11 @@ class HomeVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
                 
                 if let indexPath = indexPath{
                     let cell = mainCollectionView.cellForItem(at: indexPath) as UICollectionViewCell!
-                
+                    
                     if (cell?.center.x)! - 5 <= center.x ,center.x <= (cell?.center.x)!+5,
                         (cell?.center.y)! - 5 <= center.y ,center.y <= (cell?.center.y)!+5,
                         !isEnlarged{
-                       
+                        
                         cell?.layer.borderWidth = 100
                         cell?.layer.cornerRadius = 15
                         cell?.layer.borderColor = UIColor.lightGray.cgColor.copy(alpha: 0.8)
@@ -382,52 +382,52 @@ class HomeVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
                         
                         
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                        UIView.animate(withDuration: 1, animations: {
-                            
-                            self.mainCollectionView.addSubview(self.blurEffectView)
-                            self.mainCollectionView.bringSubview(toFront: self.blurEffectView)
-                            //self.lastDirCellIdx = indexPath
-                            self.blurEffectView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.makeSmallCellSize)))
-                            
-                            self.mainCollectionView.bringSubview(toFront: item)
-                            self.mainCollectionView.bringSubview(toFront: My.cellSnapshot!)
-                            item.frame.origin = self.view.frame.origin
-                            item.frame.origin.x = 40
-                            item.frame.origin.y = 200
-                            item.frame.size.width = self.view.frame.width - 80
-                            item.frame.size.height = self.view.frame.height - 400
-                            item.backgroundColor = UIColor.lightGray
-                            
-                        }, completion: { (finished) -> Void in
-                            //cell?.contentView.layer.borderWidth = 0
-                            cell?.layer.borderWidth = 0
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            UIView.animate(withDuration: 1, animations: {
                                 
-                                if item.frame.contains(longPress.location(in: self.mainCollectionView)) == false {
-                                    self.makeSmallCellSize()
-                                    self.mainCollectionView.moveItem(at: Path.initialIndexPath! as IndexPath, to: indexPath)
-                                    print(Path.initialIndexPath)
+                                self.mainCollectionView.addSubview(self.blurEffectView)
+                                self.mainCollectionView.bringSubview(toFront: self.blurEffectView)
+                                //self.lastDirCellIdx = indexPath
+                                self.blurEffectView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.makeSmallCellSize)))
+                                
+                                self.mainCollectionView.bringSubview(toFront: item)
+                                self.mainCollectionView.bringSubview(toFront: My.cellSnapshot!)
+                                item.frame.origin = self.view.frame.origin
+                                item.frame.origin.x = 40
+                                item.frame.origin.y = 200
+                                item.frame.size.width = self.view.frame.width - 80
+                                item.frame.size.height = self.view.frame.height - 400
+                                item.backgroundColor = UIColor.lightGray
+                                
+                            }, completion: { (finished) -> Void in
+                                //cell?.contentView.layer.borderWidth = 0
+                                cell?.layer.borderWidth = 0
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                                     
+                                    if item.frame.contains(longPress.location(in: self.mainCollectionView)) == false {
+                                        self.makeSmallCellSize()
+                                        self.mainCollectionView.moveItem(at: Path.initialIndexPath! as IndexPath, to: indexPath)
+                                        print(Path.initialIndexPath)
+                                        
+                                    }
                                 }
-                            }
+                                
+                                
+                            })
                             
-                            
-                        })
-                        
                         }
-        
+                        
                         
                         
                     }else{
                         
-
+                        
                     }
                 }
                 
                 
-
+                
             }
-
+            
         default:
             if Path.initialIndexPath != nil {
                 let cell = mainCollectionView.cellForItem(at: Path.initialIndexPath! as IndexPath) as UICollectionViewCell!
@@ -593,7 +593,7 @@ class HomeVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     }
     
     func addParallaxToView(vw: UIView) {
-        let amount = 100
+        let amount = 15
         
         let horizontal = UIInterpolatingMotionEffect(keyPath: "center.x", type: .tiltAlongHorizontalAxis)
         horizontal.minimumRelativeValue = -amount
@@ -607,7 +607,7 @@ class HomeVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         group.motionEffects = [horizontal, vertical]
         vw.addMotionEffect(group)
     }
-
+    
     func deleteAction(_ sender: UIButton){
         appDeleteAlert(appName: (apps[sender.tag]?.name)!, item: sender.tag)
     }
@@ -632,7 +632,7 @@ extension HomeVC: UICollectionViewDataSource {
         cell.appDelete.tag = appIndex(for: indexPath) ?? -1
         cell.appDelete.addTarget(self, action: #selector(deleteAction), for: .touchUpInside)
         cell.appDelete.isHidden = true
-
+        
         
         return cell
     }
@@ -728,7 +728,7 @@ extension HomeVC{
     
     func dismissWithAnimation(){
         self.presentedViewController?.dismiss(animated: false, completion: {
-
+            
         })
     }
 }
