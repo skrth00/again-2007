@@ -1,11 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Lj9-c9-1oX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Bs1-O6-MN0">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Pa Pago AppVC-->
+        <!--Navigation Controller-->
+        <scene sceneID="jVo-pI-k9j">
+            <objects>
+                <navigationController id="Bs1-O6-MN0" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ikU-0g-QIO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.10588235294117647" green="0.48627450980392156" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Lj9-c9-1oX" kind="relationship" relationship="rootViewController" id="v4m-Q6-wLY"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9aB-Cz-qGT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1806" y="1726"/>
+        </scene>
+        <!--마마고 번역기-->
         <scene sceneID="E9s-n2-5VU">
             <objects>
                 <viewController id="Lj9-c9-1oX" customClass="PaPagoAppVC" customModule="again2007project" customModuleProvider="target" sceneMemberID="viewController">
@@ -14,15 +38,101 @@
                         <viewControllerLayoutGuide type="bottom" id="brz-8X-WQl"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="nss-Rk-v7s">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cFp-9K-HiN">
+                                <rect key="frame" x="0.0" y="314" width="375" height="250"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="seh-Hw-KsF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="22"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Lj9-c9-1oX" id="tbe-Ub-fmb"/>
+                                </connections>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이곳에 번역할 문장을 입력하세요" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aHV-Wj-ONJ">
+                                <rect key="frame" x="52" y="176.5" width="271" height="25.5"/>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="21"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이곳에 번역된 문장이 나옵니다" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K3f-Ir-bno">
+                                <rect key="frame" x="0.0" y="426.5" width="375" height="25.5"/>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="21"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hcw-hY-fXf">
+                                <rect key="frame" x="0.0" y="564" width="375" height="103"/>
+                                <color key="backgroundColor" red="0.0" green="0.7803921568627451" blue="0.23529411764705882" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="useVoiceTranslate:" destination="Lj9-c9-1oX" eventType="touchUpInside" id="uef-eM-vP3"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="59M-ZL-XVf">
+                                <rect key="frame" x="0.0" y="64" width="375" height="250"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="Bbi-ZT-EWp"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="22"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Lj9-c9-1oX" id="z1v-QP-o76"/>
+                                </connections>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vau-CY-q3O">
+                                <rect key="frame" x="162.5" y="590" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="8AD-jd-sOe"/>
+                                    <constraint firstAttribute="height" constant="50" id="PsM-x5-i0h"/>
+                                </constraints>
+                                <state key="normal" image="mic"/>
+                                <connections>
+                                    <action selector="useVoiceTranslate:" destination="Lj9-c9-1oX" eventType="touchUpInside" id="rsC-7f-7Ra"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="aHV-Wj-ONJ" firstAttribute="centerY" secondItem="59M-ZL-XVf" secondAttribute="centerY" id="5KH-gj-I7u"/>
+                            <constraint firstAttribute="trailing" secondItem="cFp-9K-HiN" secondAttribute="trailing" id="5wk-nc-Ede"/>
+                            <constraint firstAttribute="trailing" secondItem="K3f-Ir-bno" secondAttribute="trailing" id="9XI-xf-9rL"/>
+                            <constraint firstItem="cFp-9K-HiN" firstAttribute="leading" secondItem="nss-Rk-v7s" secondAttribute="leading" id="AWW-17-GkV"/>
+                            <constraint firstItem="K3f-Ir-bno" firstAttribute="leading" secondItem="nss-Rk-v7s" secondAttribute="leading" id="Guk-ud-YFU"/>
+                            <constraint firstItem="Hcw-hY-fXf" firstAttribute="leading" secondItem="nss-Rk-v7s" secondAttribute="leading" id="OoT-qj-I6o"/>
+                            <constraint firstAttribute="trailing" secondItem="Hcw-hY-fXf" secondAttribute="trailing" id="U3C-oa-gjN"/>
+                            <constraint firstItem="cFp-9K-HiN" firstAttribute="top" secondItem="59M-ZL-XVf" secondAttribute="bottom" id="X3h-Cb-Nd4"/>
+                            <constraint firstItem="59M-ZL-XVf" firstAttribute="leading" secondItem="nss-Rk-v7s" secondAttribute="leading" id="bMA-4n-h4t"/>
+                            <constraint firstItem="aHV-Wj-ONJ" firstAttribute="centerX" secondItem="nss-Rk-v7s" secondAttribute="centerX" id="gqY-tU-TEh"/>
+                            <constraint firstItem="brz-8X-WQl" firstAttribute="top" secondItem="Hcw-hY-fXf" secondAttribute="bottom" id="hfL-p9-c5a"/>
+                            <constraint firstItem="59M-ZL-XVf" firstAttribute="top" secondItem="p2K-Sb-ifE" secondAttribute="bottom" id="kK6-Ad-7Oa"/>
+                            <constraint firstItem="vau-CY-q3O" firstAttribute="centerX" secondItem="nss-Rk-v7s" secondAttribute="centerX" id="mQw-F0-V5d"/>
+                            <constraint firstItem="Hcw-hY-fXf" firstAttribute="top" secondItem="cFp-9K-HiN" secondAttribute="bottom" id="oV0-Xv-VyA"/>
+                            <constraint firstItem="K3f-Ir-bno" firstAttribute="centerY" secondItem="cFp-9K-HiN" secondAttribute="centerY" id="wXv-XT-oxE"/>
+                            <constraint firstItem="vau-CY-q3O" firstAttribute="centerY" secondItem="Hcw-hY-fXf" secondAttribute="centerY" id="xYF-JI-VgU"/>
+                            <constraint firstAttribute="trailing" secondItem="59M-ZL-XVf" secondAttribute="trailing" id="y0Y-U9-Mk3"/>
+                        </constraints>
                     </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4_7.fullscreen"/>
+                    <navigationItem key="navigationItem" title="마마고 번역기" id="0vc-Cp-lkt"/>
+                    <connections>
+                        <outlet property="preHintLabel" destination="aHV-Wj-ONJ" id="FKf-8t-N2s"/>
+                        <outlet property="preTextView" destination="59M-ZL-XVf" id="jGL-8b-sO2"/>
+                        <outlet property="preTextViewHeight" destination="Bbi-ZT-EWp" id="SMc-Vj-FE9"/>
+                        <outlet property="translatedHintLabel" destination="K3f-Ir-bno" id="YZv-J2-ezr"/>
+                        <outlet property="translatedTextView" destination="cFp-9K-HiN" id="dEJ-0q-EzD"/>
+                        <outlet property="translatedTextViewHeight" destination="seh-Hw-KsF" id="nsl-3D-BKG"/>
+                        <outlet property="voiceRecordButton" destination="Hcw-hY-fXf" id="fpJ-pp-FfU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DrW-pe-99P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2610" y="1728"/>
+            <point key="canvasLocation" x="2607.1999999999998" y="1725.7871064467768"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="mic" width="256" height="256"/>
+    </resources>
 </document>

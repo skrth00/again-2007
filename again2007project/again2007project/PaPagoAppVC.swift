@@ -9,150 +9,91 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import NaverSpeech
 
-class PaPagoAppVC: UIViewController, UITextViewDelegate {
+private let nClientId = "3IvzGHemVaIhuEmhpV0v"
+
+class PaPagoAppVC: UIViewController {
     
-    var language : String = "en"
+    // 영어로만 번역 (기계번역)
+    let language = "en"
     
-    var englishBtn: UIButton!
-    var chinaBtn: UIButton!
-    var japanBtn: UIButton!
+    // 음성 인식 언어
+    let voiceLanguage : NSKRecognizerLanguageCode = .korean
     
-    var insertText: UITextView!
-    var hintInsertView: UILabel!
+    // object
+    @IBOutlet weak var preTextView: UITextView!
+    @IBOutlet weak var preHintLabel: UILabel!
+    @IBOutlet weak var translatedTextView: UITextView!
+    @IBOutlet weak var translatedHintLabel: UILabel!
+    @IBOutlet weak var voiceRecordButton: UIButton!
     
-    var responseText: UILabel!
-    var hintResponseView: UILabel!
-    var convertView: UIView!
-    var convertBtn: UIButton!
+    // constraints
+    @IBOutlet weak var preTextViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var translatedTextViewHeight: NSLayoutConstraint!
+    
+    // naver speech
+    let speechRecognizer: NSKRecognizer
+    var voiceMessage: String = ""{
+        willSet(newValue){
+            preHintLabel.isHidden = true
+            translatedHintLabel.isHidden = true
+            preTextView.text = newValue
+            requestTranslate { (translatedText) in
+                self.translatedTextView.text = translatedText
+            }
+        }
+    }
+    
+    override var isEditing: Bool{
+        willSet(newValue){
+            if !newValue{
+                preTextView.endEditing(true)
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewInit()
-    }
-
-    func viewInit(){
-        
-        let descriptionLabel = UILabel()
-        descriptionLabel.rframe(x: 0, y: 20, width: 375, height: 20)
-        descriptionLabel.textAlignment = .center
-        descriptionLabel.text = "번역할 언어를 골라주세요"
-        descriptionLabel.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 12.multiplyWidthRatio())
-        descriptionLabel.textColor = UIColor.gray
-        self.view.addSubview(descriptionLabel)
-        
-        englishBtn = UIButton()
-        englishBtn.rframe(x: 30, y: 30, width: 75, height: 40)
-        englishBtn.setImage(#imageLiteral(resourceName: "usa"), for: .normal)
-        englishBtn.addTarget(self, action: #selector(languageBtnAction), for: .touchUpInside)
-        englishBtn.tag = 0
-        self.view.addSubview(englishBtn)
-        
-        chinaBtn = UIButton()
-        chinaBtn.rframe(x: 150, y: 30, width: 75, height: 40)
-        chinaBtn.setImage(#imageLiteral(resourceName: "china"), for: .normal)
-        chinaBtn.addTarget(self, action: #selector(languageBtnAction), for: .touchUpInside)
-        chinaBtn.tag = 1
-        self.view.addSubview(chinaBtn)
-        
-        japanBtn = UIButton()
-        japanBtn.rframe(x: 270, y: 30, width: 75, height: 40)
-        japanBtn.setImage(#imageLiteral(resourceName: "japan"), for: .normal)
-        japanBtn.addTarget(self, action: #selector(languageBtnAction), for: .touchUpInside)
-        japanBtn.tag = 2
-        self.view.addSubview(japanBtn)
-        
-        insertText = UITextView()
-        insertText.delegate = self
-        insertText.rframe(x: 0, y: 70, width: 375, height: 250)
-        insertText.layer.addBorder(edge: .top, color: UIColor.lightGray, thickness: 1)
-        insertText.layer.addBorder(edge: .bottom, color: UIColor.lightGray, thickness: 1)
-        insertText.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 20.multiplyWidthRatio())
-        self.view.addSubview(insertText)
-        
-        hintInsertView = UILabel()
-        hintInsertView.rframe(x: 0, y: 185, width: 375, height: 20)
-        hintInsertView.textAlignment = .center
-        hintInsertView.text = "이곳에 번역할 문장을 입력하세요"
-        hintInsertView.textColor = UIColor.lightGray
-        self.view.addSubview(hintInsertView)
-        
-        responseText = UILabel()
-        responseText.rframe(x: 0, y: 320, width: 375, height: 250)
-        responseText.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 20.multiplyWidthRatio())
-        self.view.addSubview(responseText)
-        
-        hintResponseView = UILabel()
-        hintResponseView.rframe(x: 0, y: 435, width: 375, height: 20)
-        hintResponseView.textAlignment = .center
-        hintResponseView.text = "이곳에 번역된 문장이 나옵니다"
-        hintResponseView.textColor = UIColor.lightGray
-        self.view.addSubview(hintResponseView)
-        
-        convertView = UIView()
-        convertView.rframe(x: 0, y: 570, width: 375, height: 97)
-        convertView.addAction(target: self, action: #selector(translateAction))
-        convertView.backgroundColor = UIColor(red: 0, green: 199/255, blue: 60/255, alpha: 1)
-        self.view.addSubview(convertView)
-     
-        
-        convertBtn = UIButton()
-        convertBtn.rframe(x: 137.5, y: 570, width: 100, height: 100)
-        convertBtn.setButton(imageName: "translate", targetController: self, action: #selector(translateAction), view)
+        setup()
     }
     
-    func languageBtnAction(_ sender: UIButton){
-        switch sender.tag {
-        case 0:
-            language = "en"
-            break
-        case 1:
-            language = "zh-CN"
-            break
-        case 2:
-            language = "ja"
-            break
-        default:
-            break
+    required init?(coder aDecoder: NSCoder) {
+        let configuration = NSKRecognizerConfiguration(clientID: nClientId)
+        configuration?.canQuestionDetected = true
+        self.speechRecognizer = NSKRecognizer(configuration: configuration)
+        super.init(coder: aDecoder)
+        self.speechRecognizer.delegate = self
+    }
+    
+    func setup(){
+        
+        if !is7Height(){
+            preTextViewHeight.constant = 200
+            translatedTextViewHeight.constant = 200
+            
+            preTextView.frame.size.height = 200
+            translatedTextView.frame.size.height = 200
         }
+        
+        preTextView.layer.addBorder(edge: UIRectEdge.bottom, color: UIColor.lightGray, thickness: 1)
+        translatedTextView.layer.addBorder(edge: UIRectEdge.bottom, color: UIColor.lightGray, thickness: 1)
+        
     }
     
-    
-    func textViewDidChange(_ textView: UITextView) {
-        if textView.text.characters.count == 0{
-            responseText.text = ""
-            hintResponseView.isHidden = false
-            hintInsertView.isHidden = false
-        } else{
-            hintResponseView.isHidden = true
-            hintInsertView.isHidden = true
-        }
-    }
-    
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool{
-        if(text == "\n"){
-            insertText.endEditing(true)
+    func is7Height() -> Bool{
+        let screenHeight = UIScreen.main.bounds.height
+        if screenHeight < 667 {
             return false
         } else{
             return true
         }
     }
-
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.insertText.endEditing(true)
-    }
-    
-    func translateAction(){
-        requestTranslate { (translatedText) in
-            self.responseText.text = translatedText
-            self.responseText.numberOfLines = 0
-        }
-    }
     
     func requestTranslate(completion : @escaping (String)->Void){
         let url = "https://openapi.naver.com/v1/language/translate"
-        let parameters = ["source":"ko","target":self.language,"text":self.insertText.text] as [String : Any]
+        let parameters = ["source":"ko","target":self.language,"text":self.preTextView.text] as [String : Any]
         let header = ["X-Naver-Client-Id":"p3P8WOtZvXwSbWcMZs5H","X-Naver-Client-Secret":"Egwu7b5CBL"]
         
         Alamofire.request(url, method: .post, parameters: parameters, encoding: URLEncoding.default, headers: header).responseJSON { (response) in
@@ -163,14 +104,80 @@ class PaPagoAppVC: UIViewController, UITextViewDelegate {
                     let resp = JSON(json)
                     let translatedText = resp["message"]["result"]["translatedText"].stringValue
                     completion(translatedText)
-                    
                 }
                 break
-                
             case .failure(_):
                 break
-                
             }
+        }
+    }
+    @IBAction func useVoiceTranslate(_ sender: UIButton) {
+        if self.speechRecognizer.isRunning {
+            self.speechRecognizer.stop()
+        } else {
+            print("hi")
+            self.speechRecognizer.start(with: voiceLanguage)
+            self.voiceRecordButton.isEnabled = false
+        }
+    }
+
+}
+
+extension PaPagoAppVC: UITextViewDelegate{
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.isEditing = false
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool{
+        if(text == "\n"){
+            self.isEditing = false
+            return false
+        } else{
+            return true
+        }
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        if textView.text.characters.count == 0{
+            translatedTextView.text = ""
+            preHintLabel.isHidden = false
+            translatedHintLabel.isHidden = false
+        } else{
+            preHintLabel.isHidden = true
+            translatedHintLabel.isHidden = true
+            requestTranslate { (translatedText) in
+                self.translatedTextView.text = translatedText
+            }
+        }
+    }
+}
+
+// speech delegate
+extension PaPagoAppVC: NSKRecognizerDelegate {
+    
+    public func recognizerDidEnterReady(_ aRecognizer: NSKRecognizer!) {
+        // 준비되면 발생하는 메소드
+        preTextView.text = ""
+        translatedTextView.text = ""
+        
+        preHintLabel.isHidden = false
+        translatedHintLabel.isHidden = false
+        
+        self.voiceRecordButton.isEnabled = true
+    }
+    public func recognizerDidEnterInactive(_ aRecognizer: NSKRecognizer!) {
+        // 비활성화 되면 발생하는 메소드
+        self.voiceRecordButton.isEnabled = true
+    }
+    public func recognizer(_ aRecognizer: NSKRecognizer!, didReceivePartialResult aResult: String!) {
+        // 음성인식 메소드
+        self.voiceMessage = aResult
+    }
+    public func recognizer(_ aRecognizer: NSKRecognizer!, didReceive aResult: NSKRecognizedResult!) {
+        // 최종 음성 인식 메소드
+        if let result = aResult.results.first as? String {
+            self.voiceMessage = result
         }
     }
 }

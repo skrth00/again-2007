@@ -44,6 +44,8 @@
 		6780C3F31ED9CE5300D084D1 /* Safari.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6780C3F11ED9CE5300D084D1 /* Safari.storyboard */; };
 		6780C3F51ED9D93700D084D1 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6780C3F41ED9D93700D084D1 /* MessageUI.framework */; };
 		678D85C91ED7B5BD00EB6DBD /* Splash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678D85C81ED7B5BD00EB6DBD /* Splash.swift */; };
+		67BC52801EDD5EC1009B9E88 /* NaverSpeech.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BC527F1EDD5EC1009B9E88 /* NaverSpeech.framework */; };
+		67BC52811EDD5EC1009B9E88 /* NaverSpeech.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 67BC527F1EDD5EC1009B9E88 /* NaverSpeech.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		67F34BE31ED6CD500094FB6D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F34BE21ED6CD500094FB6D /* AppDelegate.swift */; };
 		67F34BE51ED6CD500094FB6D /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F34BE41ED6CD500094FB6D /* HomeVC.swift */; };
 		67F34BE81ED6CD500094FB6D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67F34BE61ED6CD500094FB6D /* Main.storyboard */; };
@@ -61,6 +63,20 @@
 			remoteInfo = again2007project;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		67BC52821EDD5EC1009B9E88 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				67BC52811EDD5EC1009B9E88 /* NaverSpeech.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		01A459BB1ED7906300850C33 /* Clock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clock.swift; sourceTree = "<group>"; };
@@ -102,6 +118,7 @@
 		6780C3F21ED9CE5300D084D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Safari.storyboard; sourceTree = "<group>"; };
 		6780C3F41ED9D93700D084D1 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		678D85C81ED7B5BD00EB6DBD /* Splash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Splash.swift; sourceTree = "<group>"; };
+		67BC527F1EDD5EC1009B9E88 /* NaverSpeech.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NaverSpeech.framework; sourceTree = "<group>"; };
 		67F34BDF1ED6CD500094FB6D /* again2007project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = again2007project.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		67F34BE21ED6CD500094FB6D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		67F34BE41ED6CD500094FB6D /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
@@ -121,6 +138,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				677C3E871EDC0812002E1413 /* Contacts.framework in Frameworks */,
+				67BC52801EDD5EC1009B9E88 /* NaverSpeech.framework in Frameworks */,
 				677C3E881EDC0812002E1413 /* ContactsUI.framework in Frameworks */,
 				6780C3F51ED9D93700D084D1 /* MessageUI.framework in Frameworks */,
 				23BA1F0F75E84C91ACCF4B48 /* Pods_again2007project.framework in Frameworks */,
@@ -240,6 +258,7 @@
 		FB155A5130778805184D0478 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				67BC527F1EDD5EC1009B9E88 /* NaverSpeech.framework */,
 				677C3E851EDC0812002E1413 /* Contacts.framework */,
 				677C3E861EDC0812002E1413 /* ContactsUI.framework */,
 				6780C3F41ED9D93700D084D1 /* MessageUI.framework */,
@@ -262,6 +281,7 @@
 				67F34BDD1ED6CD4F0094FB6D /* Resources */,
 				1C1D834A030A20D381A2F097 /* [CP] Embed Pods Frameworks */,
 				52556C33A8EB303EC63421D1 /* [CP] Copy Pods Resources */,
+				67BC52821EDD5EC1009B9E88 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -643,6 +663,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 3DPPXS9XMF;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = again2007project/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.naver.hd.again2007project;
@@ -658,6 +683,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 3DPPXS9XMF;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = again2007project/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.naver.hd.again2007project;

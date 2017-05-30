@@ -17,6 +17,9 @@ class AppCell: UICollectionViewCell {
     override func awakeFromNib() {
         appDelete.layer.masksToBounds = true
         appDelete.layer.cornerRadius = 9.multiplyWidthRatio()
+        
+        appIcon.layer.masksToBounds = true
+        appIcon.layer.cornerRadius = 10.multiplyWidthRatio()
     }
     
     var isEditting: Bool = false {
