@@ -7,22 +7,14 @@
 //
 
 import UIKit
-import Alamofire
-import SwiftyJSON
 import NaverSpeech
 
 private let nClientId = "3IvzGHemVaIhuEmhpV0v"
 
 class PaPagoAppVC: UIViewController {
     
-    // user defaults - 앱 상태 유지
-    let papagoDefaults = UserDefaults.standard
-    
-    // 영어로만 번역 (기계번역)
-    let language = "en"
-    
     // 음성 인식 언어
-    let voiceLanguage : NSKRecognizerLanguageCode = .korean
+    private let voiceLanguage : NSKRecognizerLanguageCode = .korean
     
     // object
     @IBOutlet weak var preTextView: UITextView!
@@ -37,14 +29,16 @@ class PaPagoAppVC: UIViewController {
     
     // naver speech
     let speechRecognizer: NSKRecognizer
+    
     var voiceMessage: String = ""{
         willSet(newValue){
             preHintLabel.isHidden = true
             translatedHintLabel.isHidden = true
             preTextView.text = newValue
-            requestTranslate { (translatedText) in
+            
+            PaPagoModel.shared.setPreSentence(text: newValue)
+            PaPagoModel.shared.requestTranslate { (translatedText) in
                 self.translatedTextView.text = translatedText
-                self.saveCurrentState()
             }
         }
     }
@@ -57,18 +51,23 @@ class PaPagoAppVC: UIViewController {
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setup()
-        checkAppState()
-    }
-    
     required init?(coder aDecoder: NSCoder) {
         let configuration = NSKRecognizerConfiguration(clientID: nClientId)
         configuration?.canQuestionDetected = true
         self.speechRecognizer = NSKRecognizer(configuration: configuration)
         super.init(coder: aDecoder)
         self.speechRecognizer.delegate = self
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setup()
+        checkAppState()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        PaPagoModel.shared.saveState(pre: self.preTextView.text, trans: self.translatedTextView.text)
     }
     
     func setup(){
@@ -95,48 +94,17 @@ class PaPagoAppVC: UIViewController {
         }
     }
     
-    
-    func requestTranslate(completion : @escaping (String)->Void){
-        let url = "https://openapi.naver.com/v1/language/translate"
-        let parameters = ["source":"ko","target":self.language,"text":self.preTextView.text] as [String : Any]
-        let header = ["X-Naver-Client-Id":"p3P8WOtZvXwSbWcMZs5H","X-Naver-Client-Secret":"Egwu7b5CBL"]
-        
-        Alamofire.request(url, method: .post, parameters: parameters, encoding: URLEncoding.default, headers: header).responseJSON { (response) in
-            switch(response.result) {
-                
-            case .success(_):
-                if let json = response.result.value{
-                    let resp = JSON(json)
-                    let translatedText = resp["message"]["result"]["translatedText"].stringValue
-                    completion(translatedText)
-                }
-                break
-            case .failure(_):
-                break
-            }
-        }
-    }
-    
-    func saveCurrentState(){
-        self.papagoDefaults.set(self.preTextView.text, forKey: "preTextView")
-        self.papagoDefaults.set(self.translatedTextView.text, forKey: "translatedTextView")
-    }
-    
     func checkAppState(){
-        guard let preText = papagoDefaults.string(forKey: "preTextView") else{
-            return
-        }
         
-        guard let translatedText = papagoDefaults.string(forKey: "translatedTextView") else{
-            return
-        }
-        
-        if preText != ""{
-            self.preTextView.text = preText
-            self.translatedTextView.text = translatedText
-            
-            self.preHintLabel.isHidden = true
-            self.translatedHintLabel.isHidden = true
+        let text = PaPagoModel.shared.checkState()
+        if text.0 != nil , text.1 != nil {
+            if text.0 != "" {
+                self.preTextView.text = text.0
+                self.translatedTextView.text = text.1
+                
+                self.preHintLabel.isHidden = true
+                self.translatedHintLabel.isHidden = true
+            }
         }
     }
     
@@ -171,13 +139,14 @@ extension PaPagoAppVC: UITextViewDelegate{
             translatedTextView.text = ""
             preHintLabel.isHidden = false
             translatedHintLabel.isHidden = false
-            saveCurrentState()
+            
         } else{
             preHintLabel.isHidden = true
             translatedHintLabel.isHidden = true
-            requestTranslate { (translatedText) in
+            
+            PaPagoModel.shared.setPreSentence(text: preTextView.text)
+            PaPagoModel.shared.requestTranslate { (translatedText) in
                 self.translatedTextView.text = translatedText
-                self.saveCurrentState()
             }
         }
     }
