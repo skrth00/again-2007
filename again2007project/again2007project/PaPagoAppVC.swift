@@ -15,6 +15,9 @@ private let nClientId = "3IvzGHemVaIhuEmhpV0v"
 
 class PaPagoAppVC: UIViewController {
     
+    // user defaults - 앱 상태 유지
+    let papagoDefaults = UserDefaults.standard
+    
     // 영어로만 번역 (기계번역)
     let language = "en"
     
@@ -41,6 +44,7 @@ class PaPagoAppVC: UIViewController {
             preTextView.text = newValue
             requestTranslate { (translatedText) in
                 self.translatedTextView.text = translatedText
+                self.saveCurrentState()
             }
         }
     }
@@ -56,6 +60,7 @@ class PaPagoAppVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+        checkAppState()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -111,11 +116,34 @@ class PaPagoAppVC: UIViewController {
             }
         }
     }
+    
+    func saveCurrentState(){
+        self.papagoDefaults.set(self.preTextView.text, forKey: "preTextView")
+        self.papagoDefaults.set(self.translatedTextView.text, forKey: "translatedTextView")
+    }
+    
+    func checkAppState(){
+        guard let preText = papagoDefaults.string(forKey: "preTextView") else{
+            return
+        }
+        
+        guard let translatedText = papagoDefaults.string(forKey: "translatedTextView") else{
+            return
+        }
+        
+        if preText != ""{
+            self.preTextView.text = preText
+            self.translatedTextView.text = translatedText
+            
+            self.preHintLabel.isHidden = true
+            self.translatedHintLabel.isHidden = true
+        }
+    }
+    
     @IBAction func useVoiceTranslate(_ sender: UIButton) {
         if self.speechRecognizer.isRunning {
             self.speechRecognizer.stop()
         } else {
-            print("hi")
             self.speechRecognizer.start(with: voiceLanguage)
             self.voiceRecordButton.isEnabled = false
         }
@@ -143,11 +171,13 @@ extension PaPagoAppVC: UITextViewDelegate{
             translatedTextView.text = ""
             preHintLabel.isHidden = false
             translatedHintLabel.isHidden = false
+            saveCurrentState()
         } else{
             preHintLabel.isHidden = true
             translatedHintLabel.isHidden = true
             requestTranslate { (translatedText) in
                 self.translatedTextView.text = translatedText
+                self.saveCurrentState()
             }
         }
     }
