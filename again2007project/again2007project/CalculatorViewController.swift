@@ -15,6 +15,9 @@ class CalculatorViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let appState = CalculatorModel.shared.checkState(){
+            display.text = "\(appState)"
+        }
     }
     
     @IBAction func touchDigit(_ sender: UIButton) {
