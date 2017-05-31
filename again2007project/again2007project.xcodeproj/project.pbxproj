@@ -192,6 +192,44 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		67D3BCC11EDE8D4600773E7C /* CalculatorApp */ = {
+			isa = PBXGroup;
+			children = (
+				4A2AF4561ED93B5400282A9D /* Calculator.storyboard */,
+				1ED98DED1ED7B1E7005CAA94 /* CalculatorViewController.swift */,
+				67D3BCBF1EDE650A00773E7C /* CalculatorModel.swift */,
+			);
+			name = CalculatorApp;
+			sourceTree = "<group>";
+		};
+		67D3BCC21EDE8D6000773E7C /* PaPagoApp */ = {
+			isa = PBXGroup;
+			children = (
+				6778A6551ED75D500031B43C /* PaPagoAppVC.swift */,
+				672A9FD91EDDF9910029A76C /* PaPagoModel.swift */,
+				4A2AF4681ED93BB800282A9D /* Papago.storyboard */,
+			);
+			name = PaPagoApp;
+			sourceTree = "<group>";
+		};
+		67D3BCC41EDE8D7300773E7C /* SafariApp */ = {
+			isa = PBXGroup;
+			children = (
+				6780C3EF1ED9C82100D084D1 /* SafariVC.swift */,
+				6780C3F11ED9CE5300D084D1 /* Safari.storyboard */,
+			);
+			name = SafariApp;
+			sourceTree = "<group>";
+		};
+		67D3BCC51EDE8D8400773E7C /* MapApp */ = {
+			isa = PBXGroup;
+			children = (
+				6778A64F1ED746350031B43C /* AppleMapVC.swift */,
+				4A2AF4381ED7CF0500282A9D /* Map.storyboard */,
+			);
+			name = MapApp;
+			sourceTree = "<group>";
+		};
 		67F34BD61ED6CD4F0094FB6D = {
 			isa = PBXGroup;
 			children = (
@@ -224,28 +262,22 @@
 				4A2AF4911EDB045F00282A9D /* Dock.swift */,
 				6780C3ED1ED97F2200D084D1 /* CustomSegue.swift */,
 				1ED98DF01ED7B675005CAA94 /* SwitcherViewController.swift */,
-				6778A64F1ED746350031B43C /* AppleMapVC.swift */,
-				6780C3EF1ED9C82100D084D1 /* SafariVC.swift */,
-				6778A6551ED75D500031B43C /* PaPagoAppVC.swift */,
-				672A9FD91EDDF9910029A76C /* PaPagoModel.swift */,
-				1ED98DED1ED7B1E7005CAA94 /* CalculatorViewController.swift */,
-				67D3BCBF1EDE650A00773E7C /* CalculatorModel.swift */,
+				67D3BCC51EDE8D8400773E7C /* MapApp */,
+				67D3BCC41EDE8D7300773E7C /* SafariApp */,
+				67D3BCC21EDE8D6000773E7C /* PaPagoApp */,
+				67D3BCC11EDE8D4600773E7C /* CalculatorApp */,
 				6778A6531ED750370031B43C /* Animation+Extension.swift */,
 				30F941A11ED76F8200857C23 /* DeviceUtil.swift */,
 				67F34BE61ED6CD500094FB6D /* Main.storyboard */,
 				4A2AF4961EDB16F300282A9D /* Switcher.storyboard */,
-				6780C3F11ED9CE5300D084D1 /* Safari.storyboard */,
 				4A2AF48A1ED9940E00282A9D /* Splash.storyboard */,
-				4A2AF4681ED93BB800282A9D /* Papago.storyboard */,
 				4A2AF4651ED93BA700282A9D /* Reminder.storyboard */,
 				4A2AF4631ED93B9900282A9D /* Video.storyboard */,
 				4A2AF4601ED93B8E00282A9D /* Calendar.storyboard */,
 				4A2AF45E1ED93B8100282A9D /* Settings.storyboard */,
 				4A2AF45B1ED93B7700282A9D /* Weather.storyboard */,
 				4A2AF4591ED93B6800282A9D /* AppStore.storyboard */,
-				4A2AF4561ED93B5400282A9D /* Calculator.storyboard */,
 				4A2AF43B1ED7CF8300282A9D /* Watch.storyboard */,
-				4A2AF4381ED7CF0500282A9D /* Map.storyboard */,
 				67F34BE21ED6CD500094FB6D /* AppDelegate.swift */,
 				4A2AF4951EDB164E00282A9D /* Supporting Files */,
 			);

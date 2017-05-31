@@ -13,7 +13,7 @@ import CoreLocation
 class AppleMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     // mapKit
-    var mapView: MKMapView!
+    @IBOutlet var mapView: MKMapView!
     
     // locationManager
     let locationManager = CLLocationManager()
@@ -25,17 +25,9 @@ class AppleMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewInit()
         updateLocation()
     }
     
-    func viewInit(){
-        mapView = MKMapView()
-        mapView.rframe(x: 0, y: 0, width: 375, height: 667)
-        mapView.showsUserLocation = true
-        mapView.showsBuildings = true
-        self.view.addSubview(mapView)
-    }
     
     func updateLocation(){
         self.locationManager.delegate = self
@@ -46,7 +38,6 @@ class AppleMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations.last
-        print(location!.coordinate.latitude)
         let initialLocation = CLLocation(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude)
         centerMapOnLocation(location: initialLocation)
         self.locationManager.stopUpdatingLocation()

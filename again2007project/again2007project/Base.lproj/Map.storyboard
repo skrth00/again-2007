@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="J8z-ra-jK0">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,15 +18,28 @@
                         <viewControllerLayoutGuide type="bottom" id="mID-RX-fRX"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="TYW-6b-wCh">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="icO-qE-5I6">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="icO-qE-5I6" firstAttribute="top" secondItem="TYW-6b-wCh" secondAttribute="top" id="BLw-Dn-v73"/>
+                            <constraint firstItem="mID-RX-fRX" firstAttribute="top" secondItem="icO-qE-5I6" secondAttribute="bottom" id="fPh-7E-cZH"/>
+                            <constraint firstAttribute="trailing" secondItem="icO-qE-5I6" secondAttribute="trailing" id="k08-gB-ENo"/>
+                            <constraint firstItem="icO-qE-5I6" firstAttribute="leading" secondItem="TYW-6b-wCh" secondAttribute="leading" id="rLZ-QL-Att"/>
+                        </constraints>
                     </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4_7.fullscreen"/>
+                    <connections>
+                        <outlet property="mapView" destination="icO-qE-5I6" id="9m8-XR-Yd5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iQL-oW-35h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="782" y="76"/>
+            <point key="canvasLocation" x="917.60000000000002" y="75.112443778110944"/>
         </scene>
     </scenes>
 </document>
