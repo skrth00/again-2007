@@ -10,10 +10,9 @@ import UIKit
 
 class CalculatorViewController: UIViewController {
     @IBOutlet weak var display: UILabel!
+   
     var userIsInTheMiddleOfTypingANumber:Bool = false
     
-    var operation:String = ""
-    var accumulator = 0
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -26,7 +25,7 @@ class CalculatorViewController: UIViewController {
         } else {
             display.text = digit
         }
-        userIsInTheMiddleOfTypingANumber = true;
+        userIsInTheMiddleOfTypingANumber = true
     }
     
     @IBAction func performOperation(_ sender: UIButton) {
@@ -34,30 +33,19 @@ class CalculatorViewController: UIViewController {
             userIsInTheMiddleOfTypingANumber = false
         }
         
-        accumulator = Int(display.text!)!
-        operation = sender.currentTitle!
+        CalculatorModel.shared.performOperation(ac: Int(display.text!)!, op: sender.currentTitle!)
     }
     
     @IBAction func getResult(_ sender: UIButton) {
         userIsInTheMiddleOfTypingANumber = false
-        var result = Int(display.text!)!
+        let result = Int(display.text!)!
+        CalculatorModel.shared.performCalculate(res: result)
         
-        if operation == "+" {
-            result = accumulator + result
-        } else if operation == "-" {
-            result = accumulator - result
-        } else if operation == "×" {
-            result = accumulator * result
-        } else if operation == "÷" {
-            result = accumulator / result
-        }
-        
-        display.text = "\(result)"
+        display.text = "\(CalculatorModel.shared.result)"
     }
     
     @IBAction func clear(_ sender: UIButton) {
-        accumulator = 0
-        operation = ""
+        CalculatorModel.shared.performOperation(ac: 0, op: "")
         display.text = "0"
     }
 }
