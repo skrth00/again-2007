@@ -16,15 +16,10 @@ class CustomSegue: UIStoryboardSegue {
         let fromViewController = self.source
         
         let containerView = fromViewController.view.superview
-        
-        let fakeView = UIView()
-        fakeView.frame = toViewController.view.frame
-        fakeView.layer.contents = UIImage(named: "background")?.cgImage
 
 //        toViewController.view.center = CGPoint(x: HomeVC.homeTouchLocation.x, y: HomeVC.homeTouchLocation.y)
         
         toViewController.view.transform = CGAffineTransform(scaleX: 0, y: 0)
-        fromViewController.view.addSubview(fakeView)
         
         containerView?.addSubview(toViewController.view)
         
@@ -33,7 +28,6 @@ class CustomSegue: UIStoryboardSegue {
             toViewController.view.center = CGPoint(x: UIScreen.main.bounds.width/2, y: UIScreen.main.bounds.height/2)
             
         }) { (success) in
-            fakeView.removeFromSuperview()
             fromViewController.present(toViewController, animated: false, completion: nil)
         }
     }
