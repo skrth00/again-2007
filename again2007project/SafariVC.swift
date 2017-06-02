@@ -12,15 +12,18 @@ class SafariVC: UIViewController {
     
     @IBOutlet weak var safariWebView: UIWebView!
     
+    let url = "https://www.naver.com"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewInit()
+        setup()
     }
     
-    func viewInit(){
-        let url = NSURL (string: "https://www.naver.com");
-        let requestObj = NSURLRequest(url: url as! URL);
-        safariWebView.loadRequest(requestObj as URLRequest);
+    func setup(){
+        SafariModel.shared.setUrl(urls: url)
+        let requestObj = SafariModel.shared.getRequestObj()
+        
+        safariWebView.loadRequest(requestObj as URLRequest)
         safariWebView.scrollView.bounces = false
         safariWebView.scrollView.showsVerticalScrollIndicator = false
     }
