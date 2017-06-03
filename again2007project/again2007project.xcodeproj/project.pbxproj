@@ -18,6 +18,7 @@
 		1ED98DF11ED7B675005CAA94 /* SwitcherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED98DF01ED7B675005CAA94 /* SwitcherViewController.swift */; };
 		23BA1F0F75E84C91ACCF4B48 /* Pods_again2007project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E3BFC3F5D05E7FBE09AC95 /* Pods_again2007project.framework */; };
 		30F941A21ED76F8200857C23 /* DeviceUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F941A11ED76F8200857C23 /* DeviceUtil.swift */; };
+		3779B41F1EE28E2C00C52B5A /* SafariModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3779B41E1EE28E2C00C52B5A /* SafariModel.swift */; };
 		4A2AF43A1ED7CF0500282A9D /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A2AF4381ED7CF0500282A9D /* Map.storyboard */; };
 		4A2AF43C1ED7CF8300282A9D /* Watch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A2AF43B1ED7CF8300282A9D /* Watch.storyboard */; };
 		4A2AF4581ED93B5400282A9D /* Calculator.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A2AF4561ED93B5400282A9D /* Calculator.storyboard */; };
@@ -94,6 +95,7 @@
 		1ED98DF01ED7B675005CAA94 /* SwitcherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitcherViewController.swift; sourceTree = "<group>"; };
 		30F941A11ED76F8200857C23 /* DeviceUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceUtil.swift; sourceTree = "<group>"; };
 		3131BA03898700E789AF27A0 /* Pods_again2007projectTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_again2007projectTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3779B41E1EE28E2C00C52B5A /* SafariModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafariModel.swift; sourceTree = "<group>"; };
 		4A2AF4391ED7CF0500282A9D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Map.storyboard; sourceTree = "<group>"; };
 		4A2AF43B1ED7CF8300282A9D /* Watch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Watch.storyboard; sourceTree = "<group>"; };
 		4A2AF4571ED93B5400282A9D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Calculator.storyboard; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 		67D3BCC41EDE8D7300773E7C /* SafariApp */ = {
 			isa = PBXGroup;
 			children = (
+				3779B41E1EE28E2C00C52B5A /* SafariModel.swift */,
 				6780C3EF1ED9C82100D084D1 /* SafariVC.swift */,
 				6780C3F11ED9CE5300D084D1 /* Safari.storyboard */,
 			);
@@ -496,6 +499,7 @@
 				1ED98DEE1ED7B1E7005CAA94 /* CalculatorViewController.swift in Sources */,
 				1ED98DF11ED7B675005CAA94 /* SwitcherViewController.swift in Sources */,
 				67F34BE31ED6CD500094FB6D /* AppDelegate.swift in Sources */,
+				3779B41F1EE28E2C00C52B5A /* SafariModel.swift in Sources */,
 				30F941A21ED76F8200857C23 /* DeviceUtil.swift in Sources */,
 				4A2AF4921EDB045F00282A9D /* Dock.swift in Sources */,
 				01A45A401ED7E85600850C33 /* AlarmDetailViewController.swift in Sources */,

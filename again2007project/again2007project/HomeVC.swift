@@ -24,6 +24,10 @@ class HomeVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     var isTapped = false
     var lastDirCellIdx : IndexPath?
     var isEnlarged = false
+    var isFolderAnimated = false
+    var isFolderCreated = false
+    var isFolderExecuted = false
+    var isCalled = false
     var isEnlargeEnd = false
     let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.regular))
     
@@ -355,6 +359,7 @@ class HomeVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
             }
             
         case UIGestureRecognizerState.changed:
+            
             if My.cellSnapshot != nil {
                 var center = My.cellSnapshot!.center
                 center.x = locationInView.x
@@ -362,54 +367,85 @@ class HomeVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
                 My.cellSnapshot!.center = center
                 
                 if let indexPath = indexPath{
-                    let cell = mainCollectionView.cellForItem(at: indexPath) as UICollectionViewCell!
+                    let cell = mainCollectionView.cellForItem(at: indexPath) as! AppCell
+                    //UICollectionViewCell!
                     
-                    if (cell?.center.x)! - 5 <= center.x ,center.x <= (cell?.center.x)!+5,
-                        (cell?.center.y)! - 5 <= center.y ,center.y <= (cell?.center.y)!+5,
-                        !isEnlarged{
+                    
+                    let task = DispatchWorkItem {
+                        print("cccccccccc")
                         
-                        cell?.layer.borderWidth = 100
-                        cell?.layer.cornerRadius = 15
-                        cell?.layer.borderColor = UIColor.lightGray.cgColor.copy(alpha: 0.8)
-                        
-                        isEnlarged = true
+                        self.isEnlarged = true
+                        //self.isFolderAnimated = true
+                        self.isFolderCreated = true
                         
                         
-                        let item = mainCollectionView.cellForItem(at: indexPath)!
+                        let item = self.mainCollectionView.cellForItem(at: indexPath)!
                         item.layer.removeAllAnimations()
                         
                         self.lastDirCellIdx = indexPath
                         
-                        
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                            UIView.animate(withDuration: 1, animations: {
+                        UIView.animate(withDuration: 1, animations: {
+                            
+                            self.mainCollectionView.addSubview(self.blurEffectView)
+                            self.mainCollectionView.bringSubview(toFront: self.blurEffectView)
+                            //self.lastDirCellIdx = indexPath
+                            self.blurEffectView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.makeSmallCellSize)))
+                            
+                            self.mainCollectionView.bringSubview(toFront: item)
+                            self.mainCollectionView.bringSubview(toFront: My.cellSnapshot!)
+                            item.frame.origin = self.view.frame.origin
+                            item.frame.origin.x = 40
+                            item.frame.origin.y = 200
+                            item.frame.size.width = self.view.frame.width - 80
+                            item.frame.size.height = self.view.frame.height - 400
+                            item.backgroundColor = UIColor.lightGray
+                            
+                        }, completion: { (finished) -> Void in
+                            //cell?.contentView.layer.borderWidth = 0
+                            //cell?.layer.borderWidth = 0
+                            //cell.appIcon.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+                            cell.folderView.isHidden = true
+                            cell.appName.isHidden = false
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                                 
-                                self.mainCollectionView.addSubview(self.blurEffectView)
-                                self.mainCollectionView.bringSubview(toFront: self.blurEffectView)
-                                //self.lastDirCellIdx = indexPath
-                                self.blurEffectView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.makeSmallCellSize)))
-                                
-                                self.mainCollectionView.bringSubview(toFront: item)
-                                self.mainCollectionView.bringSubview(toFront: My.cellSnapshot!)
-                                item.frame.origin = self.view.frame.origin
-                                item.frame.origin.x = 40
-                                item.frame.origin.y = 200
-                                item.frame.size.width = self.view.frame.width - 80
-                                item.frame.size.height = self.view.frame.height - 400
-                                item.backgroundColor = UIColor.lightGray
-                                
-                            }, completion: { (finished) -> Void in
-                                //cell?.contentView.layer.borderWidth = 0
-                                cell?.layer.borderWidth = 0
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                if item.frame.contains(longPress.location(in: self.mainCollectionView)) == false {
+                                    self.makeSmallCellSize()
+                                    self.mainCollectionView.moveItem(at: Path.initialIndexPath! as IndexPath, to: indexPath)
+                                    print(Path.initialIndexPath)
                                     
-                                    if item.frame.contains(longPress.location(in: self.mainCollectionView)) == false {
-                                        self.makeSmallCellSize()
-                                        self.mainCollectionView.moveItem(at: Path.initialIndexPath! as IndexPath, to: indexPath)
-                                        print(Path.initialIndexPath)
-                                        
-                                    }
                                 }
+                            }
+                            
+                            
+                        })
+                    }
+                    
+                    
+                    if (cell.center.x) - 10 <= center.x ,center.x <= (cell.center.x)+10,
+                        (cell.center.y) - 10 <= center.y ,center.y <= (cell.center.y)+10,
+                        !isEnlarged,!isFolderAnimated{
+                        
+                        isFolderAnimated = true
+                        
+                        if isFolderAnimated{
+                            //isFolderAnimated = false
+                            print("aaaaaaaaaa")
+                            UIView.animate(withDuration: 0.6, animations: {
+                                
+                                cell.folderView.isHidden = false
+                                cell.appName.isHidden = true
+                            }, completion: { (finished) in
+                                print("bbbbbbbbbb")
+                                
+                                //self.isFolderAnimated = true
+                                
+                                
+                                //DispatchQueue.main.asyncAfter(deadline: .now() + 2)
+                                
+                                self.isFolderExecuted = true
+                                print("abab\(self.isFolderExecuted)")
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 2.5, execute: task)
+                                
                                 
                                 
                             })
@@ -418,7 +454,42 @@ class HomeVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
                         
                         
                         
+                        
+                        
+                        
+                        
                     }else{
+                        
+                        
+                        if isFolderAnimated,isFolderExecuted{
+                            
+                            print("[skrth00] task Cancel when it is delay executed")
+                            task.cancel()
+                            print("task canceled : \(task.isCancelled)")
+                            cell.folderView.isHidden = true
+                            cell.appName.isHidden = false
+                            
+                            
+                            isFolderAnimated = false
+                            isFolderExecuted = false
+                            
+                        }else if isFolderAnimated{
+                            
+                            print("[skrth00] task Cancel when it is animated")
+                            
+                            cell.folderView.isHidden = true
+                            cell.appName.isHidden = false
+                            isFolderAnimated = false
+                            //isFolderExecuted = false
+                            
+                            //                            if isFolderCreated{
+                            //
+                            //                            }
+                            
+                        }
+                        
+                        
+                        
                         
                         
                     }
@@ -474,7 +545,7 @@ class HomeVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     func layoutInit(){
         if let layout = mainCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             let col = CGFloat(4)
-            let spacing = (mainCollectionView.bounds.width - (60 * col)) / (col + 1)
+            let spacing = (mainCollectionView.bounds.width - (70 * col)) / (col + 1)
             layout.minimumLineSpacing = spacing
             layout.minimumInteritemSpacing = 5
             layout.sectionInset = UIEdgeInsets(top: 7, left: spacing, bottom: 0, right: spacing)
@@ -626,6 +697,9 @@ extension HomeVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath as IndexPath) as! AppCell
         
+        cell.folderView.layer.cornerRadius = 10.multiplyWidthRatio()
+        cell.folderView.layer.masksToBounds = true
+        cell.folderView.isHidden = true
         let app = appItem(for: indexPath)
         cell.appIcon.image = app?.icon
         cell.appName.text = app?.name

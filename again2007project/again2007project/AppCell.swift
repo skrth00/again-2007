@@ -10,6 +10,7 @@ import UIKit
 
 class AppCell: UICollectionViewCell {
     
+    @IBOutlet weak var folderView: UIView!
     @IBOutlet weak var appIcon: UIImageView!
     @IBOutlet weak var appName: UILabel!
     @IBOutlet weak var appDelete: UIButton!
@@ -20,6 +21,10 @@ class AppCell: UICollectionViewCell {
         
         appIcon.layer.masksToBounds = true
         appIcon.layer.cornerRadius = 10.multiplyWidthRatio()
+        
+        //folderView.layer.masksToBounds = true
+        //folderView.layer.cornerRadius = 10.multiplyWidthRatio()
+        
     }
     
     var isEditting: Bool = false {
